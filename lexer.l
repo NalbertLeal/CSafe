@@ -11,6 +11,28 @@
  *            What will happen if we remove the second rule?
  */
 
+
+/* Definicoes C */
+%{
+	#include <stdio.h>
+	#include "y.tab.h"
+
+	extern int yyerror(char *msg);
+	enum types {
+		COMMA_C = 1,SEMI_COLLON,LITERAL_TRUE,LITERAL_FALSE,IF_C,ELSE_C,
+		SWITCH, CASE, DEFAULT, RETURN, FOR, WHILE, CONTINUE, BREAK,
+		TYPE_SHORT, TYPE_INT, TYPE_LONG, TYPE_FLOAT, TYPE_DOUBLE, TYPE_SIGNED,
+		TYPE_UNSIGNED, TYPE_CHAR, TYPE_BOOL, TYPE_VOID, TYPEDEF, STRUCT,
+		UNION, ENUM, CONST, STATIC, COMMENTARY, TAB_NEWlINE LITERAL_STRING, LITERAL_FLOAT, PARENTESIS_OPEN,
+		PARENTESIS_CLOSE, BRACE_OPEN,BRACES_CLOSE,BRACKET_OPEN,BRACKET_CLOSE,
+		POW_OP,MULT_OP,DIVIS_OP,MOD_OP,SUB_OP,EQUAL_OP,NOTEQUAL_OP, BIGGER_EQUAL_OP,LESS_EQUAL_OP,
+		BIGGER_THAN_OP,LESS_THAN_OP,AND_OP,OR_OP,NOT_OP,ASSIGN_OP, ID
+	}	POW_OP,
+
+
+%}
+
+
 /* [[\/\*([^*]]|[\r\n]|[\*+[^*\/]]|[[\r\n]*\*+\/]|[\/\/.*] 		;    */
 
 /*	int num_lines = 0, num_chars = 0;

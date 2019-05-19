@@ -8,7 +8,7 @@ extern char * yytext;
 }%
 
 %%
-program                 : STATEMENT                                             {};
+program                 : STATEMENTS                                             {};
 
 STATEMENTS              : STATEMENT                                             {}
                         | STATEMENTS                                            {};
