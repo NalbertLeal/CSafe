@@ -53,35 +53,35 @@
 "const"                             { return (CONST); }
 "static"                            { return (STATIC); }
 
-[\/\/.*\n]														;
+[\/\/.*\n]													{ return (COMMENTARY); };
 
 
-[ \t\r\n]           							;
+""           							          { return (TAB_NEWlINE); };
 [\".+[^\\]\"]												{ return (LITERAL_STRING); }
-[0-9]*\.[0-9]+										  { return (LITERAL_FLOAT); }
+[1-9]*\.[0-9]+										  { return (LITERAL_FLOAT); }
 [0-9]+														  { return (LITERAL_INT); }
-[\()] 			  											{ return (PARENTESIS_OPEN); }
-[\)]				  											{ return (PARENTESIS_CLOSE); }
-[\{] 			  												{ return (BRACE_OPEN); }
-[\}]				 												{ return (BRACES_CLOSE); }
-[\[] 			  												{ return (BRACKET_OPEN); }
-[\]]			 													{ return (BRACKET_CLOSE); }
-[\^]																{ return (POW_OP); }
-[\*]																{ return (MULT_OP) }
-[\/]																{ return (DIVIS_OP); }
-[\%]																{ return (MOD_OP);}
-[\+]																{ return (ADD_OP); }
-[\-]																{ return (SUB_OP); }
-[\=\=]															{ return (EQUAL_OP); }
-[\!\=]															{ return (NOTEQUAL_OP); }
-[\>\=]															{ return (BIGGER_EQUAL_OP); }
-[\<\=]															{ return (LESS_EQUAL_OP); }
-[\>]																{ return (BIGGER_THAN_OP); }
-[\<]																{ return (LESS_THAN_OP); }
-[\&\&]															{ return (AND_OP); }
-[\|\|]															{ return (OR_OP); }
-[\!]																{ return (NOT_OP); }
-[\=]																{ return (ASSIGN_OP); }
+"(" 			  											  { return (PARENTESIS_OPEN); }
+")"				  											  { return (PARENTESIS_CLOSE); }
+"{" 			  												{ return (BRACE_OPEN); }
+"}"				 												  { return (BRACES_CLOSE); }
+"[" 			  												{ return (BRACKET_OPEN); }
+"]"			 													  { return (BRACKET_CLOSE); }
+"**"															 	{ return (POW_OP); }
+"*"																  { return (MULT_OP) }
+"/"																  { return (DIVIS_OP); }
+"%"																  { return (MOD_OP);}
+"+"																  { return (ADD_OP); }
+"-"																  { return (SUB_OP); }
+"=="															  { return (EQUAL_OP); }
+"!="															  { return (NOTEQUAL_OP); }
+">="															  { return (BIGGER_EQUAL_OP); }
+"<="															  { return (LESS_EQUAL_OP); }
+">"																  { return (BIGGER_THAN_OP); }
+"<"																  { return (LESS_THAN_OP); }
+"&&"															  { return (AND_OP); }
+"||"															  { return (OR_OP); }
+"!"																  { return (NOT_OP); }
+"="																  { return (ASSIGN_OP); }
 
 [\_a-z][a-z0-0]*										{ return (ID); }
 %%
