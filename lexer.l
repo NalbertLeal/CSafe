@@ -11,55 +11,79 @@
  *            What will happen if we remove the second rule?
  */
 
+/* [[\/\*([^*]]|[\r\n]|[\*+[^*\/]]|[[\r\n]*\*+\/]|[\/\/.*] 		;    */
 
-	int num_lines = 0, num_chars = 0;
-
-%%
+/*	int num_lines = 0, num_chars = 0;
+  
 \n	++num_lines; 
 .   ++num_chars;
+*/
 
-"true"												{printf("%s : LITERAL_TRUE\n", yytext);}
-"false"														{printf("%s : LITERAL_FALSE\n", yytext);}
-"if"															{printf("%s : IF_C\n", yytext);}
-"else"														{printf("%s : ELSE_C\n", yytext);}
-"return"													{printf("%s : RETURN_C\n", yytext);}
-"for"															{printf("%s : FOR_C\n", yytext);}
-"while"														{printf("%s : WHILE_C\n", yytext);}
+%%
 
-"int"														{printf("%s : TYPE_INT\n", yytext);}
-"void"														{printf("%s : TYPE_VOID\n", yytext);}
+","												          { return (COMMA_C); }
+";"														      { return (SEMI_COLLON); }
+"true"												      { return (LITERAL_TRUE); }
+"false"														  { return (LITERAL_FALSE); }
+"if"															  { return (IF_C); }
+"else"														  { return (ELSE_C); }
+"switch"														{ return (SWITCH); }
+"case"															{ return (CASE); }
+"default"														{ return (DEFAULT); }
+"return"													  { return (RETURN); }
+"for"															  { return (FOR); }
+"while"														  { return (WHILE); }
+"continue"													{ return (CONTINUE); }
+"break"												      { return (BREAK); }
+
+"short"														  { return (TYPE_SHORT); }
+"int"														    { return (TYPE_INT); }
+"long"														  { return (TYPE_LONG); }
+"float"														  { return (TYPE_FLOAT); }
+"double"														{ return (TYPE_DOUBLE; }
+"signed"                            { return (TYPE_SIGNED); }
+"unsigned"                          { return (TYPE_UNSIGNED); }
+"char"                              { return (TYPE_CHAR); }
+"bool"                              { return (TYPE_BOOL); }
+"void"														  { return (TYPE_VOID); }
+"typedef"                           { return (TYPEDEF); }
+"struct"                            { return (STRUCT); }
+"union"                             { return (UNION); }
+"enum"                              { return (ENUM); }
+"const"                             { return (CONST); }
+"static"                            { return (STATIC); }
 
 [\/\/.*\n]														;
 
-[[\/\*([^*]]|[\r\n]|[\*+[^*\/]]|[[\r\n]*\*+\/]|[\/\/.*] 		;
-[ \t\r\n]           							;
-[\".+[^\\]\"]												{printf("%s : LITERAL_STRING\n", yytext);}
-[0-9]*\.[0-9]+										{printf("%s : LITERAL_FLOAT\n", yytext);}
-[0-9]+														{printf("%s : LITERAL_INT\n", yytext);}
-[\()] 			  												{printf("%s : PARENT_OPEN\n", yytext);}
-[\)]				  											{printf("%s : PARENT_CLOSE\n", yytext);}
-[\{] 			  												{printf("%s : BRACES_OPEN\n", yytext);}
-[\}]				 												{printf("%s : BRACES_CLOSE\n", yytext);}
-[\[] 			  												{printf("%s : BRACKET_OPEN\n", yytext);}
-[\]]			 													{printf("%s : BRACKET_CLOSE\n", yytext);}
-[\^]																{printf("%s : POW_OP\n", yytext);}
-[\*]																{printf("%s : MULT_OP\n", yytext);}
-[\/]																{printf("%s : DIVIS_OP\n", yytext);}
-[\%]																{printf("%s : MOD_OP\n", yytext);}
-[\+]																{printf("%s : ADD_OP\n", yytext);}
-[\-]																{printf("%s : SUB_OP\n", yytext);}
-[\=\=]															{printf("%s : EQUAL_OP\n", yytext);}
-[\!\=]															{printf("%s : NOTEQUAL_OP\n", yytext);}
-[\>\=]															{printf("%s : BIGGER_EQUAL_OP\n", yytext);}
-[\<\=]															{printf("%s : LESS_EQUAL_OP\n", yytext);}
-[\>]																{printf("%s : BIGGER_THAN_OP\n", yytext);}
-[\<]																{printf("%s : LESS_THAN_OP\n", yytext);}
-[\&\&]															{printf("%s : AND_OP\n", yytext);}
-[\|\|]															{printf("%s : OR_OP\n", yytext);}
-[\!]																{printf("%s : NOT_OP\n", yytext);}
-[\=]																{printf("%s : ASSIGN_OP\n", yytext);}
 
-[\_a-z][a-z0-0]*													{printf("%s : ID\n", yytext);}
+[ \t\r\n]           							;
+[\".+[^\\]\"]												{ return (LITERAL_STRING); }
+[0-9]*\.[0-9]+										  { return (LITERAL_FLOAT); }
+[0-9]+														  { return (LITERAL_INT); }
+[\()] 			  											{ return (PARENTESIS_OPEN); }
+[\)]				  											{ return (PARENTESIS_CLOSE); }
+[\{] 			  												{ return (BRACE_OPEN); }
+[\}]				 												{ return (BRACES_CLOSE); }
+[\[] 			  												{ return (BRACKET_OPEN); }
+[\]]			 													{ return (BRACKET_CLOSE); }
+[\^]																{ return (POW_OP); }
+[\*]																{ return (MULT_OP) }
+[\/]																{ return (DIVIS_OP); }
+[\%]																{ return (MOD_OP);}
+[\+]																{ return (ADD_OP); }
+[\-]																{ return (SUB_OP); }
+[\=\=]															{ return (EQUAL_OP); }
+[\!\=]															{ return (NOTEQUAL_OP); }
+[\>\=]															{ return (BIGGER_EQUAL_OP); }
+[\<\=]															{ return (LESS_EQUAL_OP); }
+[\>]																{ return (BIGGER_THAN_OP); }
+[\<]																{ return (LESS_THAN_OP); }
+[\&\&]															{ return (AND_OP); }
+[\|\|]															{ return (OR_OP); }
+[\!]																{ return (NOT_OP); }
+[\=]																{ return (ASSIGN_OP); }
+
+[\_a-z][a-z0-0]*										{ return (ID); }
 %%
 
 
