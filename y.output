@@ -1,0 +1,501 @@
+Useless nonterminals
+
+   LITERAL
+
+
+Terminals which are not used
+
+   COMMA
+   VARIABLE
+   BOOLEAN_LITERAL
+
+
+Useless rules
+
+   33 LITERAL: INTEGER_LITERAL
+   34        | FLOAT_LITERAL
+   35        | BOOLEAN_LITERAL
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: /* empty */
+    2        | STATEMENTS
+
+    3 STATEMENTS: STATEMENT
+    4           | STATEMENT STATEMENTS
+
+    5 STATEMENT: ASSIGNMENT END
+
+    6 TYPE: INT_TYPE
+    7     | FLOAT_TYPE
+    8     | BOOLEAN_TYPE
+    9     | CHAR_TYPE
+   10     | STRING_TYPE
+   11     | ID
+
+   12 LOGICAL_OP: AND
+   13           | OR
+   14           | BITWISE_AND
+   15           | BITWISE_OR
+
+   16 ARITHMETIC_OP: PLUS
+   17              | MINUS
+   18              | TIMES
+   19              | DIVIDE
+   20              | POW
+   21              | MOD
+
+   22 OPERATOR: ARITHMETIC_OP
+   23         | LOGICAL_OP
+
+   24 TERM: VARIABLES
+   25     | INTEGER_LITERAL
+   26     | FLOAT_LITERAL
+
+   27 EXPRESSION: TERM
+   28           | TERM OPERATOR EXPRESSION
+   29           | LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS
+
+   30 VARIABLES: ID
+
+   31 ASSIGNMENT: VARIABLES EQUALS EXPRESSION
+   32           | TYPE VARIABLES EQUALS EXPRESSION
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+INTEGER_LITERAL (258) 25
+FLOAT_LITERAL (259) 26
+COMMA (260)
+INT_TYPE (261) 6
+FLOAT_TYPE (262) 7
+BOOLEAN_TYPE (263) 8
+CHAR_TYPE (264) 9
+STRING_TYPE (265) 10
+PLUS (266) 16
+MINUS (267) 17
+TIMES (268) 18
+DIVIDE (269) 19
+ID (270) 11 30
+AND (271) 12
+OR (272) 13
+END (273) 5
+EQUALS (274) 31 32
+MOD (275) 21
+POW (276) 20
+VARIABLE (277)
+BITWISE_AND (278) 14
+BITWISE_OR (279) 15
+LEFT_PARENTHESIS (280) 29
+RIGHT_PARENTHESIS (281) 29
+BOOLEAN_LITERAL (282)
+
+
+Nonterminals, with rules where they appear
+
+$accept (28)
+    on left: 0
+program (29)
+    on left: 1 2, on right: 0
+STATEMENTS (30)
+    on left: 3 4, on right: 2 4
+STATEMENT (31)
+    on left: 5, on right: 3 4
+TYPE (32)
+    on left: 6 7 8 9 10 11, on right: 32
+LOGICAL_OP (33)
+    on left: 12 13 14 15, on right: 23
+ARITHMETIC_OP (34)
+    on left: 16 17 18 19 20 21, on right: 22
+OPERATOR (35)
+    on left: 22 23, on right: 28
+TERM (36)
+    on left: 24 25 26, on right: 27 28
+EXPRESSION (37)
+    on left: 27 28 29, on right: 28 29 31 32
+VARIABLES (38)
+    on left: 30, on right: 24 31 32
+ASSIGNMENT (39)
+    on left: 31 32, on right: 5
+
+
+state 0
+
+    0 $accept: . program $end
+
+    INT_TYPE      shift, and go to state 1
+    FLOAT_TYPE    shift, and go to state 2
+    BOOLEAN_TYPE  shift, and go to state 3
+    CHAR_TYPE     shift, and go to state 4
+    STRING_TYPE   shift, and go to state 5
+    ID            shift, and go to state 6
+
+    $default  reduce using rule 1 (program)
+
+    program     go to state 7
+    STATEMENTS  go to state 8
+    STATEMENT   go to state 9
+    TYPE        go to state 10
+    VARIABLES   go to state 11
+    ASSIGNMENT  go to state 12
+
+
+state 1
+
+    6 TYPE: INT_TYPE .
+
+    $default  reduce using rule 6 (TYPE)
+
+
+state 2
+
+    7 TYPE: FLOAT_TYPE .
+
+    $default  reduce using rule 7 (TYPE)
+
+
+state 3
+
+    8 TYPE: BOOLEAN_TYPE .
+
+    $default  reduce using rule 8 (TYPE)
+
+
+state 4
+
+    9 TYPE: CHAR_TYPE .
+
+    $default  reduce using rule 9 (TYPE)
+
+
+state 5
+
+   10 TYPE: STRING_TYPE .
+
+    $default  reduce using rule 10 (TYPE)
+
+
+state 6
+
+   11 TYPE: ID .
+   30 VARIABLES: ID .
+
+    EQUALS    reduce using rule 30 (VARIABLES)
+    $default  reduce using rule 11 (TYPE)
+
+
+state 7
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 13
+
+
+state 8
+
+    2 program: STATEMENTS .
+
+    $default  reduce using rule 2 (program)
+
+
+state 9
+
+    3 STATEMENTS: STATEMENT .
+    4           | STATEMENT . STATEMENTS
+
+    INT_TYPE      shift, and go to state 1
+    FLOAT_TYPE    shift, and go to state 2
+    BOOLEAN_TYPE  shift, and go to state 3
+    CHAR_TYPE     shift, and go to state 4
+    STRING_TYPE   shift, and go to state 5
+    ID            shift, and go to state 6
+
+    $default  reduce using rule 3 (STATEMENTS)
+
+    STATEMENTS  go to state 14
+    STATEMENT   go to state 9
+    TYPE        go to state 10
+    VARIABLES   go to state 11
+    ASSIGNMENT  go to state 12
+
+
+state 10
+
+   32 ASSIGNMENT: TYPE . VARIABLES EQUALS EXPRESSION
+
+    ID  shift, and go to state 15
+
+    VARIABLES  go to state 16
+
+
+state 11
+
+   31 ASSIGNMENT: VARIABLES . EQUALS EXPRESSION
+
+    EQUALS  shift, and go to state 17
+
+
+state 12
+
+    5 STATEMENT: ASSIGNMENT . END
+
+    END  shift, and go to state 18
+
+
+state 13
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+state 14
+
+    4 STATEMENTS: STATEMENT STATEMENTS .
+
+    $default  reduce using rule 4 (STATEMENTS)
+
+
+state 15
+
+   30 VARIABLES: ID .
+
+    $default  reduce using rule 30 (VARIABLES)
+
+
+state 16
+
+   32 ASSIGNMENT: TYPE VARIABLES . EQUALS EXPRESSION
+
+    EQUALS  shift, and go to state 19
+
+
+state 17
+
+   31 ASSIGNMENT: VARIABLES EQUALS . EXPRESSION
+
+    INTEGER_LITERAL   shift, and go to state 20
+    FLOAT_LITERAL     shift, and go to state 21
+    ID                shift, and go to state 15
+    LEFT_PARENTHESIS  shift, and go to state 22
+
+    TERM        go to state 23
+    EXPRESSION  go to state 24
+    VARIABLES   go to state 25
+
+
+state 18
+
+    5 STATEMENT: ASSIGNMENT END .
+
+    $default  reduce using rule 5 (STATEMENT)
+
+
+state 19
+
+   32 ASSIGNMENT: TYPE VARIABLES EQUALS . EXPRESSION
+
+    INTEGER_LITERAL   shift, and go to state 20
+    FLOAT_LITERAL     shift, and go to state 21
+    ID                shift, and go to state 15
+    LEFT_PARENTHESIS  shift, and go to state 22
+
+    TERM        go to state 23
+    EXPRESSION  go to state 26
+    VARIABLES   go to state 25
+
+
+state 20
+
+   25 TERM: INTEGER_LITERAL .
+
+    $default  reduce using rule 25 (TERM)
+
+
+state 21
+
+   26 TERM: FLOAT_LITERAL .
+
+    $default  reduce using rule 26 (TERM)
+
+
+state 22
+
+   29 EXPRESSION: LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS
+
+    INTEGER_LITERAL   shift, and go to state 20
+    FLOAT_LITERAL     shift, and go to state 21
+    ID                shift, and go to state 15
+    LEFT_PARENTHESIS  shift, and go to state 22
+
+    TERM        go to state 23
+    EXPRESSION  go to state 27
+    VARIABLES   go to state 25
+
+
+state 23
+
+   27 EXPRESSION: TERM .
+   28           | TERM . OPERATOR EXPRESSION
+
+    PLUS         shift, and go to state 28
+    MINUS        shift, and go to state 29
+    TIMES        shift, and go to state 30
+    DIVIDE       shift, and go to state 31
+    AND          shift, and go to state 32
+    OR           shift, and go to state 33
+    MOD          shift, and go to state 34
+    POW          shift, and go to state 35
+    BITWISE_AND  shift, and go to state 36
+    BITWISE_OR   shift, and go to state 37
+
+    $default  reduce using rule 27 (EXPRESSION)
+
+    LOGICAL_OP     go to state 38
+    ARITHMETIC_OP  go to state 39
+    OPERATOR       go to state 40
+
+
+state 24
+
+   31 ASSIGNMENT: VARIABLES EQUALS EXPRESSION .
+
+    $default  reduce using rule 31 (ASSIGNMENT)
+
+
+state 25
+
+   24 TERM: VARIABLES .
+
+    $default  reduce using rule 24 (TERM)
+
+
+state 26
+
+   32 ASSIGNMENT: TYPE VARIABLES EQUALS EXPRESSION .
+
+    $default  reduce using rule 32 (ASSIGNMENT)
+
+
+state 27
+
+   29 EXPRESSION: LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS
+
+    RIGHT_PARENTHESIS  shift, and go to state 41
+
+
+state 28
+
+   16 ARITHMETIC_OP: PLUS .
+
+    $default  reduce using rule 16 (ARITHMETIC_OP)
+
+
+state 29
+
+   17 ARITHMETIC_OP: MINUS .
+
+    $default  reduce using rule 17 (ARITHMETIC_OP)
+
+
+state 30
+
+   18 ARITHMETIC_OP: TIMES .
+
+    $default  reduce using rule 18 (ARITHMETIC_OP)
+
+
+state 31
+
+   19 ARITHMETIC_OP: DIVIDE .
+
+    $default  reduce using rule 19 (ARITHMETIC_OP)
+
+
+state 32
+
+   12 LOGICAL_OP: AND .
+
+    $default  reduce using rule 12 (LOGICAL_OP)
+
+
+state 33
+
+   13 LOGICAL_OP: OR .
+
+    $default  reduce using rule 13 (LOGICAL_OP)
+
+
+state 34
+
+   21 ARITHMETIC_OP: MOD .
+
+    $default  reduce using rule 21 (ARITHMETIC_OP)
+
+
+state 35
+
+   20 ARITHMETIC_OP: POW .
+
+    $default  reduce using rule 20 (ARITHMETIC_OP)
+
+
+state 36
+
+   14 LOGICAL_OP: BITWISE_AND .
+
+    $default  reduce using rule 14 (LOGICAL_OP)
+
+
+state 37
+
+   15 LOGICAL_OP: BITWISE_OR .
+
+    $default  reduce using rule 15 (LOGICAL_OP)
+
+
+state 38
+
+   23 OPERATOR: LOGICAL_OP .
+
+    $default  reduce using rule 23 (OPERATOR)
+
+
+state 39
+
+   22 OPERATOR: ARITHMETIC_OP .
+
+    $default  reduce using rule 22 (OPERATOR)
+
+
+state 40
+
+   28 EXPRESSION: TERM OPERATOR . EXPRESSION
+
+    INTEGER_LITERAL   shift, and go to state 20
+    FLOAT_LITERAL     shift, and go to state 21
+    ID                shift, and go to state 15
+    LEFT_PARENTHESIS  shift, and go to state 22
+
+    TERM        go to state 23
+    EXPRESSION  go to state 42
+    VARIABLES   go to state 25
+
+
+state 41
+
+   29 EXPRESSION: LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS .
+
+    $default  reduce using rule 29 (EXPRESSION)
+
+
+state 42
+
+   28 EXPRESSION: TERM OPERATOR EXPRESSION .
+
+    $default  reduce using rule 28 (EXPRESSION)
