@@ -29,6 +29,8 @@
 ("}")               return(RIGHT_BRACKET);
 ("=")               return(EQUALS);
 ("%")               return(MOD);
+("++")              return(UNARY_PLUS);
+("--")              return(UNARY_MINUS);
 
 ("<")               return(LESS_THAN);
 (">")               return(GREATER_THAN);

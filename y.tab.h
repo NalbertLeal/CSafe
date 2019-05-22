@@ -52,26 +52,28 @@
      MINUS = 268,
      TIMES = 269,
      DIVIDE = 270,
-     ID = 271,
-     AND = 272,
-     OR = 273,
-     END = 274,
-     EQUALS = 275,
-     MOD = 276,
-     POW = 277,
-     VARIABLE = 278,
-     BITWISE_AND = 279,
-     BITWISE_OR = 280,
-     LESS_THAN = 281,
-     GREATER_THAN = 282,
-     EQUALS_THAN = 283,
-     LEFT_PARENTHESIS = 284,
-     RIGHT_PARENTHESIS = 285,
-     LEFT_BRACKET = 286,
-     RIGHT_BRACKET = 287,
-     IF = 288,
-     ELSE = 289,
-     FOR = 290
+     UNARY_MINUS = 271,
+     UNARY_PLUS = 272,
+     ID = 273,
+     AND = 274,
+     OR = 275,
+     END = 276,
+     EQUALS = 277,
+     MOD = 278,
+     POW = 279,
+     VARIABLE = 280,
+     BITWISE_AND = 281,
+     BITWISE_OR = 282,
+     LESS_THAN = 283,
+     GREATER_THAN = 284,
+     EQUALS_THAN = 285,
+     LEFT_PARENTHESIS = 286,
+     RIGHT_PARENTHESIS = 287,
+     LEFT_BRACKET = 288,
+     RIGHT_BRACKET = 289,
+     IF = 290,
+     ELSE = 291,
+     FOR = 292
    };
 #endif
 /* Tokens.  */
@@ -88,26 +90,28 @@
 #define MINUS 268
 #define TIMES 269
 #define DIVIDE 270
-#define ID 271
-#define AND 272
-#define OR 273
-#define END 274
-#define EQUALS 275
-#define MOD 276
-#define POW 277
-#define VARIABLE 278
-#define BITWISE_AND 279
-#define BITWISE_OR 280
-#define LESS_THAN 281
-#define GREATER_THAN 282
-#define EQUALS_THAN 283
-#define LEFT_PARENTHESIS 284
-#define RIGHT_PARENTHESIS 285
-#define LEFT_BRACKET 286
-#define RIGHT_BRACKET 287
-#define IF 288
-#define ELSE 289
-#define FOR 290
+#define UNARY_MINUS 271
+#define UNARY_PLUS 272
+#define ID 273
+#define AND 274
+#define OR 275
+#define END 276
+#define EQUALS 277
+#define MOD 278
+#define POW 279
+#define VARIABLE 280
+#define BITWISE_AND 281
+#define BITWISE_OR 282
+#define LESS_THAN 283
+#define GREATER_THAN 284
+#define EQUALS_THAN 285
+#define LEFT_PARENTHESIS 286
+#define RIGHT_PARENTHESIS 287
+#define LEFT_BRACKET 288
+#define RIGHT_BRACKET 289
+#define IF 290
+#define ELSE 291
+#define FOR 292
 
 
 
@@ -120,7 +124,7 @@ typedef union YYSTYPE
     struct node * npValue;
 }
 /* Line 1529 of yacc.c.  */
-#line 124 "y.tab.h"
+#line 128 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
