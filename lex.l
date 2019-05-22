@@ -8,6 +8,7 @@
 ("if")              return(IF);
 ("else")            return(ELSE);
 ("for")             return(FOR);
+("while")           return(WHILE);
 
 ("int")             return(INT_TYPE);
 ("float")           return(FLOAT_TYPE);

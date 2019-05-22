@@ -23,3 +23,8 @@ for(int i = 0; i == 1; --i) {
     x = 4;
     y = 4 + 2;
 }
+
+while(x == false) {
+    x++;
+    y = 6;
+}
