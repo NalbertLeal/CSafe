@@ -44,6 +44,7 @@
 %token FOR
 %token WHILE
 
+%token RETURN
 %token SWITCH
 %token CASE
 %token DEFAULT
@@ -66,6 +67,7 @@ STATEMENT       : ASSIGNMENT END
                 | FUNCTION
                 | FUNCTION_CALL
                 | SWITCH_STM
+                | RETURN_STM
                 | BLOCK;
 
 TYPE            : INT_TYPE
@@ -91,6 +93,8 @@ ARITHMETIC_OP   : PLUS
                 | MOD;
 
 FUNCTION        : TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS BLOCK;
+
+RETURN_STM      : RETURN TERM END;
 
 TERM_LIST       : TERM
                 | TERM COMMA TERM_LIST;

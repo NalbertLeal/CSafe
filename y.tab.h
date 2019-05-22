@@ -76,10 +76,11 @@
      ELSE = 292,
      FOR = 293,
      WHILE = 294,
-     SWITCH = 295,
-     CASE = 296,
-     DEFAULT = 297,
-     BREAK = 298
+     RETURN = 295,
+     SWITCH = 296,
+     CASE = 297,
+     DEFAULT = 298,
+     BREAK = 299
    };
 #endif
 /* Tokens.  */
@@ -120,10 +121,11 @@
 #define ELSE 292
 #define FOR 293
 #define WHILE 294
-#define SWITCH 295
-#define CASE 296
-#define DEFAULT 297
-#define BREAK 298
+#define RETURN 295
+#define SWITCH 296
+#define CASE 297
+#define DEFAULT 298
+#define BREAK 299
 
 
 
@@ -136,7 +138,7 @@ typedef union YYSTYPE
     struct node * npValue;
 }
 /* Line 1529 of yacc.c.  */
-#line 140 "y.tab.h"
+#line 142 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

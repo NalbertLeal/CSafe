@@ -10,6 +10,7 @@
 ("for")             return(FOR);
 ("while")           return(WHILE);
 ("switch")          return(SWITCH);
+("return")          return(RETURN);
 ("case")            return(CASE);
 ("default")         return(DEFAULT);
 ("break")           return(BREAK);
