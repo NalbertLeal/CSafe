@@ -53,42 +53,70 @@ graph: {
 	edge: {
 		sourcename:	"0"
 		targetname:	"7"
+		label:	"LEFT_BRACKET"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"8"
+		label:	"IF"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"9"
 		label:	"program"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"0"
-		targetname:	"8"
+		targetname:	"10"
 		label:	"STATEMENTS"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"0"
-		targetname:	"9"
+		targetname:	"11"
 		label:	"STATEMENT"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"0"
-		targetname:	"10"
+		targetname:	"12"
 		label:	"TYPE"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"0"
-		targetname:	"11"
+		targetname:	"13"
 		label:	"VARIABLES"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"0"
-		targetname:	"12"
+		targetname:	"14"
+		label:	"BLOCK"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"15"
 		label:	"ASSIGNMENT"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"16"
+		label:	"IF_STATEMENT"
 		color:	green
 		textcolor:	black
 	}
@@ -118,560 +146,974 @@ graph: {
 	}
 	node: {
 		title:	"7"
-		label:	"state  7\n $accept -> program . $end"
-	}
-	edge: {
-		sourcename:	"7"
-		targetname:	"13"
-		label:	"$end"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
-		title:	"8"
-		label:	"state  8\n program -> STATEMENTS ."
-	}
-	node: {
-		title:	"9"
-		label:	"state  9\n STATEMENTS -> STATEMENT .\n STATEMENTS -> STATEMENT . STATEMENTS"
+		label:	"state  7\n BLOCK -> LEFT_BRACKET . STATEMENTS RIGHT_BRACKET"
 	}
 	backedge: {
-		sourcename:	"9"
+		sourcename:	"7"
 		targetname:	"1"
 		label:	"INT_TYPE"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"9"
+		sourcename:	"7"
 		targetname:	"2"
 		label:	"FLOAT_TYPE"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"9"
+		sourcename:	"7"
 		targetname:	"3"
 		label:	"BOOLEAN_TYPE"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"9"
+		sourcename:	"7"
 		targetname:	"4"
 		label:	"CHAR_TYPE"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"9"
+		sourcename:	"7"
 		targetname:	"5"
 		label:	"STRING_TYPE"
 		color:	blue
 		textcolor:	black
 	}
 	backedge: {
-		sourcename:	"9"
+		sourcename:	"7"
 		targetname:	"6"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"9"
-		targetname:	"14"
+		sourcename:	"7"
+		targetname:	"7"
+		label:	"LEFT_BRACKET"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"7"
+		targetname:	"8"
+		label:	"IF"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"7"
+		targetname:	"17"
 		label:	"STATEMENTS"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"9"
-		targetname:	"9"
+		sourcename:	"7"
+		targetname:	"11"
 		label:	"STATEMENT"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"9"
-		targetname:	"10"
+		sourcename:	"7"
+		targetname:	"12"
 		label:	"TYPE"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"9"
-		targetname:	"11"
+		sourcename:	"7"
+		targetname:	"13"
 		label:	"VARIABLES"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"9"
-		targetname:	"12"
+		sourcename:	"7"
+		targetname:	"14"
+		label:	"BLOCK"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"7"
+		targetname:	"15"
 		label:	"ASSIGNMENT"
 		color:	green
 		textcolor:	black
 	}
+	edge: {
+		sourcename:	"7"
+		targetname:	"16"
+		label:	"IF_STATEMENT"
+		color:	green
+		textcolor:	black
+	}
 	node: {
-		title:	"10"
-		label:	"state 10\n ASSIGNMENT -> TYPE . VARIABLES EQUALS EXPRESSION"
+		title:	"8"
+		label:	"state  8\n IF_STATEMENT -> IF . LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT"
 	}
 	edge: {
-		sourcename:	"10"
+		sourcename:	"8"
+		targetname:	"18"
+		label:	"LEFT_PARENTHESIS"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"9"
+		label:	"state  9\n $accept -> program . $end"
+	}
+	edge: {
+		sourcename:	"9"
+		targetname:	"19"
+		label:	"$end"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"10"
+		label:	"state 10\n program -> STATEMENTS ."
+	}
+	node: {
+		title:	"11"
+		label:	"state 11\n STATEMENTS -> STATEMENT .\n STATEMENTS -> STATEMENT . STATEMENTS"
+	}
+	backedge: {
+		sourcename:	"11"
+		targetname:	"1"
+		label:	"INT_TYPE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"11"
+		targetname:	"2"
+		label:	"FLOAT_TYPE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"11"
+		targetname:	"3"
+		label:	"BOOLEAN_TYPE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"11"
+		targetname:	"4"
+		label:	"CHAR_TYPE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"11"
+		targetname:	"5"
+		label:	"STRING_TYPE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"11"
+		targetname:	"6"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"11"
+		targetname:	"7"
+		label:	"LEFT_BRACKET"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"11"
+		targetname:	"8"
+		label:	"IF"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"20"
+		label:	"STATEMENTS"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"11"
+		label:	"STATEMENT"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"12"
+		label:	"TYPE"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"13"
+		label:	"VARIABLES"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"14"
+		label:	"BLOCK"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
 		targetname:	"15"
+		label:	"ASSIGNMENT"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"11"
+		targetname:	"16"
+		label:	"IF_STATEMENT"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"12"
+		label:	"state 12\n ASSIGNMENT -> TYPE . VARIABLES EQUALS EXPRESSION"
+	}
+	edge: {
+		sourcename:	"12"
+		targetname:	"21"
 		label:	"ID"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"10"
-		targetname:	"16"
+		sourcename:	"12"
+		targetname:	"22"
 		label:	"VARIABLES"
 		color:	green
 		textcolor:	black
 	}
 	node: {
-		title:	"11"
-		label:	"state 11\n ASSIGNMENT -> VARIABLES . EQUALS EXPRESSION"
+		title:	"13"
+		label:	"state 13\n ASSIGNMENT -> VARIABLES . EQUALS EXPRESSION"
 	}
 	edge: {
-		sourcename:	"11"
-		targetname:	"17"
+		sourcename:	"13"
+		targetname:	"23"
 		label:	"EQUALS"
 		color:	blue
 		textcolor:	black
 	}
 	node: {
-		title:	"12"
-		label:	"state 12\n STATEMENT -> ASSIGNMENT . END"
+		title:	"14"
+		label:	"state 14\n STATEMENT -> BLOCK ."
+	}
+	node: {
+		title:	"15"
+		label:	"state 15\n STATEMENT -> ASSIGNMENT . END"
 	}
 	edge: {
-		sourcename:	"12"
-		targetname:	"18"
+		sourcename:	"15"
+		targetname:	"24"
 		label:	"END"
 		color:	blue
 		textcolor:	black
 	}
 	node: {
-		title:	"13"
-		label:	"state 13\n $accept -> program $end ."
-	}
-	node: {
-		title:	"14"
-		label:	"state 14\n STATEMENTS -> STATEMENT STATEMENTS ."
-	}
-	node: {
-		title:	"15"
-		label:	"state 15\n VARIABLES -> ID ."
-	}
-	node: {
 		title:	"16"
-		label:	"state 16\n ASSIGNMENT -> TYPE VARIABLES . EQUALS EXPRESSION"
+		label:	"state 16\n STATEMENT -> IF_STATEMENT ."
+	}
+	node: {
+		title:	"17"
+		label:	"state 17\n BLOCK -> LEFT_BRACKET STATEMENTS . RIGHT_BRACKET"
 	}
 	edge: {
-		sourcename:	"16"
-		targetname:	"19"
+		sourcename:	"17"
+		targetname:	"25"
+		label:	"RIGHT_BRACKET"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"18"
+		label:	"state 18\n IF_STATEMENT -> IF LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT"
+	}
+	edge: {
+		sourcename:	"18"
+		targetname:	"26"
+		label:	"INTEGER_LITERAL"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"18"
+		targetname:	"27"
+		label:	"FLOAT_LITERAL"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"18"
+		targetname:	"21"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"18"
+		targetname:	"28"
+		label:	"LEFT_PARENTHESIS"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"18"
+		targetname:	"29"
+		label:	"TERM"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"18"
+		targetname:	"30"
+		label:	"EXPRESSION"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"18"
+		targetname:	"31"
+		label:	"VARIABLES"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"19"
+		label:	"state 19\n $accept -> program $end ."
+	}
+	node: {
+		title:	"20"
+		label:	"state 20\n STATEMENTS -> STATEMENT STATEMENTS ."
+	}
+	node: {
+		title:	"21"
+		label:	"state 21\n VARIABLES -> ID ."
+	}
+	node: {
+		title:	"22"
+		label:	"state 22\n ASSIGNMENT -> TYPE VARIABLES . EQUALS EXPRESSION"
+	}
+	edge: {
+		sourcename:	"22"
+		targetname:	"32"
 		label:	"EQUALS"
 		color:	blue
 		textcolor:	black
 	}
 	node: {
-		title:	"17"
-		label:	"state 17\n ASSIGNMENT -> VARIABLES EQUALS . EXPRESSION"
-	}
-	edge: {
-		sourcename:	"17"
-		targetname:	"20"
-		label:	"INTEGER_LITERAL"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"17"
-		targetname:	"21"
-		label:	"FLOAT_LITERAL"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"17"
-		targetname:	"15"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"17"
-		targetname:	"22"
-		label:	"LEFT_PARENTHESIS"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"17"
-		targetname:	"23"
-		label:	"TERM"
-		color:	green
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"17"
-		targetname:	"24"
-		label:	"EXPRESSION"
-		color:	green
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"17"
-		targetname:	"25"
-		label:	"VARIABLES"
-		color:	green
-		textcolor:	black
-	}
-	node: {
-		title:	"18"
-		label:	"state 18\n STATEMENT -> ASSIGNMENT END ."
-	}
-	node: {
-		title:	"19"
-		label:	"state 19\n ASSIGNMENT -> TYPE VARIABLES EQUALS . EXPRESSION"
-	}
-	edge: {
-		sourcename:	"19"
-		targetname:	"20"
-		label:	"INTEGER_LITERAL"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"19"
-		targetname:	"21"
-		label:	"FLOAT_LITERAL"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"19"
-		targetname:	"15"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"19"
-		targetname:	"22"
-		label:	"LEFT_PARENTHESIS"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"19"
-		targetname:	"23"
-		label:	"TERM"
-		color:	green
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"19"
-		targetname:	"26"
-		label:	"EXPRESSION"
-		color:	green
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"19"
-		targetname:	"25"
-		label:	"VARIABLES"
-		color:	green
-		textcolor:	black
-	}
-	node: {
-		title:	"20"
-		label:	"state 20\n TERM -> INTEGER_LITERAL ."
-	}
-	node: {
-		title:	"21"
-		label:	"state 21\n TERM -> FLOAT_LITERAL ."
-	}
-	node: {
-		title:	"22"
-		label:	"state 22\n EXPRESSION -> LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS"
-	}
-	backedge: {
-		sourcename:	"22"
-		targetname:	"20"
-		label:	"INTEGER_LITERAL"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"22"
-		targetname:	"21"
-		label:	"FLOAT_LITERAL"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"22"
-		targetname:	"15"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"22"
-		targetname:	"22"
-		label:	"LEFT_PARENTHESIS"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"22"
-		targetname:	"23"
-		label:	"TERM"
-		color:	green
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"22"
-		targetname:	"27"
-		label:	"EXPRESSION"
-		color:	green
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"22"
-		targetname:	"25"
-		label:	"VARIABLES"
-		color:	green
-		textcolor:	black
-	}
-	node: {
 		title:	"23"
-		label:	"state 23\n EXPRESSION -> TERM .\n EXPRESSION -> TERM . OPERATOR EXPRESSION"
+		label:	"state 23\n ASSIGNMENT -> VARIABLES EQUALS . EXPRESSION"
+	}
+	edge: {
+		sourcename:	"23"
+		targetname:	"26"
+		label:	"INTEGER_LITERAL"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"23"
+		targetname:	"27"
+		label:	"FLOAT_LITERAL"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"23"
+		targetname:	"21"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
 	}
 	edge: {
 		sourcename:	"23"
 		targetname:	"28"
-		label:	"PLUS"
+		label:	"LEFT_PARENTHESIS"
 		color:	blue
 		textcolor:	black
 	}
 	edge: {
 		sourcename:	"23"
 		targetname:	"29"
-		label:	"MINUS"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"30"
-		label:	"TIMES"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"31"
-		label:	"DIVIDE"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"32"
-		label:	"AND"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"33"
-		label:	"OR"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"34"
-		label:	"MOD"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"35"
-		label:	"POW"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"36"
-		label:	"BITWISE_AND"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"37"
-		label:	"BITWISE_OR"
-		color:	blue
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"38"
-		label:	"LOGICAL_OP"
-		color:	green
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"39"
-		label:	"ARITHMETIC_OP"
-		color:	green
-		textcolor:	black
-	}
-	edge: {
-		sourcename:	"23"
-		targetname:	"40"
-		label:	"OPERATOR"
-		color:	green
-		textcolor:	black
-	}
-	node: {
-		title:	"24"
-		label:	"state 24\n ASSIGNMENT -> VARIABLES EQUALS EXPRESSION ."
-	}
-	node: {
-		title:	"25"
-		label:	"state 25\n TERM -> VARIABLES ."
-	}
-	node: {
-		title:	"26"
-		label:	"state 26\n ASSIGNMENT -> TYPE VARIABLES EQUALS EXPRESSION ."
-	}
-	node: {
-		title:	"27"
-		label:	"state 27\n EXPRESSION -> LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS"
-	}
-	edge: {
-		sourcename:	"27"
-		targetname:	"41"
-		label:	"RIGHT_PARENTHESIS"
-		color:	blue
-		textcolor:	black
-	}
-	node: {
-		title:	"28"
-		label:	"state 28\n ARITHMETIC_OP -> PLUS ."
-	}
-	node: {
-		title:	"29"
-		label:	"state 29\n ARITHMETIC_OP -> MINUS ."
-	}
-	node: {
-		title:	"30"
-		label:	"state 30\n ARITHMETIC_OP -> TIMES ."
-	}
-	node: {
-		title:	"31"
-		label:	"state 31\n ARITHMETIC_OP -> DIVIDE ."
-	}
-	node: {
-		title:	"32"
-		label:	"state 32\n LOGICAL_OP -> AND ."
-	}
-	node: {
-		title:	"33"
-		label:	"state 33\n LOGICAL_OP -> OR ."
-	}
-	node: {
-		title:	"34"
-		label:	"state 34\n ARITHMETIC_OP -> MOD ."
-	}
-	node: {
-		title:	"35"
-		label:	"state 35\n ARITHMETIC_OP -> POW ."
-	}
-	node: {
-		title:	"36"
-		label:	"state 36\n LOGICAL_OP -> BITWISE_AND ."
-	}
-	node: {
-		title:	"37"
-		label:	"state 37\n LOGICAL_OP -> BITWISE_OR ."
-	}
-	node: {
-		title:	"38"
-		label:	"state 38\n OPERATOR -> LOGICAL_OP ."
-	}
-	node: {
-		title:	"39"
-		label:	"state 39\n OPERATOR -> ARITHMETIC_OP ."
-	}
-	node: {
-		title:	"40"
-		label:	"state 40\n EXPRESSION -> TERM OPERATOR . EXPRESSION"
-	}
-	backedge: {
-		sourcename:	"40"
-		targetname:	"20"
-		label:	"INTEGER_LITERAL"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"40"
-		targetname:	"21"
-		label:	"FLOAT_LITERAL"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"40"
-		targetname:	"15"
-		label:	"ID"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"40"
-		targetname:	"22"
-		label:	"LEFT_PARENTHESIS"
-		color:	blue
-		textcolor:	black
-	}
-	backedge: {
-		sourcename:	"40"
-		targetname:	"23"
 		label:	"TERM"
 		color:	green
 		textcolor:	black
 	}
 	edge: {
-		sourcename:	"40"
-		targetname:	"42"
+		sourcename:	"23"
+		targetname:	"33"
 		label:	"EXPRESSION"
 		color:	green
 		textcolor:	black
 	}
-	backedge: {
-		sourcename:	"40"
-		targetname:	"25"
+	edge: {
+		sourcename:	"23"
+		targetname:	"31"
 		label:	"VARIABLES"
 		color:	green
 		textcolor:	black
 	}
 	node: {
+		title:	"24"
+		label:	"state 24\n STATEMENT -> ASSIGNMENT END ."
+	}
+	node: {
+		title:	"25"
+		label:	"state 25\n BLOCK -> LEFT_BRACKET STATEMENTS RIGHT_BRACKET ."
+	}
+	node: {
+		title:	"26"
+		label:	"state 26\n TERM -> INTEGER_LITERAL ."
+	}
+	node: {
+		title:	"27"
+		label:	"state 27\n TERM -> FLOAT_LITERAL ."
+	}
+	node: {
+		title:	"28"
+		label:	"state 28\n EXPRESSION -> LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS"
+	}
+	backedge: {
+		sourcename:	"28"
+		targetname:	"26"
+		label:	"INTEGER_LITERAL"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"28"
+		targetname:	"27"
+		label:	"FLOAT_LITERAL"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"28"
+		targetname:	"21"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"28"
+		targetname:	"28"
+		label:	"LEFT_PARENTHESIS"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"28"
+		targetname:	"29"
+		label:	"TERM"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"28"
+		targetname:	"34"
+		label:	"EXPRESSION"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"28"
+		targetname:	"31"
+		label:	"VARIABLES"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"29"
+		label:	"state 29\n EXPRESSION -> TERM .\n EXPRESSION -> TERM . OPERATOR EXPRESSION"
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"35"
+		label:	"PLUS"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"36"
+		label:	"MINUS"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"37"
+		label:	"TIMES"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"38"
+		label:	"DIVIDE"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"39"
+		label:	"AND"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"40"
+		label:	"OR"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"41"
+		label:	"MOD"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"42"
+		label:	"POW"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"43"
+		label:	"BITWISE_AND"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"44"
+		label:	"BITWISE_OR"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"45"
+		label:	"LESS_THAN"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"46"
+		label:	"GREATER_THAN"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"47"
+		label:	"EQUALS_THAN"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"48"
+		label:	"LOGICAL_OP"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"49"
+		label:	"ARITHMETIC_OP"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"50"
+		label:	"OPERATOR"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"30"
+		label:	"state 30\n IF_STATEMENT -> IF LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT"
+	}
+	edge: {
+		sourcename:	"30"
+		targetname:	"51"
+		label:	"RIGHT_PARENTHESIS"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"31"
+		label:	"state 31\n TERM -> VARIABLES ."
+	}
+	node: {
+		title:	"32"
+		label:	"state 32\n ASSIGNMENT -> TYPE VARIABLES EQUALS . EXPRESSION"
+	}
+	backedge: {
+		sourcename:	"32"
+		targetname:	"26"
+		label:	"INTEGER_LITERAL"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"32"
+		targetname:	"27"
+		label:	"FLOAT_LITERAL"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"32"
+		targetname:	"21"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"32"
+		targetname:	"28"
+		label:	"LEFT_PARENTHESIS"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"32"
+		targetname:	"29"
+		label:	"TERM"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"32"
+		targetname:	"52"
+		label:	"EXPRESSION"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"32"
+		targetname:	"31"
+		label:	"VARIABLES"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"33"
+		label:	"state 33\n ASSIGNMENT -> VARIABLES EQUALS EXPRESSION ."
+	}
+	node: {
+		title:	"34"
+		label:	"state 34\n EXPRESSION -> LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS"
+	}
+	edge: {
+		sourcename:	"34"
+		targetname:	"53"
+		label:	"RIGHT_PARENTHESIS"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"35"
+		label:	"state 35\n ARITHMETIC_OP -> PLUS ."
+	}
+	node: {
+		title:	"36"
+		label:	"state 36\n ARITHMETIC_OP -> MINUS ."
+	}
+	node: {
+		title:	"37"
+		label:	"state 37\n ARITHMETIC_OP -> TIMES ."
+	}
+	node: {
+		title:	"38"
+		label:	"state 38\n ARITHMETIC_OP -> DIVIDE ."
+	}
+	node: {
+		title:	"39"
+		label:	"state 39\n LOGICAL_OP -> AND ."
+	}
+	node: {
+		title:	"40"
+		label:	"state 40\n LOGICAL_OP -> OR ."
+	}
+	node: {
 		title:	"41"
-		label:	"state 41\n EXPRESSION -> LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS ."
+		label:	"state 41\n ARITHMETIC_OP -> MOD ."
 	}
 	node: {
 		title:	"42"
-		label:	"state 42\n EXPRESSION -> TERM OPERATOR EXPRESSION ."
+		label:	"state 42\n ARITHMETIC_OP -> POW ."
+	}
+	node: {
+		title:	"43"
+		label:	"state 43\n LOGICAL_OP -> BITWISE_AND ."
+	}
+	node: {
+		title:	"44"
+		label:	"state 44\n LOGICAL_OP -> BITWISE_OR ."
+	}
+	node: {
+		title:	"45"
+		label:	"state 45\n LOGICAL_OP -> LESS_THAN ."
+	}
+	node: {
+		title:	"46"
+		label:	"state 46\n LOGICAL_OP -> GREATER_THAN ."
+	}
+	node: {
+		title:	"47"
+		label:	"state 47\n LOGICAL_OP -> EQUALS_THAN ."
+	}
+	node: {
+		title:	"48"
+		label:	"state 48\n OPERATOR -> LOGICAL_OP ."
+	}
+	node: {
+		title:	"49"
+		label:	"state 49\n OPERATOR -> ARITHMETIC_OP ."
+	}
+	node: {
+		title:	"50"
+		label:	"state 50\n EXPRESSION -> TERM OPERATOR . EXPRESSION"
+	}
+	backedge: {
+		sourcename:	"50"
+		targetname:	"26"
+		label:	"INTEGER_LITERAL"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"50"
+		targetname:	"27"
+		label:	"FLOAT_LITERAL"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"50"
+		targetname:	"21"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"50"
+		targetname:	"28"
+		label:	"LEFT_PARENTHESIS"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"50"
+		targetname:	"29"
+		label:	"TERM"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"50"
+		targetname:	"54"
+		label:	"EXPRESSION"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"50"
+		targetname:	"31"
+		label:	"VARIABLES"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"51"
+		label:	"state 51\n IF_STATEMENT -> IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS . BLOCK ELSE_STATEMENT"
+	}
+	backedge: {
+		sourcename:	"51"
+		targetname:	"7"
+		label:	"LEFT_BRACKET"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"51"
+		targetname:	"55"
+		label:	"BLOCK"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"52"
+		label:	"state 52\n ASSIGNMENT -> TYPE VARIABLES EQUALS EXPRESSION ."
+	}
+	node: {
+		title:	"53"
+		label:	"state 53\n EXPRESSION -> LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS ."
+	}
+	node: {
+		title:	"54"
+		label:	"state 54\n EXPRESSION -> TERM OPERATOR EXPRESSION ."
+	}
+	node: {
+		title:	"55"
+		label:	"state 55\n IF_STATEMENT -> IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK . ELSE_STATEMENT"
+	}
+	edge: {
+		sourcename:	"55"
+		targetname:	"56"
+		label:	"ELSE"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"55"
+		targetname:	"57"
+		label:	"ELSE_STATEMENT"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"56"
+		label:	"state 56\n ELSE_STATEMENT -> ELSE . STATEMENT"
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"1"
+		label:	"INT_TYPE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"2"
+		label:	"FLOAT_TYPE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"3"
+		label:	"BOOLEAN_TYPE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"4"
+		label:	"CHAR_TYPE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"5"
+		label:	"STRING_TYPE"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"6"
+		label:	"ID"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"7"
+		label:	"LEFT_BRACKET"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"8"
+		label:	"IF"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"56"
+		targetname:	"58"
+		label:	"STATEMENT"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"12"
+		label:	"TYPE"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"13"
+		label:	"VARIABLES"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"14"
+		label:	"BLOCK"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"15"
+		label:	"ASSIGNMENT"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"56"
+		targetname:	"16"
+		label:	"IF_STATEMENT"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"57"
+		label:	"state 57\n IF_STATEMENT -> IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT ."
+	}
+	node: {
+		title:	"58"
+		label:	"state 58\n ELSE_STATEMENT -> ELSE STATEMENT ."
 	}
 
 

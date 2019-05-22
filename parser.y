@@ -12,7 +12,7 @@
     struct node * npValue;
 }
 
-%token <iValue> INTEGER_LITERAL FLOAT_LITERAL
+%token <iValue> INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL
 %token COMMA
 %token INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE
 %token PLUS MINUS TIMES DIVIDE
@@ -26,9 +26,18 @@
 %token VARIABLE
 %token BITWISE_AND
 %token BITWISE_OR
+
+%token LESS_THAN
+%token GREATER_THAN
+%token EQUALS_THAN
+
 %token LEFT_PARENTHESIS
 %token RIGHT_PARENTHESIS
-%token BOOLEAN_LITERAL
+%token LEFT_BRACKET
+%token RIGHT_BRACKET
+
+%token IF
+%token ELSE
 
 %type <npValue> STATEMENT EXPRESSION ASSIGNMENT
 
@@ -40,7 +49,9 @@ program:        /* empty */
 STATEMENTS      : STATEMENT
                 | STATEMENT STATEMENTS;
 
-STATEMENT       : ASSIGNMENT END;
+STATEMENT       : ASSIGNMENT END
+                | IF_STATEMENT
+                | BLOCK;
 
 TYPE            : INT_TYPE
                 | FLOAT_TYPE
@@ -52,7 +63,10 @@ TYPE            : INT_TYPE
 LOGICAL_OP      : AND
                 | OR
                 | BITWISE_AND
-                | BITWISE_OR;
+                | BITWISE_OR
+                | LESS_THAN
+                | GREATER_THAN
+                | EQUALS_THAN;
 
 ARITHMETIC_OP   : PLUS
                 | MINUS
@@ -78,5 +92,12 @@ EXPRESSION      : TERM
 
 VARIABLES       : ID;
 
+BLOCK           : LEFT_BRACKET STATEMENTS RIGHT_BRACKET;
+
 ASSIGNMENT      : VARIABLES EQUALS EXPRESSION
                 | TYPE VARIABLES EQUALS EXPRESSION;
+
+IF_STATEMENT    : IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
+
+ELSE_STATEMENT  : ELSE STATEMENT
+                | /* empty */;

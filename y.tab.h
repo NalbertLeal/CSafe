@@ -41,57 +41,71 @@
    enum yytokentype {
      INTEGER_LITERAL = 258,
      FLOAT_LITERAL = 259,
-     COMMA = 260,
-     INT_TYPE = 261,
-     FLOAT_TYPE = 262,
-     BOOLEAN_TYPE = 263,
-     CHAR_TYPE = 264,
-     STRING_TYPE = 265,
-     PLUS = 266,
-     MINUS = 267,
-     TIMES = 268,
-     DIVIDE = 269,
-     ID = 270,
-     AND = 271,
-     OR = 272,
-     END = 273,
-     EQUALS = 274,
-     MOD = 275,
-     POW = 276,
-     VARIABLE = 277,
-     BITWISE_AND = 278,
-     BITWISE_OR = 279,
-     LEFT_PARENTHESIS = 280,
-     RIGHT_PARENTHESIS = 281,
-     BOOLEAN_LITERAL = 282
+     BOOLEAN_LITERAL = 260,
+     COMMA = 261,
+     INT_TYPE = 262,
+     FLOAT_TYPE = 263,
+     BOOLEAN_TYPE = 264,
+     CHAR_TYPE = 265,
+     STRING_TYPE = 266,
+     PLUS = 267,
+     MINUS = 268,
+     TIMES = 269,
+     DIVIDE = 270,
+     ID = 271,
+     AND = 272,
+     OR = 273,
+     END = 274,
+     EQUALS = 275,
+     MOD = 276,
+     POW = 277,
+     VARIABLE = 278,
+     BITWISE_AND = 279,
+     BITWISE_OR = 280,
+     LESS_THAN = 281,
+     GREATER_THAN = 282,
+     EQUALS_THAN = 283,
+     LEFT_PARENTHESIS = 284,
+     RIGHT_PARENTHESIS = 285,
+     LEFT_BRACKET = 286,
+     RIGHT_BRACKET = 287,
+     IF = 288,
+     ELSE = 289
    };
 #endif
 /* Tokens.  */
 #define INTEGER_LITERAL 258
 #define FLOAT_LITERAL 259
-#define COMMA 260
-#define INT_TYPE 261
-#define FLOAT_TYPE 262
-#define BOOLEAN_TYPE 263
-#define CHAR_TYPE 264
-#define STRING_TYPE 265
-#define PLUS 266
-#define MINUS 267
-#define TIMES 268
-#define DIVIDE 269
-#define ID 270
-#define AND 271
-#define OR 272
-#define END 273
-#define EQUALS 274
-#define MOD 275
-#define POW 276
-#define VARIABLE 277
-#define BITWISE_AND 278
-#define BITWISE_OR 279
-#define LEFT_PARENTHESIS 280
-#define RIGHT_PARENTHESIS 281
-#define BOOLEAN_LITERAL 282
+#define BOOLEAN_LITERAL 260
+#define COMMA 261
+#define INT_TYPE 262
+#define FLOAT_TYPE 263
+#define BOOLEAN_TYPE 264
+#define CHAR_TYPE 265
+#define STRING_TYPE 266
+#define PLUS 267
+#define MINUS 268
+#define TIMES 269
+#define DIVIDE 270
+#define ID 271
+#define AND 272
+#define OR 273
+#define END 274
+#define EQUALS 275
+#define MOD 276
+#define POW 277
+#define VARIABLE 278
+#define BITWISE_AND 279
+#define BITWISE_OR 280
+#define LESS_THAN 281
+#define GREATER_THAN 282
+#define EQUALS_THAN 283
+#define LEFT_PARENTHESIS 284
+#define RIGHT_PARENTHESIS 285
+#define LEFT_BRACKET 286
+#define RIGHT_BRACKET 287
+#define IF 288
+#define ELSE 289
 
 
 
@@ -104,7 +118,7 @@ typedef union YYSTYPE
     struct node * npValue;
 }
 /* Line 1529 of yacc.c.  */
-#line 108 "y.tab.h"
+#line 122 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

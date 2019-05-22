@@ -10,3 +10,11 @@ y = x | y;
 
 int x = 2;
 bool y = 0;
+
+if(x == 1) {
+    if(y > 2) {
+        x = 2;
+    }
+} else if(x == 2) {
+    x = 6;
+}
