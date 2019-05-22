@@ -32,3 +32,5 @@ while(x == false) {
 int call(int x) {
     x = 6;
 }
+
+x(6, y);

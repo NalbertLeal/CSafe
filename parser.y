@@ -59,6 +59,7 @@ STATEMENT       : ASSIGNMENT END
                 | IF_STATEMENT
                 | WHILE_STATEMENT
                 | FUNCTION
+                | FUNCTION_CALL
                 | BLOCK;
 
 TYPE            : INT_TYPE
@@ -85,11 +86,16 @@ ARITHMETIC_OP   : PLUS
 
 FUNCTION        : TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS BLOCK;
 
+TERM_LIST       : TERM
+                | TERM COMMA TERM_LIST;
+
 ID_PARAMS       : TYPE ID
                 | TYPE ID COMMA ID_PARAMS;
 
 FUNCTION_PARAMS : /* empty */
                 | ID_PARAMS;
+
+FUNCTION_CALL   : ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS END;
 
 OPERATOR        : ARITHMETIC_OP
                 | LOGICAL_OP;
