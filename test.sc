@@ -28,3 +28,7 @@ while(x == false) {
     x++;
     y = 6;
 }
+
+int call(int x) {
+    x = 6;
+}

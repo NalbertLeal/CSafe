@@ -1,6 +1,5 @@
 Terminals which are not used
 
-   COMMA
    VARIABLE
 
 
@@ -18,106 +17,115 @@ Grammar
     6          | FOR_STATEMENT
     7          | IF_STATEMENT
     8          | WHILE_STATEMENT
-    9          | BLOCK
+    9          | FUNCTION
+   10          | BLOCK
 
-   10 TYPE: INT_TYPE
-   11     | FLOAT_TYPE
-   12     | BOOLEAN_TYPE
-   13     | CHAR_TYPE
-   14     | STRING_TYPE
-   15     | ID
+   11 TYPE: INT_TYPE
+   12     | FLOAT_TYPE
+   13     | BOOLEAN_TYPE
+   14     | CHAR_TYPE
+   15     | STRING_TYPE
+   16     | ID
 
-   16 LOGICAL_OP: AND
-   17           | OR
-   18           | BITWISE_AND
-   19           | BITWISE_OR
-   20           | LESS_THAN
-   21           | GREATER_THAN
-   22           | EQUALS_THAN
+   17 LOGICAL_OP: AND
+   18           | OR
+   19           | BITWISE_AND
+   20           | BITWISE_OR
+   21           | LESS_THAN
+   22           | GREATER_THAN
+   23           | EQUALS_THAN
 
-   23 ARITHMETIC_OP: PLUS
-   24              | MINUS
-   25              | TIMES
-   26              | DIVIDE
-   27              | POW
-   28              | MOD
+   24 ARITHMETIC_OP: PLUS
+   25              | MINUS
+   26              | TIMES
+   27              | DIVIDE
+   28              | POW
+   29              | MOD
 
-   29 OPERATOR: ARITHMETIC_OP
-   30         | LOGICAL_OP
+   30 FUNCTION: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS BLOCK
 
-   31 UNARY_OPERATOR: UNARY_PLUS
-   32               | UNARY_MINUS
+   31 ID_PARAMS: TYPE ID
+   32          | TYPE ID COMMA ID_PARAMS
 
-   33 TERM: VARIABLES
-   34     | INTEGER_LITERAL
-   35     | FLOAT_LITERAL
-   36     | BOOLEAN_LITERAL
+   33 FUNCTION_PARAMS: /* empty */
+   34                | ID_PARAMS
 
-   37 EXPRESSION: TERM
-   38           | TERM OPERATOR EXPRESSION
-   39           | LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS
+   35 OPERATOR: ARITHMETIC_OP
+   36         | LOGICAL_OP
 
-   40 UNARY_EXPR: TERM UNARY_OPERATOR
-   41           | UNARY_OPERATOR TERM
+   37 UNARY_OPERATOR: UNARY_PLUS
+   38               | UNARY_MINUS
 
-   42 VARIABLES: ID
+   39 TERM: VARIABLES
+   40     | INTEGER_LITERAL
+   41     | FLOAT_LITERAL
+   42     | BOOLEAN_LITERAL
 
-   43 BLOCK: LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   43 EXPRESSION: TERM
+   44           | TERM OPERATOR EXPRESSION
+   45           | LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS
 
-   44 ASSIGNMENT: VARIABLES EQUALS EXPRESSION
-   45           | TYPE VARIABLES EQUALS EXPRESSION
-   46           | UNARY_EXPR
+   46 UNARY_EXPR: TERM UNARY_OPERATOR
+   47           | UNARY_OPERATOR TERM
 
-   47 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
+   48 VARIABLES: ID
 
-   48 ELSE_STATEMENT: ELSE STATEMENT
-   49               | /* empty */
+   49 BLOCK: LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   50 ASSIGNMENT: VARIABLES EQUALS EXPRESSION
+   51           | TYPE VARIABLES EQUALS EXPRESSION
+   52           | UNARY_EXPR
 
-   51 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK
+   53 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
+
+   54 ELSE_STATEMENT: ELSE STATEMENT
+   55               | /* empty */
+
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+
+   57 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK
 
 
 Terminals, with rules where they appear
 
 $end (0) 0
 error (256)
-INTEGER_LITERAL (258) 34
-FLOAT_LITERAL (259) 35
-BOOLEAN_LITERAL (260) 36
-COMMA (261)
-INT_TYPE (262) 10
-FLOAT_TYPE (263) 11
-BOOLEAN_TYPE (264) 12
-CHAR_TYPE (265) 13
-STRING_TYPE (266) 14
-PLUS (267) 23
-MINUS (268) 24
-TIMES (269) 25
-DIVIDE (270) 26
-UNARY_MINUS (271) 32
-UNARY_PLUS (272) 31
-ID (273) 15 42
-AND (274) 16
-OR (275) 17
-END (276) 5 50
-EQUALS (277) 44 45
-MOD (278) 28
-POW (279) 27
+INTEGER_LITERAL (258) 40
+FLOAT_LITERAL (259) 41
+BOOLEAN_LITERAL (260) 42
+COMMA (261) 32
+INT_TYPE (262) 11
+FLOAT_TYPE (263) 12
+BOOLEAN_TYPE (264) 13
+CHAR_TYPE (265) 14
+STRING_TYPE (266) 15
+PLUS (267) 24
+MINUS (268) 25
+TIMES (269) 26
+DIVIDE (270) 27
+UNARY_MINUS (271) 38
+UNARY_PLUS (272) 37
+ID (273) 16 30 31 32 48
+AND (274) 17
+OR (275) 18
+END (276) 5 56
+EQUALS (277) 50 51
+MOD (278) 29
+POW (279) 28
 VARIABLE (280)
-BITWISE_AND (281) 18
-BITWISE_OR (282) 19
-LESS_THAN (283) 20
-GREATER_THAN (284) 21
-EQUALS_THAN (285) 22
-LEFT_PARENTHESIS (286) 39 47 50 51
-RIGHT_PARENTHESIS (287) 39 47 50 51
-LEFT_BRACKET (288) 43 50
-RIGHT_BRACKET (289) 43 50
-IF (290) 47
-ELSE (291) 48
-FOR (292) 50
-WHILE (293) 51
+BITWISE_AND (281) 19
+BITWISE_OR (282) 20
+LESS_THAN (283) 21
+GREATER_THAN (284) 22
+EQUALS_THAN (285) 23
+LEFT_PARENTHESIS (286) 30 45 53 56 57
+RIGHT_PARENTHESIS (287) 30 45 53 56 57
+LEFT_BRACKET (288) 49 56
+RIGHT_BRACKET (289) 49 56
+IF (290) 53
+ELSE (291) 54
+FOR (292) 56
+WHILE (293) 57
 
 
 Nonterminals, with rules where they appear
@@ -127,39 +135,45 @@ $accept (39)
 program (40)
     on left: 1 2, on right: 0
 STATEMENTS (41)
-    on left: 3 4, on right: 2 4 43 50
+    on left: 3 4, on right: 2 4 49 56
 STATEMENT (42)
-    on left: 5 6 7 8 9, on right: 3 4 48
+    on left: 5 6 7 8 9 10, on right: 3 4 54
 TYPE (43)
-    on left: 10 11 12 13 14 15, on right: 45
+    on left: 11 12 13 14 15 16, on right: 30 31 32 51
 LOGICAL_OP (44)
-    on left: 16 17 18 19 20 21 22, on right: 30
+    on left: 17 18 19 20 21 22 23, on right: 36
 ARITHMETIC_OP (45)
-    on left: 23 24 25 26 27 28, on right: 29
-OPERATOR (46)
-    on left: 29 30, on right: 38
-UNARY_OPERATOR (47)
-    on left: 31 32, on right: 40 41
-TERM (48)
-    on left: 33 34 35 36, on right: 37 38 40 41
-EXPRESSION (49)
-    on left: 37 38 39, on right: 38 39 44 45 47 50 51
-UNARY_EXPR (50)
-    on left: 40 41, on right: 46
-VARIABLES (51)
-    on left: 42, on right: 33 44 45
-BLOCK (52)
-    on left: 43, on right: 9 47 51
-ASSIGNMENT (53)
-    on left: 44 45 46, on right: 5 50
-IF_STATEMENT (54)
-    on left: 47, on right: 7
-ELSE_STATEMENT (55)
-    on left: 48 49, on right: 47
-FOR_STATEMENT (56)
-    on left: 50, on right: 6
-WHILE_STATEMENT (57)
-    on left: 51, on right: 8
+    on left: 24 25 26 27 28 29, on right: 35
+FUNCTION (46)
+    on left: 30, on right: 9
+ID_PARAMS (47)
+    on left: 31 32, on right: 32 34
+FUNCTION_PARAMS (48)
+    on left: 33 34, on right: 30
+OPERATOR (49)
+    on left: 35 36, on right: 44
+UNARY_OPERATOR (50)
+    on left: 37 38, on right: 46 47
+TERM (51)
+    on left: 39 40 41 42, on right: 43 44 46 47
+EXPRESSION (52)
+    on left: 43 44 45, on right: 44 45 50 51 53 56 57
+UNARY_EXPR (53)
+    on left: 46 47, on right: 52
+VARIABLES (54)
+    on left: 48, on right: 39 50 51
+BLOCK (55)
+    on left: 49, on right: 10 30 53 57
+ASSIGNMENT (56)
+    on left: 50 51 52, on right: 5 56
+IF_STATEMENT (57)
+    on left: 53, on right: 7
+ELSE_STATEMENT (58)
+    on left: 54 55, on right: 53
+FOR_STATEMENT (59)
+    on left: 56, on right: 6
+WHILE_STATEMENT (60)
+    on left: 57, on right: 8
 
 
 state 0
@@ -188,99 +202,100 @@ state 0
     STATEMENTS       go to state 17
     STATEMENT        go to state 18
     TYPE             go to state 19
-    UNARY_OPERATOR   go to state 20
-    TERM             go to state 21
-    UNARY_EXPR       go to state 22
-    VARIABLES        go to state 23
-    BLOCK            go to state 24
-    ASSIGNMENT       go to state 25
-    IF_STATEMENT     go to state 26
-    FOR_STATEMENT    go to state 27
-    WHILE_STATEMENT  go to state 28
+    FUNCTION         go to state 20
+    UNARY_OPERATOR   go to state 21
+    TERM             go to state 22
+    UNARY_EXPR       go to state 23
+    VARIABLES        go to state 24
+    BLOCK            go to state 25
+    ASSIGNMENT       go to state 26
+    IF_STATEMENT     go to state 27
+    FOR_STATEMENT    go to state 28
+    WHILE_STATEMENT  go to state 29
 
 
 state 1
 
-   34 TERM: INTEGER_LITERAL .
+   40 TERM: INTEGER_LITERAL .
 
-    $default  reduce using rule 34 (TERM)
+    $default  reduce using rule 40 (TERM)
 
 
 state 2
 
-   35 TERM: FLOAT_LITERAL .
+   41 TERM: FLOAT_LITERAL .
 
-    $default  reduce using rule 35 (TERM)
+    $default  reduce using rule 41 (TERM)
 
 
 state 3
 
-   36 TERM: BOOLEAN_LITERAL .
+   42 TERM: BOOLEAN_LITERAL .
 
-    $default  reduce using rule 36 (TERM)
+    $default  reduce using rule 42 (TERM)
 
 
 state 4
 
-   10 TYPE: INT_TYPE .
-
-    $default  reduce using rule 10 (TYPE)
-
-
-state 5
-
-   11 TYPE: FLOAT_TYPE .
+   11 TYPE: INT_TYPE .
 
     $default  reduce using rule 11 (TYPE)
 
 
-state 6
+state 5
 
-   12 TYPE: BOOLEAN_TYPE .
+   12 TYPE: FLOAT_TYPE .
 
     $default  reduce using rule 12 (TYPE)
 
 
-state 7
+state 6
 
-   13 TYPE: CHAR_TYPE .
+   13 TYPE: BOOLEAN_TYPE .
 
     $default  reduce using rule 13 (TYPE)
 
 
-state 8
+state 7
 
-   14 TYPE: STRING_TYPE .
+   14 TYPE: CHAR_TYPE .
 
     $default  reduce using rule 14 (TYPE)
 
 
+state 8
+
+   15 TYPE: STRING_TYPE .
+
+    $default  reduce using rule 15 (TYPE)
+
+
 state 9
 
-   32 UNARY_OPERATOR: UNARY_MINUS .
+   38 UNARY_OPERATOR: UNARY_MINUS .
 
-    $default  reduce using rule 32 (UNARY_OPERATOR)
+    $default  reduce using rule 38 (UNARY_OPERATOR)
 
 
 state 10
 
-   31 UNARY_OPERATOR: UNARY_PLUS .
+   37 UNARY_OPERATOR: UNARY_PLUS .
 
-    $default  reduce using rule 31 (UNARY_OPERATOR)
+    $default  reduce using rule 37 (UNARY_OPERATOR)
 
 
 state 11
 
-   15 TYPE: ID .
-   42 VARIABLES: ID .
+   16 TYPE: ID .
+   48 VARIABLES: ID .
 
-    ID        reduce using rule 15 (TYPE)
-    $default  reduce using rule 42 (VARIABLES)
+    ID        reduce using rule 16 (TYPE)
+    $default  reduce using rule 48 (VARIABLES)
 
 
 state 12
 
-   43 BLOCK: LEFT_BRACKET . STATEMENTS RIGHT_BRACKET
+   49 BLOCK: LEFT_BRACKET . STATEMENTS RIGHT_BRACKET
 
     INTEGER_LITERAL  shift, and go to state 1
     FLOAT_LITERAL    shift, and go to state 2
@@ -298,46 +313,47 @@ state 12
     FOR              shift, and go to state 14
     WHILE            shift, and go to state 15
 
-    STATEMENTS       go to state 29
+    STATEMENTS       go to state 30
     STATEMENT        go to state 18
     TYPE             go to state 19
-    UNARY_OPERATOR   go to state 20
-    TERM             go to state 21
-    UNARY_EXPR       go to state 22
-    VARIABLES        go to state 23
-    BLOCK            go to state 24
-    ASSIGNMENT       go to state 25
-    IF_STATEMENT     go to state 26
-    FOR_STATEMENT    go to state 27
-    WHILE_STATEMENT  go to state 28
+    FUNCTION         go to state 20
+    UNARY_OPERATOR   go to state 21
+    TERM             go to state 22
+    UNARY_EXPR       go to state 23
+    VARIABLES        go to state 24
+    BLOCK            go to state 25
+    ASSIGNMENT       go to state 26
+    IF_STATEMENT     go to state 27
+    FOR_STATEMENT    go to state 28
+    WHILE_STATEMENT  go to state 29
 
 
 state 13
 
-   47 IF_STATEMENT: IF . LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
-
-    LEFT_PARENTHESIS  shift, and go to state 30
-
-
-state 14
-
-   50 FOR_STATEMENT: FOR . LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   53 IF_STATEMENT: IF . LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
 
     LEFT_PARENTHESIS  shift, and go to state 31
 
 
-state 15
+state 14
 
-   51 WHILE_STATEMENT: WHILE . LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK
+   56 FOR_STATEMENT: FOR . LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
     LEFT_PARENTHESIS  shift, and go to state 32
+
+
+state 15
+
+   57 WHILE_STATEMENT: WHILE . LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK
+
+    LEFT_PARENTHESIS  shift, and go to state 33
 
 
 state 16
 
     0 $accept: program . $end
 
-    $end  shift, and go to state 33
+    $end  shift, and go to state 34
 
 
 state 17
@@ -370,129 +386,138 @@ state 18
 
     $default  reduce using rule 3 (STATEMENTS)
 
-    STATEMENTS       go to state 34
+    STATEMENTS       go to state 35
     STATEMENT        go to state 18
     TYPE             go to state 19
-    UNARY_OPERATOR   go to state 20
-    TERM             go to state 21
-    UNARY_EXPR       go to state 22
-    VARIABLES        go to state 23
-    BLOCK            go to state 24
-    ASSIGNMENT       go to state 25
-    IF_STATEMENT     go to state 26
-    FOR_STATEMENT    go to state 27
-    WHILE_STATEMENT  go to state 28
+    FUNCTION         go to state 20
+    UNARY_OPERATOR   go to state 21
+    TERM             go to state 22
+    UNARY_EXPR       go to state 23
+    VARIABLES        go to state 24
+    BLOCK            go to state 25
+    ASSIGNMENT       go to state 26
+    IF_STATEMENT     go to state 27
+    FOR_STATEMENT    go to state 28
+    WHILE_STATEMENT  go to state 29
 
 
 state 19
 
-   45 ASSIGNMENT: TYPE . VARIABLES EQUALS EXPRESSION
+   30 FUNCTION: TYPE . ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS BLOCK
+   51 ASSIGNMENT: TYPE . VARIABLES EQUALS EXPRESSION
 
-    ID  shift, and go to state 35
+    ID  shift, and go to state 36
 
-    VARIABLES  go to state 36
+    VARIABLES  go to state 37
 
 
 state 20
 
-   41 UNARY_EXPR: UNARY_OPERATOR . TERM
-
-    INTEGER_LITERAL  shift, and go to state 1
-    FLOAT_LITERAL    shift, and go to state 2
-    BOOLEAN_LITERAL  shift, and go to state 3
-    ID               shift, and go to state 35
-
-    TERM       go to state 37
-    VARIABLES  go to state 38
-
-
-state 21
-
-   40 UNARY_EXPR: TERM . UNARY_OPERATOR
-
-    UNARY_MINUS  shift, and go to state 9
-    UNARY_PLUS   shift, and go to state 10
-
-    UNARY_OPERATOR  go to state 39
-
-
-state 22
-
-   46 ASSIGNMENT: UNARY_EXPR .
-
-    $default  reduce using rule 46 (ASSIGNMENT)
-
-
-state 23
-
-   33 TERM: VARIABLES .
-   44 ASSIGNMENT: VARIABLES . EQUALS EXPRESSION
-
-    EQUALS  shift, and go to state 40
-
-    $default  reduce using rule 33 (TERM)
-
-
-state 24
-
-    9 STATEMENT: BLOCK .
+    9 STATEMENT: FUNCTION .
 
     $default  reduce using rule 9 (STATEMENT)
 
 
+state 21
+
+   47 UNARY_EXPR: UNARY_OPERATOR . TERM
+
+    INTEGER_LITERAL  shift, and go to state 1
+    FLOAT_LITERAL    shift, and go to state 2
+    BOOLEAN_LITERAL  shift, and go to state 3
+    ID               shift, and go to state 38
+
+    TERM       go to state 39
+    VARIABLES  go to state 40
+
+
+state 22
+
+   46 UNARY_EXPR: TERM . UNARY_OPERATOR
+
+    UNARY_MINUS  shift, and go to state 9
+    UNARY_PLUS   shift, and go to state 10
+
+    UNARY_OPERATOR  go to state 41
+
+
+state 23
+
+   52 ASSIGNMENT: UNARY_EXPR .
+
+    $default  reduce using rule 52 (ASSIGNMENT)
+
+
+state 24
+
+   39 TERM: VARIABLES .
+   50 ASSIGNMENT: VARIABLES . EQUALS EXPRESSION
+
+    EQUALS  shift, and go to state 42
+
+    $default  reduce using rule 39 (TERM)
+
+
 state 25
 
-    5 STATEMENT: ASSIGNMENT . END
+   10 STATEMENT: BLOCK .
 
-    END  shift, and go to state 41
+    $default  reduce using rule 10 (STATEMENT)
 
 
 state 26
+
+    5 STATEMENT: ASSIGNMENT . END
+
+    END  shift, and go to state 43
+
+
+state 27
 
     7 STATEMENT: IF_STATEMENT .
 
     $default  reduce using rule 7 (STATEMENT)
 
 
-state 27
+state 28
 
     6 STATEMENT: FOR_STATEMENT .
 
     $default  reduce using rule 6 (STATEMENT)
 
 
-state 28
+state 29
 
     8 STATEMENT: WHILE_STATEMENT .
 
     $default  reduce using rule 8 (STATEMENT)
 
 
-state 29
-
-   43 BLOCK: LEFT_BRACKET STATEMENTS . RIGHT_BRACKET
-
-    RIGHT_BRACKET  shift, and go to state 42
-
-
 state 30
 
-   47 IF_STATEMENT: IF LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
+   49 BLOCK: LEFT_BRACKET STATEMENTS . RIGHT_BRACKET
 
-    INTEGER_LITERAL   shift, and go to state 1
-    FLOAT_LITERAL     shift, and go to state 2
-    BOOLEAN_LITERAL   shift, and go to state 3
-    ID                shift, and go to state 35
-    LEFT_PARENTHESIS  shift, and go to state 43
-
-    TERM        go to state 44
-    EXPRESSION  go to state 45
-    VARIABLES   go to state 38
+    RIGHT_BRACKET  shift, and go to state 44
 
 
 state 31
 
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS . ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   53 IF_STATEMENT: IF LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
+
+    INTEGER_LITERAL   shift, and go to state 1
+    FLOAT_LITERAL     shift, and go to state 2
+    BOOLEAN_LITERAL   shift, and go to state 3
+    ID                shift, and go to state 38
+    LEFT_PARENTHESIS  shift, and go to state 45
+
+    TERM        go to state 46
+    EXPRESSION  go to state 47
+    VARIABLES   go to state 40
+
+
+state 32
+
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS . ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
     INTEGER_LITERAL  shift, and go to state 1
     FLOAT_LITERAL    shift, and go to state 2
@@ -506,485 +531,485 @@ state 31
     UNARY_PLUS       shift, and go to state 10
     ID               shift, and go to state 11
 
-    TYPE            go to state 19
-    UNARY_OPERATOR  go to state 20
-    TERM            go to state 21
-    UNARY_EXPR      go to state 22
-    VARIABLES       go to state 23
-    ASSIGNMENT      go to state 46
+    TYPE            go to state 48
+    UNARY_OPERATOR  go to state 21
+    TERM            go to state 22
+    UNARY_EXPR      go to state 23
+    VARIABLES       go to state 24
+    ASSIGNMENT      go to state 49
 
 
-state 32
+state 33
 
-   51 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS BLOCK
+   57 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS BLOCK
 
     INTEGER_LITERAL   shift, and go to state 1
     FLOAT_LITERAL     shift, and go to state 2
     BOOLEAN_LITERAL   shift, and go to state 3
-    ID                shift, and go to state 35
-    LEFT_PARENTHESIS  shift, and go to state 43
+    ID                shift, and go to state 38
+    LEFT_PARENTHESIS  shift, and go to state 45
 
-    TERM        go to state 44
-    EXPRESSION  go to state 47
-    VARIABLES   go to state 38
+    TERM        go to state 46
+    EXPRESSION  go to state 50
+    VARIABLES   go to state 40
 
 
-state 33
+state 34
 
     0 $accept: program $end .
 
     $default  accept
 
 
-state 34
+state 35
 
     4 STATEMENTS: STATEMENT STATEMENTS .
 
     $default  reduce using rule 4 (STATEMENTS)
 
 
-state 35
-
-   42 VARIABLES: ID .
-
-    $default  reduce using rule 42 (VARIABLES)
-
-
 state 36
 
-   45 ASSIGNMENT: TYPE VARIABLES . EQUALS EXPRESSION
+   30 FUNCTION: TYPE ID . LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS BLOCK
+   48 VARIABLES: ID .
 
-    EQUALS  shift, and go to state 48
+    LEFT_PARENTHESIS  shift, and go to state 51
+
+    $default  reduce using rule 48 (VARIABLES)
 
 
 state 37
 
-   41 UNARY_EXPR: UNARY_OPERATOR TERM .
+   51 ASSIGNMENT: TYPE VARIABLES . EQUALS EXPRESSION
 
-    $default  reduce using rule 41 (UNARY_EXPR)
+    EQUALS  shift, and go to state 52
 
 
 state 38
 
-   33 TERM: VARIABLES .
+   48 VARIABLES: ID .
 
-    $default  reduce using rule 33 (TERM)
+    $default  reduce using rule 48 (VARIABLES)
 
 
 state 39
 
-   40 UNARY_EXPR: TERM UNARY_OPERATOR .
+   47 UNARY_EXPR: UNARY_OPERATOR TERM .
 
-    $default  reduce using rule 40 (UNARY_EXPR)
+    $default  reduce using rule 47 (UNARY_EXPR)
 
 
 state 40
 
-   44 ASSIGNMENT: VARIABLES EQUALS . EXPRESSION
+   39 TERM: VARIABLES .
+
+    $default  reduce using rule 39 (TERM)
+
+
+state 41
+
+   46 UNARY_EXPR: TERM UNARY_OPERATOR .
+
+    $default  reduce using rule 46 (UNARY_EXPR)
+
+
+state 42
+
+   50 ASSIGNMENT: VARIABLES EQUALS . EXPRESSION
 
     INTEGER_LITERAL   shift, and go to state 1
     FLOAT_LITERAL     shift, and go to state 2
     BOOLEAN_LITERAL   shift, and go to state 3
-    ID                shift, and go to state 35
-    LEFT_PARENTHESIS  shift, and go to state 43
+    ID                shift, and go to state 38
+    LEFT_PARENTHESIS  shift, and go to state 45
 
-    TERM        go to state 44
-    EXPRESSION  go to state 49
-    VARIABLES   go to state 38
+    TERM        go to state 46
+    EXPRESSION  go to state 53
+    VARIABLES   go to state 40
 
 
-state 41
+state 43
 
     5 STATEMENT: ASSIGNMENT END .
 
     $default  reduce using rule 5 (STATEMENT)
 
 
-state 42
-
-   43 BLOCK: LEFT_BRACKET STATEMENTS RIGHT_BRACKET .
-
-    $default  reduce using rule 43 (BLOCK)
-
-
-state 43
-
-   39 EXPRESSION: LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS
-
-    INTEGER_LITERAL   shift, and go to state 1
-    FLOAT_LITERAL     shift, and go to state 2
-    BOOLEAN_LITERAL   shift, and go to state 3
-    ID                shift, and go to state 35
-    LEFT_PARENTHESIS  shift, and go to state 43
-
-    TERM        go to state 44
-    EXPRESSION  go to state 50
-    VARIABLES   go to state 38
-
-
 state 44
 
-   37 EXPRESSION: TERM .
-   38           | TERM . OPERATOR EXPRESSION
+   49 BLOCK: LEFT_BRACKET STATEMENTS RIGHT_BRACKET .
 
-    PLUS          shift, and go to state 51
-    MINUS         shift, and go to state 52
-    TIMES         shift, and go to state 53
-    DIVIDE        shift, and go to state 54
-    AND           shift, and go to state 55
-    OR            shift, and go to state 56
-    MOD           shift, and go to state 57
-    POW           shift, and go to state 58
-    BITWISE_AND   shift, and go to state 59
-    BITWISE_OR    shift, and go to state 60
-    LESS_THAN     shift, and go to state 61
-    GREATER_THAN  shift, and go to state 62
-    EQUALS_THAN   shift, and go to state 63
-
-    $default  reduce using rule 37 (EXPRESSION)
-
-    LOGICAL_OP     go to state 64
-    ARITHMETIC_OP  go to state 65
-    OPERATOR       go to state 66
+    $default  reduce using rule 49 (BLOCK)
 
 
 state 45
 
-   47 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
-
-    RIGHT_PARENTHESIS  shift, and go to state 67
-
-
-state 46
-
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT . END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
-
-    END  shift, and go to state 68
-
-
-state 47
-
-   51 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS BLOCK
-
-    RIGHT_PARENTHESIS  shift, and go to state 69
-
-
-state 48
-
-   45 ASSIGNMENT: TYPE VARIABLES EQUALS . EXPRESSION
+   45 EXPRESSION: LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS
 
     INTEGER_LITERAL   shift, and go to state 1
     FLOAT_LITERAL     shift, and go to state 2
     BOOLEAN_LITERAL   shift, and go to state 3
-    ID                shift, and go to state 35
-    LEFT_PARENTHESIS  shift, and go to state 43
+    ID                shift, and go to state 38
+    LEFT_PARENTHESIS  shift, and go to state 45
 
-    TERM        go to state 44
-    EXPRESSION  go to state 70
-    VARIABLES   go to state 38
-
-
-state 49
-
-   44 ASSIGNMENT: VARIABLES EQUALS EXPRESSION .
-
-    $default  reduce using rule 44 (ASSIGNMENT)
+    TERM        go to state 46
+    EXPRESSION  go to state 54
+    VARIABLES   go to state 40
 
 
-state 50
+state 46
 
-   39 EXPRESSION: LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS
+   43 EXPRESSION: TERM .
+   44           | TERM . OPERATOR EXPRESSION
+
+    PLUS          shift, and go to state 55
+    MINUS         shift, and go to state 56
+    TIMES         shift, and go to state 57
+    DIVIDE        shift, and go to state 58
+    AND           shift, and go to state 59
+    OR            shift, and go to state 60
+    MOD           shift, and go to state 61
+    POW           shift, and go to state 62
+    BITWISE_AND   shift, and go to state 63
+    BITWISE_OR    shift, and go to state 64
+    LESS_THAN     shift, and go to state 65
+    GREATER_THAN  shift, and go to state 66
+    EQUALS_THAN   shift, and go to state 67
+
+    $default  reduce using rule 43 (EXPRESSION)
+
+    LOGICAL_OP     go to state 68
+    ARITHMETIC_OP  go to state 69
+    OPERATOR       go to state 70
+
+
+state 47
+
+   53 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
 
     RIGHT_PARENTHESIS  shift, and go to state 71
 
 
+state 48
+
+   51 ASSIGNMENT: TYPE . VARIABLES EQUALS EXPRESSION
+
+    ID  shift, and go to state 38
+
+    VARIABLES  go to state 37
+
+
+state 49
+
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT . END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+
+    END  shift, and go to state 72
+
+
+state 50
+
+   57 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS BLOCK
+
+    RIGHT_PARENTHESIS  shift, and go to state 73
+
+
 state 51
 
-   23 ARITHMETIC_OP: PLUS .
+   30 FUNCTION: TYPE ID LEFT_PARENTHESIS . FUNCTION_PARAMS RIGHT_PARENTHESIS BLOCK
 
-    $default  reduce using rule 23 (ARITHMETIC_OP)
+    INT_TYPE      shift, and go to state 4
+    FLOAT_TYPE    shift, and go to state 5
+    BOOLEAN_TYPE  shift, and go to state 6
+    CHAR_TYPE     shift, and go to state 7
+    STRING_TYPE   shift, and go to state 8
+    ID            shift, and go to state 74
+
+    $default  reduce using rule 33 (FUNCTION_PARAMS)
+
+    TYPE             go to state 75
+    ID_PARAMS        go to state 76
+    FUNCTION_PARAMS  go to state 77
 
 
 state 52
 
-   24 ARITHMETIC_OP: MINUS .
+   51 ASSIGNMENT: TYPE VARIABLES EQUALS . EXPRESSION
 
-    $default  reduce using rule 24 (ARITHMETIC_OP)
+    INTEGER_LITERAL   shift, and go to state 1
+    FLOAT_LITERAL     shift, and go to state 2
+    BOOLEAN_LITERAL   shift, and go to state 3
+    ID                shift, and go to state 38
+    LEFT_PARENTHESIS  shift, and go to state 45
+
+    TERM        go to state 46
+    EXPRESSION  go to state 78
+    VARIABLES   go to state 40
 
 
 state 53
 
-   25 ARITHMETIC_OP: TIMES .
+   50 ASSIGNMENT: VARIABLES EQUALS EXPRESSION .
 
-    $default  reduce using rule 25 (ARITHMETIC_OP)
+    $default  reduce using rule 50 (ASSIGNMENT)
 
 
 state 54
 
-   26 ARITHMETIC_OP: DIVIDE .
+   45 EXPRESSION: LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS
 
-    $default  reduce using rule 26 (ARITHMETIC_OP)
+    RIGHT_PARENTHESIS  shift, and go to state 79
 
 
 state 55
 
-   16 LOGICAL_OP: AND .
+   24 ARITHMETIC_OP: PLUS .
 
-    $default  reduce using rule 16 (LOGICAL_OP)
+    $default  reduce using rule 24 (ARITHMETIC_OP)
 
 
 state 56
 
-   17 LOGICAL_OP: OR .
+   25 ARITHMETIC_OP: MINUS .
 
-    $default  reduce using rule 17 (LOGICAL_OP)
+    $default  reduce using rule 25 (ARITHMETIC_OP)
 
 
 state 57
 
-   28 ARITHMETIC_OP: MOD .
+   26 ARITHMETIC_OP: TIMES .
 
-    $default  reduce using rule 28 (ARITHMETIC_OP)
+    $default  reduce using rule 26 (ARITHMETIC_OP)
 
 
 state 58
 
-   27 ARITHMETIC_OP: POW .
+   27 ARITHMETIC_OP: DIVIDE .
 
     $default  reduce using rule 27 (ARITHMETIC_OP)
 
 
 state 59
 
-   18 LOGICAL_OP: BITWISE_AND .
+   17 LOGICAL_OP: AND .
 
-    $default  reduce using rule 18 (LOGICAL_OP)
+    $default  reduce using rule 17 (LOGICAL_OP)
 
 
 state 60
 
-   19 LOGICAL_OP: BITWISE_OR .
+   18 LOGICAL_OP: OR .
 
-    $default  reduce using rule 19 (LOGICAL_OP)
+    $default  reduce using rule 18 (LOGICAL_OP)
 
 
 state 61
 
-   20 LOGICAL_OP: LESS_THAN .
+   29 ARITHMETIC_OP: MOD .
 
-    $default  reduce using rule 20 (LOGICAL_OP)
+    $default  reduce using rule 29 (ARITHMETIC_OP)
 
 
 state 62
 
-   21 LOGICAL_OP: GREATER_THAN .
+   28 ARITHMETIC_OP: POW .
 
-    $default  reduce using rule 21 (LOGICAL_OP)
+    $default  reduce using rule 28 (ARITHMETIC_OP)
 
 
 state 63
 
-   22 LOGICAL_OP: EQUALS_THAN .
+   19 LOGICAL_OP: BITWISE_AND .
 
-    $default  reduce using rule 22 (LOGICAL_OP)
+    $default  reduce using rule 19 (LOGICAL_OP)
 
 
 state 64
 
-   30 OPERATOR: LOGICAL_OP .
+   20 LOGICAL_OP: BITWISE_OR .
 
-    $default  reduce using rule 30 (OPERATOR)
+    $default  reduce using rule 20 (LOGICAL_OP)
 
 
 state 65
 
-   29 OPERATOR: ARITHMETIC_OP .
+   21 LOGICAL_OP: LESS_THAN .
 
-    $default  reduce using rule 29 (OPERATOR)
+    $default  reduce using rule 21 (LOGICAL_OP)
 
 
 state 66
 
-   38 EXPRESSION: TERM OPERATOR . EXPRESSION
+   22 LOGICAL_OP: GREATER_THAN .
 
-    INTEGER_LITERAL   shift, and go to state 1
-    FLOAT_LITERAL     shift, and go to state 2
-    BOOLEAN_LITERAL   shift, and go to state 3
-    ID                shift, and go to state 35
-    LEFT_PARENTHESIS  shift, and go to state 43
-
-    TERM        go to state 44
-    EXPRESSION  go to state 72
-    VARIABLES   go to state 38
+    $default  reduce using rule 22 (LOGICAL_OP)
 
 
 state 67
 
-   47 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS . BLOCK ELSE_STATEMENT
+   23 LOGICAL_OP: EQUALS_THAN .
 
-    LEFT_BRACKET  shift, and go to state 12
-
-    BLOCK  go to state 73
+    $default  reduce using rule 23 (LOGICAL_OP)
 
 
 state 68
 
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END . EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   36 OPERATOR: LOGICAL_OP .
 
-    INTEGER_LITERAL   shift, and go to state 1
-    FLOAT_LITERAL     shift, and go to state 2
-    BOOLEAN_LITERAL   shift, and go to state 3
-    ID                shift, and go to state 35
-    LEFT_PARENTHESIS  shift, and go to state 43
-
-    TERM        go to state 44
-    EXPRESSION  go to state 74
-    VARIABLES   go to state 38
+    $default  reduce using rule 36 (OPERATOR)
 
 
 state 69
 
-   51 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS . BLOCK
+   35 OPERATOR: ARITHMETIC_OP .
 
-    LEFT_BRACKET  shift, and go to state 12
-
-    BLOCK  go to state 75
+    $default  reduce using rule 35 (OPERATOR)
 
 
 state 70
 
-   45 ASSIGNMENT: TYPE VARIABLES EQUALS EXPRESSION .
+   44 EXPRESSION: TERM OPERATOR . EXPRESSION
 
-    $default  reduce using rule 45 (ASSIGNMENT)
+    INTEGER_LITERAL   shift, and go to state 1
+    FLOAT_LITERAL     shift, and go to state 2
+    BOOLEAN_LITERAL   shift, and go to state 3
+    ID                shift, and go to state 38
+    LEFT_PARENTHESIS  shift, and go to state 45
+
+    TERM        go to state 46
+    EXPRESSION  go to state 80
+    VARIABLES   go to state 40
 
 
 state 71
 
-   39 EXPRESSION: LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS .
+   53 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS . BLOCK ELSE_STATEMENT
 
-    $default  reduce using rule 39 (EXPRESSION)
+    LEFT_BRACKET  shift, and go to state 12
+
+    BLOCK  go to state 81
 
 
 state 72
 
-   38 EXPRESSION: TERM OPERATOR EXPRESSION .
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END . EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
-    $default  reduce using rule 38 (EXPRESSION)
+    INTEGER_LITERAL   shift, and go to state 1
+    FLOAT_LITERAL     shift, and go to state 2
+    BOOLEAN_LITERAL   shift, and go to state 3
+    ID                shift, and go to state 38
+    LEFT_PARENTHESIS  shift, and go to state 45
+
+    TERM        go to state 46
+    EXPRESSION  go to state 82
+    VARIABLES   go to state 40
 
 
 state 73
 
-   47 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK . ELSE_STATEMENT
+   57 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS . BLOCK
 
-    ELSE  shift, and go to state 76
+    LEFT_BRACKET  shift, and go to state 12
 
-    $default  reduce using rule 49 (ELSE_STATEMENT)
-
-    ELSE_STATEMENT  go to state 77
+    BLOCK  go to state 83
 
 
 state 74
 
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION . END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   16 TYPE: ID .
 
-    END  shift, and go to state 78
+    $default  reduce using rule 16 (TYPE)
 
 
 state 75
 
-   51 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK .
+   31 ID_PARAMS: TYPE . ID
+   32          | TYPE . ID COMMA ID_PARAMS
 
-    $default  reduce using rule 51 (WHILE_STATEMENT)
+    ID  shift, and go to state 84
 
 
 state 76
 
-   48 ELSE_STATEMENT: ELSE . STATEMENT
+   34 FUNCTION_PARAMS: ID_PARAMS .
 
-    INTEGER_LITERAL  shift, and go to state 1
-    FLOAT_LITERAL    shift, and go to state 2
-    BOOLEAN_LITERAL  shift, and go to state 3
-    INT_TYPE         shift, and go to state 4
-    FLOAT_TYPE       shift, and go to state 5
-    BOOLEAN_TYPE     shift, and go to state 6
-    CHAR_TYPE        shift, and go to state 7
-    STRING_TYPE      shift, and go to state 8
-    UNARY_MINUS      shift, and go to state 9
-    UNARY_PLUS       shift, and go to state 10
-    ID               shift, and go to state 11
-    LEFT_BRACKET     shift, and go to state 12
-    IF               shift, and go to state 13
-    FOR              shift, and go to state 14
-    WHILE            shift, and go to state 15
-
-    STATEMENT        go to state 79
-    TYPE             go to state 19
-    UNARY_OPERATOR   go to state 20
-    TERM             go to state 21
-    UNARY_EXPR       go to state 22
-    VARIABLES        go to state 23
-    BLOCK            go to state 24
-    ASSIGNMENT       go to state 25
-    IF_STATEMENT     go to state 26
-    FOR_STATEMENT    go to state 27
-    WHILE_STATEMENT  go to state 28
+    $default  reduce using rule 34 (FUNCTION_PARAMS)
 
 
 state 77
 
-   47 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT .
+   30 FUNCTION: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS . RIGHT_PARENTHESIS BLOCK
 
-    $default  reduce using rule 47 (IF_STATEMENT)
+    RIGHT_PARENTHESIS  shift, and go to state 85
 
 
 state 78
 
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END . ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   51 ASSIGNMENT: TYPE VARIABLES EQUALS EXPRESSION .
 
-    INTEGER_LITERAL  shift, and go to state 1
-    FLOAT_LITERAL    shift, and go to state 2
-    BOOLEAN_LITERAL  shift, and go to state 3
-    INT_TYPE         shift, and go to state 4
-    FLOAT_TYPE       shift, and go to state 5
-    BOOLEAN_TYPE     shift, and go to state 6
-    CHAR_TYPE        shift, and go to state 7
-    STRING_TYPE      shift, and go to state 8
-    UNARY_MINUS      shift, and go to state 9
-    UNARY_PLUS       shift, and go to state 10
-    ID               shift, and go to state 11
-
-    TYPE            go to state 19
-    UNARY_OPERATOR  go to state 20
-    TERM            go to state 21
-    UNARY_EXPR      go to state 22
-    VARIABLES       go to state 23
-    ASSIGNMENT      go to state 80
+    $default  reduce using rule 51 (ASSIGNMENT)
 
 
 state 79
 
-   48 ELSE_STATEMENT: ELSE STATEMENT .
+   45 EXPRESSION: LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS .
 
-    $default  reduce using rule 48 (ELSE_STATEMENT)
+    $default  reduce using rule 45 (EXPRESSION)
 
 
 state 80
 
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT . RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   44 EXPRESSION: TERM OPERATOR EXPRESSION .
 
-    RIGHT_PARENTHESIS  shift, and go to state 81
+    $default  reduce using rule 44 (EXPRESSION)
 
 
 state 81
 
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS . LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   53 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK . ELSE_STATEMENT
 
-    LEFT_BRACKET  shift, and go to state 82
+    ELSE  shift, and go to state 86
+
+    $default  reduce using rule 55 (ELSE_STATEMENT)
+
+    ELSE_STATEMENT  go to state 87
 
 
 state 82
 
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET . STATEMENTS RIGHT_BRACKET
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION . END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+
+    END  shift, and go to state 88
+
+
+state 83
+
+   57 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK .
+
+    $default  reduce using rule 57 (WHILE_STATEMENT)
+
+
+state 84
+
+   31 ID_PARAMS: TYPE ID .
+   32          | TYPE ID . COMMA ID_PARAMS
+
+    COMMA  shift, and go to state 89
+
+    $default  reduce using rule 31 (ID_PARAMS)
+
+
+state 85
+
+   30 FUNCTION: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS . BLOCK
+
+    LEFT_BRACKET  shift, and go to state 12
+
+    BLOCK  go to state 90
+
+
+state 86
+
+   54 ELSE_STATEMENT: ELSE . STATEMENT
 
     INTEGER_LITERAL  shift, and go to state 1
     FLOAT_LITERAL    shift, and go to state 2
@@ -1002,29 +1027,145 @@ state 82
     FOR              shift, and go to state 14
     WHILE            shift, and go to state 15
 
-    STATEMENTS       go to state 83
+    STATEMENT        go to state 91
+    TYPE             go to state 19
+    FUNCTION         go to state 20
+    UNARY_OPERATOR   go to state 21
+    TERM             go to state 22
+    UNARY_EXPR       go to state 23
+    VARIABLES        go to state 24
+    BLOCK            go to state 25
+    ASSIGNMENT       go to state 26
+    IF_STATEMENT     go to state 27
+    FOR_STATEMENT    go to state 28
+    WHILE_STATEMENT  go to state 29
+
+
+state 87
+
+   53 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT .
+
+    $default  reduce using rule 53 (IF_STATEMENT)
+
+
+state 88
+
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END . ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+
+    INTEGER_LITERAL  shift, and go to state 1
+    FLOAT_LITERAL    shift, and go to state 2
+    BOOLEAN_LITERAL  shift, and go to state 3
+    INT_TYPE         shift, and go to state 4
+    FLOAT_TYPE       shift, and go to state 5
+    BOOLEAN_TYPE     shift, and go to state 6
+    CHAR_TYPE        shift, and go to state 7
+    STRING_TYPE      shift, and go to state 8
+    UNARY_MINUS      shift, and go to state 9
+    UNARY_PLUS       shift, and go to state 10
+    ID               shift, and go to state 11
+
+    TYPE            go to state 48
+    UNARY_OPERATOR  go to state 21
+    TERM            go to state 22
+    UNARY_EXPR      go to state 23
+    VARIABLES       go to state 24
+    ASSIGNMENT      go to state 92
+
+
+state 89
+
+   32 ID_PARAMS: TYPE ID COMMA . ID_PARAMS
+
+    INT_TYPE      shift, and go to state 4
+    FLOAT_TYPE    shift, and go to state 5
+    BOOLEAN_TYPE  shift, and go to state 6
+    CHAR_TYPE     shift, and go to state 7
+    STRING_TYPE   shift, and go to state 8
+    ID            shift, and go to state 74
+
+    TYPE       go to state 75
+    ID_PARAMS  go to state 93
+
+
+state 90
+
+   30 FUNCTION: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS BLOCK .
+
+    $default  reduce using rule 30 (FUNCTION)
+
+
+state 91
+
+   54 ELSE_STATEMENT: ELSE STATEMENT .
+
+    $default  reduce using rule 54 (ELSE_STATEMENT)
+
+
+state 92
+
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT . RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+
+    RIGHT_PARENTHESIS  shift, and go to state 94
+
+
+state 93
+
+   32 ID_PARAMS: TYPE ID COMMA ID_PARAMS .
+
+    $default  reduce using rule 32 (ID_PARAMS)
+
+
+state 94
+
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS . LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+
+    LEFT_BRACKET  shift, and go to state 95
+
+
+state 95
+
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET . STATEMENTS RIGHT_BRACKET
+
+    INTEGER_LITERAL  shift, and go to state 1
+    FLOAT_LITERAL    shift, and go to state 2
+    BOOLEAN_LITERAL  shift, and go to state 3
+    INT_TYPE         shift, and go to state 4
+    FLOAT_TYPE       shift, and go to state 5
+    BOOLEAN_TYPE     shift, and go to state 6
+    CHAR_TYPE        shift, and go to state 7
+    STRING_TYPE      shift, and go to state 8
+    UNARY_MINUS      shift, and go to state 9
+    UNARY_PLUS       shift, and go to state 10
+    ID               shift, and go to state 11
+    LEFT_BRACKET     shift, and go to state 12
+    IF               shift, and go to state 13
+    FOR              shift, and go to state 14
+    WHILE            shift, and go to state 15
+
+    STATEMENTS       go to state 96
     STATEMENT        go to state 18
     TYPE             go to state 19
-    UNARY_OPERATOR   go to state 20
-    TERM             go to state 21
-    UNARY_EXPR       go to state 22
-    VARIABLES        go to state 23
-    BLOCK            go to state 24
-    ASSIGNMENT       go to state 25
-    IF_STATEMENT     go to state 26
-    FOR_STATEMENT    go to state 27
-    WHILE_STATEMENT  go to state 28
+    FUNCTION         go to state 20
+    UNARY_OPERATOR   go to state 21
+    TERM             go to state 22
+    UNARY_EXPR       go to state 23
+    VARIABLES        go to state 24
+    BLOCK            go to state 25
+    ASSIGNMENT       go to state 26
+    IF_STATEMENT     go to state 27
+    FOR_STATEMENT    go to state 28
+    WHILE_STATEMENT  go to state 29
 
 
-state 83
+state 96
 
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS . RIGHT_BRACKET
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS . RIGHT_BRACKET
 
-    RIGHT_BRACKET  shift, and go to state 84
+    RIGHT_BRACKET  shift, and go to state 97
 
 
-state 84
+state 97
 
-   50 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET .
+   56 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET .
 
-    $default  reduce using rule 50 (FOR_STATEMENT)
+    $default  reduce using rule 56 (FOR_STATEMENT)
