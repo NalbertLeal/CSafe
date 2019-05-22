@@ -9,6 +9,10 @@
 ("else")            return(ELSE);
 ("for")             return(FOR);
 ("while")           return(WHILE);
+("switch")          return(SWITCH);
+("case")            return(CASE);
+("default")         return(DEFAULT);
+("break")           return(BREAK);
 
 ("int")             return(INT_TYPE);
 ("float")           return(FLOAT_TYPE);
@@ -37,6 +41,7 @@
 (">")               return(GREATER_THAN);
 ("==")              return(EQUALS_THAN);
 
+(":")               return(COLON);
 (",")               return(COMMA);
 ("and")             return(AND);
 ("or")              return(OR);

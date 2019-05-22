@@ -34,3 +34,13 @@ int call(int x) {
 }
 
 x(6, y);
+
+switch(x) {
+    case 2:
+        x = 2;
+        break;
+    case 3:
+        x = 3;
+    default:
+        x++;
+}

@@ -43,38 +43,43 @@
      FLOAT_LITERAL = 259,
      BOOLEAN_LITERAL = 260,
      COMMA = 261,
-     INT_TYPE = 262,
-     FLOAT_TYPE = 263,
-     BOOLEAN_TYPE = 264,
-     CHAR_TYPE = 265,
-     STRING_TYPE = 266,
-     PLUS = 267,
-     MINUS = 268,
-     TIMES = 269,
-     DIVIDE = 270,
-     UNARY_MINUS = 271,
-     UNARY_PLUS = 272,
-     ID = 273,
-     AND = 274,
-     OR = 275,
-     END = 276,
-     EQUALS = 277,
-     MOD = 278,
-     POW = 279,
-     VARIABLE = 280,
-     BITWISE_AND = 281,
-     BITWISE_OR = 282,
-     LESS_THAN = 283,
-     GREATER_THAN = 284,
-     EQUALS_THAN = 285,
-     LEFT_PARENTHESIS = 286,
-     RIGHT_PARENTHESIS = 287,
-     LEFT_BRACKET = 288,
-     RIGHT_BRACKET = 289,
-     IF = 290,
-     ELSE = 291,
-     FOR = 292,
-     WHILE = 293
+     COLON = 262,
+     INT_TYPE = 263,
+     FLOAT_TYPE = 264,
+     BOOLEAN_TYPE = 265,
+     CHAR_TYPE = 266,
+     STRING_TYPE = 267,
+     PLUS = 268,
+     MINUS = 269,
+     TIMES = 270,
+     DIVIDE = 271,
+     UNARY_MINUS = 272,
+     UNARY_PLUS = 273,
+     ID = 274,
+     AND = 275,
+     OR = 276,
+     END = 277,
+     EQUALS = 278,
+     MOD = 279,
+     POW = 280,
+     VARIABLE = 281,
+     BITWISE_AND = 282,
+     BITWISE_OR = 283,
+     LESS_THAN = 284,
+     GREATER_THAN = 285,
+     EQUALS_THAN = 286,
+     LEFT_PARENTHESIS = 287,
+     RIGHT_PARENTHESIS = 288,
+     LEFT_BRACKET = 289,
+     RIGHT_BRACKET = 290,
+     IF = 291,
+     ELSE = 292,
+     FOR = 293,
+     WHILE = 294,
+     SWITCH = 295,
+     CASE = 296,
+     DEFAULT = 297,
+     BREAK = 298
    };
 #endif
 /* Tokens.  */
@@ -82,38 +87,43 @@
 #define FLOAT_LITERAL 259
 #define BOOLEAN_LITERAL 260
 #define COMMA 261
-#define INT_TYPE 262
-#define FLOAT_TYPE 263
-#define BOOLEAN_TYPE 264
-#define CHAR_TYPE 265
-#define STRING_TYPE 266
-#define PLUS 267
-#define MINUS 268
-#define TIMES 269
-#define DIVIDE 270
-#define UNARY_MINUS 271
-#define UNARY_PLUS 272
-#define ID 273
-#define AND 274
-#define OR 275
-#define END 276
-#define EQUALS 277
-#define MOD 278
-#define POW 279
-#define VARIABLE 280
-#define BITWISE_AND 281
-#define BITWISE_OR 282
-#define LESS_THAN 283
-#define GREATER_THAN 284
-#define EQUALS_THAN 285
-#define LEFT_PARENTHESIS 286
-#define RIGHT_PARENTHESIS 287
-#define LEFT_BRACKET 288
-#define RIGHT_BRACKET 289
-#define IF 290
-#define ELSE 291
-#define FOR 292
-#define WHILE 293
+#define COLON 262
+#define INT_TYPE 263
+#define FLOAT_TYPE 264
+#define BOOLEAN_TYPE 265
+#define CHAR_TYPE 266
+#define STRING_TYPE 267
+#define PLUS 268
+#define MINUS 269
+#define TIMES 270
+#define DIVIDE 271
+#define UNARY_MINUS 272
+#define UNARY_PLUS 273
+#define ID 274
+#define AND 275
+#define OR 276
+#define END 277
+#define EQUALS 278
+#define MOD 279
+#define POW 280
+#define VARIABLE 281
+#define BITWISE_AND 282
+#define BITWISE_OR 283
+#define LESS_THAN 284
+#define GREATER_THAN 285
+#define EQUALS_THAN 286
+#define LEFT_PARENTHESIS 287
+#define RIGHT_PARENTHESIS 288
+#define LEFT_BRACKET 289
+#define RIGHT_BRACKET 290
+#define IF 291
+#define ELSE 292
+#define FOR 293
+#define WHILE 294
+#define SWITCH 295
+#define CASE 296
+#define DEFAULT 297
+#define BREAK 298
 
 
 
@@ -126,7 +136,7 @@ typedef union YYSTYPE
     struct node * npValue;
 }
 /* Line 1529 of yacc.c.  */
-#line 130 "y.tab.h"
+#line 140 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
