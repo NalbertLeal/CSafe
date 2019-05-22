@@ -7,6 +7,7 @@
 
 ("if")              return(IF);
 ("else")            return(ELSE);
+("for")             return(FOR);
 
 ("int")             return(INT_TYPE);
 ("float")           return(FLOAT_TYPE);

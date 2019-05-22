@@ -70,7 +70,8 @@
      LEFT_BRACKET = 286,
      RIGHT_BRACKET = 287,
      IF = 288,
-     ELSE = 289
+     ELSE = 289,
+     FOR = 290
    };
 #endif
 /* Tokens.  */
@@ -106,6 +107,7 @@
 #define RIGHT_BRACKET 287
 #define IF 288
 #define ELSE 289
+#define FOR 290
 
 
 
@@ -118,7 +120,7 @@ typedef union YYSTYPE
     struct node * npValue;
 }
 /* Line 1529 of yacc.c.  */
-#line 122 "y.tab.h"
+#line 124 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
