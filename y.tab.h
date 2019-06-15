@@ -52,102 +52,107 @@ extern int yydebug;
     INTEGER_LITERAL = 258,
     FLOAT_LITERAL = 259,
     BOOLEAN_LITERAL = 260,
-    COMMA = 261,
-    COLON = 262,
-    INT_TYPE = 263,
-    FLOAT_TYPE = 264,
-    BOOLEAN_TYPE = 265,
-    CHAR_TYPE = 266,
-    STRING_TYPE = 267,
-    PLUS = 268,
-    MINUS = 269,
-    TIMES = 270,
-    DIVIDE = 271,
-    UNARY_MINUS = 272,
-    UNARY_PLUS = 273,
-    ID = 274,
-    AND = 275,
-    OR = 276,
-    END = 277,
-    EQUALS = 278,
-    MOD = 279,
-    POW = 280,
-    VARIABLE = 281,
-    BITWISE_AND = 282,
-    BITWISE_OR = 283,
-    LESS_THAN = 284,
-    GREATER_THAN = 285,
-    EQUALS_THAN = 286,
-    LEFT_PARENTHESIS = 287,
-    RIGHT_PARENTHESIS = 288,
-    LEFT_BRACKET = 289,
-    RIGHT_BRACKET = 290,
-    IF = 291,
-    ELSE = 292,
-    FOR = 293,
-    WHILE = 294,
-    RETURN = 295,
-    SWITCH = 296,
-    CASE = 297,
-    DEFAULT = 298,
-    BREAK = 299
+    STRING_VALUE = 261,
+    COMMA = 262,
+    COLON = 263,
+    INT_TYPE = 264,
+    FLOAT_TYPE = 265,
+    BOOLEAN_TYPE = 266,
+    CHAR_TYPE = 267,
+    STRING_TYPE = 268,
+    PLUS = 269,
+    MINUS = 270,
+    TIMES = 271,
+    DIVIDE = 272,
+    UNARY_MINUS = 273,
+    UNARY_PLUS = 274,
+    ID = 275,
+    AND = 276,
+    OR = 277,
+    END = 278,
+    EQUALS = 279,
+    MOD = 280,
+    POW = 281,
+    VARIABLE = 282,
+    BITWISE_AND = 283,
+    BITWISE_OR = 284,
+    LESS_THAN = 285,
+    GREATER_THAN = 286,
+    EQUALS_THAN = 287,
+    LEFT_PARENTHESIS = 288,
+    RIGHT_PARENTHESIS = 289,
+    LEFT_BRACKET = 290,
+    RIGHT_BRACKET = 291,
+    IF = 292,
+    ELSE = 293,
+    FOR = 294,
+    WHILE = 295,
+    RETURN = 296,
+    SWITCH = 297,
+    CASE = 298,
+    DEFAULT = 299,
+    BREAK = 300
   };
 #endif
 /* Tokens.  */
 #define INTEGER_LITERAL 258
 #define FLOAT_LITERAL 259
 #define BOOLEAN_LITERAL 260
-#define COMMA 261
-#define COLON 262
-#define INT_TYPE 263
-#define FLOAT_TYPE 264
-#define BOOLEAN_TYPE 265
-#define CHAR_TYPE 266
-#define STRING_TYPE 267
-#define PLUS 268
-#define MINUS 269
-#define TIMES 270
-#define DIVIDE 271
-#define UNARY_MINUS 272
-#define UNARY_PLUS 273
-#define ID 274
-#define AND 275
-#define OR 276
-#define END 277
-#define EQUALS 278
-#define MOD 279
-#define POW 280
-#define VARIABLE 281
-#define BITWISE_AND 282
-#define BITWISE_OR 283
-#define LESS_THAN 284
-#define GREATER_THAN 285
-#define EQUALS_THAN 286
-#define LEFT_PARENTHESIS 287
-#define RIGHT_PARENTHESIS 288
-#define LEFT_BRACKET 289
-#define RIGHT_BRACKET 290
-#define IF 291
-#define ELSE 292
-#define FOR 293
-#define WHILE 294
-#define RETURN 295
-#define SWITCH 296
-#define CASE 297
-#define DEFAULT 298
-#define BREAK 299
+#define STRING_VALUE 261
+#define COMMA 262
+#define COLON 263
+#define INT_TYPE 264
+#define FLOAT_TYPE 265
+#define BOOLEAN_TYPE 266
+#define CHAR_TYPE 267
+#define STRING_TYPE 268
+#define PLUS 269
+#define MINUS 270
+#define TIMES 271
+#define DIVIDE 272
+#define UNARY_MINUS 273
+#define UNARY_PLUS 274
+#define ID 275
+#define AND 276
+#define OR 277
+#define END 278
+#define EQUALS 279
+#define MOD 280
+#define POW 281
+#define VARIABLE 282
+#define BITWISE_AND 283
+#define BITWISE_OR 284
+#define LESS_THAN 285
+#define GREATER_THAN 286
+#define EQUALS_THAN 287
+#define LEFT_PARENTHESIS 288
+#define RIGHT_PARENTHESIS 289
+#define LEFT_BRACKET 290
+#define RIGHT_BRACKET 291
+#define IF 292
+#define ELSE 293
+#define FOR 294
+#define WHILE 295
+#define RETURN 296
+#define SWITCH 297
+#define CASE 298
+#define DEFAULT 299
+#define BREAK 300
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 10 "parser.y" /* yacc.c:1921  */
+#line 16 "parser.y" /* yacc.c:1921  */
 
-    int iValue;
-    struct node * npValue;
+    int intVal;
+    char* dataType;
+    char* strVal;
+    float floatVal;
+    char charVal;
 
-#line 151 "y.tab.h" /* yacc.c:1921  */
+#line 156 "y.tab.h" /* yacc.c:1921  */
 };
 
 typedef union YYSTYPE YYSTYPE;

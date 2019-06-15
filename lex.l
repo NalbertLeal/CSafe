@@ -51,7 +51,11 @@
 ("or")              return(OR);
 ("&")               return(BITWISE_AND);
 ("|")               return(BITWISE_OR);
-[0-9]+              return(INTEGER_LITERAL);
+[-+]?[0-9]+         return(INTEGER_LITERAL);
+[-+]?[0-9]*\.?[0-9]+ return(FLOAT_LITERAL);
+
+\"(\\.|[^"])*\"     return(STRING_VALUE);
+
 [a-zA-Z]+           return(ID);
 
 .                   {InvalidToken();}

@@ -1,18 +1,27 @@
 %{
-    typedef struct node {
-        struct node *left;
-        struct node *right;
-        int tokcode;
-        char *token;
-    } node;
+    #include <stdio.h>
+    #include <string.h>
+
+    extern char Data_Type[50];
+
+    extern void yyerror();
+    extern int yylex();
+    extern char* yytext;
+    extern int yylineno;
 %}
 
+%define parse.lac full
+%define parse.error verbose
+
 %union {
-    int iValue;
-    struct node * npValue;
+    int intVal;
+    char* dataType;
+    char* strVal;
+    float floatVal;
+    char charVal;
 }
 
-%token <iValue> INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL
+%token INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL STRING_VALUE
 %token COMMA COLON
 %token INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE
 %token PLUS MINUS TIMES DIVIDE
@@ -49,8 +58,6 @@
 %token CASE
 %token DEFAULT
 %token BREAK
-
-%type <npValue> STATEMENT EXPRESSION ASSIGNMENT
 
 %%
 
