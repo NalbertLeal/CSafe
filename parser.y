@@ -16,7 +16,7 @@
 %union {
     int intVal;
     char* dataType;
-    char* strVal;
+    char* str;
     float floatVal;
     char charVal;
 }
@@ -25,7 +25,7 @@
 
 %token INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL STRING_VALUE
 %token COMMA COLON
-%token INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE
+%token INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE VOID_TYPE
 %token PLUS MINUS TIMES DIVIDE
 
 %token UNARY_MINUS UNARY_PLUS
