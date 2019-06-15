@@ -1,23 +1,31 @@
 %{
+    #include <stdio.h>
+    #include "hash.h"
 
-//#include "structs.h"
-#include "hash.h"
-void yyerror(char *s);
-int yylex(void);
+    extern char Data_Type[50];
 
+    extern void yyerror();
+    extern int yylex();
+    extern char* yytext;
+    extern int yylineno;
 %}
 
+%define parse.lac full
+%define parse.error verbose
 
 %union {
-    char *str;
+    int intVal;
+    char* dataType;
+    char* strVal;
+    float floatVal;
+    char charVal;
 }
 
 %start program
 
-%token <iValue> INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL
-
+%token INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL STRING_VALUE
 %token COMMA COLON
-%token INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE VOID_TYPE
+%token INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE
 %token PLUS MINUS TIMES DIVIDE
 
 %token UNARY_MINUS UNARY_PLUS
@@ -53,9 +61,6 @@ int yylex(void);
 %token DEFAULT
 %token BREAK
 
-%type <test> STATEMENT EXPRESSION ASSIGNMENT tipo LOGICAL_OP ARITHMETIC_OP FUNCTION RETURN_STM
-
-
 %%
 
 program:        /* empty */
@@ -74,10 +79,12 @@ STATEMENT       : ASSIGNMENT END
                 | RETURN_STM
                 | BLOCK;
 
-tipo            : CHAR_TYPE {$<str>$ = (char*)malloc(5); sprintf($<str>$, "%s%c", "char",'\0');}
-                | FLOAT_TYPE {$<str>$ = (char*)malloc(7); sprintf($<str>$, "%s%c", "double",'\0');} 
-                | INT_TYPE {$<str>$ = (char*)malloc(4); sprintf($<str>$, "%s%c", "int",'\0');};
-                | VOID_TYPE {$<str>$ = (char*)malloc(5); sprintf($<str>$, "%s%c", "void",'\0');};
+TYPE            : INT_TYPE
+                | FLOAT_TYPE {$<str>$ = (char*)malloc(7); sprintf($<str>$, "%s%c", "double",'\0');}
+                | BOOLEAN_TYPE
+                | CHAR_TYPE {$<str>$ = (char*)malloc(5); sprintf($<str>$, "%s%c", "char",'\0');}
+                | STRING_TYPE
+                | ID;
 
 LOGICAL_OP      : AND
                 | OR
@@ -94,19 +101,15 @@ ARITHMETIC_OP   : PLUS
                 | POW
                 | MOD;
 
-FUNCTION        : tipo ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS BLOCK{
-        printf("tipo : %s\n", $<str>1);
-        printf("id: %s\n", $<str>2);
-        printf("TESTE 3: %s\n", $<str>3);              
-};
+FUNCTION        : TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS BLOCK;
 
 RETURN_STM      : RETURN TERM END;
 
 TERM_LIST       : TERM
                 | TERM COMMA TERM_LIST;
 
-ID_PARAMS       : tipo ID
-                | tipo ID COMMA ID_PARAMS;
+ID_PARAMS       : TYPE ID
+                | TYPE ID COMMA ID_PARAMS;
 
 FUNCTION_PARAMS : /* empty */
                 | ID_PARAMS;
@@ -131,16 +134,12 @@ EXPRESSION      : TERM
 UNARY_EXPR      : TERM UNARY_OPERATOR
                 | UNARY_OPERATOR TERM
 
-VARIABLES       : ID{
-                    printf("ID: %s\n", $<str>1);}
-                ;
+VARIABLES       : ID;
 
 BLOCK           : LEFT_BRACKET STATEMENTS RIGHT_BRACKET;
 
 ASSIGNMENT      : VARIABLES EQUALS EXPRESSION
-                | tipo VARIABLES EQUALS EXPRESSION {
-                    printf("TIPO : %s\n", $<str>1);
-                }
+                | TYPE VARIABLES EQUALS EXPRESSION
                 | UNARY_EXPR;
 
 IF_STATEMENT    : IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
