@@ -1,8 +1,11 @@
 %{
     #include "y.tab.h"
+    void extern yyerror(char*);
+    void InvalidToken();
 %}
 %%
-[ \t\n]             ;
+[ \t]               ;
+[\n]                {yylineno++;};
 (";")               return(END);
 
 ("if")              return(IF);
@@ -50,4 +53,20 @@
 ("|")               return(BITWISE_OR);
 [0-9]+              return(INTEGER_LITERAL);
 [a-zA-Z]+           return(ID);
+
+.                   {InvalidToken();}
 %%
+
+int yywrap(void) {
+    return 1;
+}
+
+void yyerror(char *s) {
+    fprintf(stderr, "\nERROR ON LINE %d : \n %s\n", yylineno, s);
+    exit(0);
+}
+
+void InvalidToken() {
+    printf("ERROR ON LINE %d : \n Invalid Token %s\n", yylineno, yytext);
+    exit(0);
+}
