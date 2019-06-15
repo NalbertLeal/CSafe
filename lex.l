@@ -23,6 +23,7 @@
 ("bool")            return(BOOLEAN_TYPE);
 ("char")            return(CHAR_TYPE);
 ("string")          return(STRING_TYPE);
+("void")            return(VOID_TYPE);
 
 ("true")            return(BOOLEAN_LITERAL);
 ("false")           return(BOOLEAN_LITERAL);

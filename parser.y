@@ -1,6 +1,6 @@
 %{
     #include <stdio.h>
-    #include <string.h>
+    #include "hash.h"
 
     extern char Data_Type[50];
 
@@ -20,6 +20,8 @@
     float floatVal;
     char charVal;
 }
+
+%start program
 
 %token INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL STRING_VALUE
 %token COMMA COLON
@@ -78,9 +80,9 @@ STATEMENT       : ASSIGNMENT END
                 | BLOCK;
 
 TYPE            : INT_TYPE
-                | FLOAT_TYPE
+                | FLOAT_TYPE {$<str>$ = (char*)malloc(7); sprintf($<str>$, "%s%c", "double",'\0');}
                 | BOOLEAN_TYPE
-                | CHAR_TYPE
+                | CHAR_TYPE {$<str>$ = (char*)malloc(5); sprintf($<str>$, "%s%c", "char",'\0');}
                 | STRING_TYPE
                 | ID;
 
