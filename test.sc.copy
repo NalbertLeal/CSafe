@@ -1,0 +1,21 @@
+int main() {
+    int x = 1;
+    float y = 1.2;
+    string z = "Hello";
+    if(x == 2) {
+        y = 0;
+    }
+
+    switch(x) {
+        case 2 {
+            x = y;
+            break;
+        }
+
+        default {
+            x = 23;
+        }
+    }
+
+    return y;
+}
