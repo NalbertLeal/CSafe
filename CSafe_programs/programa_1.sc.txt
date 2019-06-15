@@ -1,0 +1,16 @@
+int main() {
+  float x, y, cFloat;
+  int c;
+
+  gets("%f", x);
+  gets("%f", y);
+  gets("%f", z);
+
+  cFloat := (float) c;
+
+  float result := (x**2)-y+c;
+
+  print("%f", result);
+  
+  return 0;
+}
