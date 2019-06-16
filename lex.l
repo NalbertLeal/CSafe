@@ -3,6 +3,7 @@
     void extern yyerror(char*);
     void InvalidToken();
 %}
+
 %%
 [ \t]               ;
 [\n]                {yylineno++;};
@@ -18,12 +19,12 @@
 ("default")         return(DEFAULT);
 ("break")           return(BREAK);
 
-("int")             return(INT_TYPE);
-("float")           return(FLOAT_TYPE);
-("bool")            return(BOOLEAN_TYPE);
-("char")            return(CHAR_TYPE);
-("string")          return(STRING_TYPE);
-("void")            return(VOID_TYPE);
+("int")             { yylval.str = strdup("int"); return(INT_TYPE); }
+("float")           { yylval.str = strdup("float"); return(FLOAT_TYPE); }
+("bool")            { yylval.str = strdup("bool"); return(BOOLEAN_TYPE); }
+("char")            { yylval.str = strdup("char"); return(CHAR_TYPE); }
+("string")          { yylval.str = strdup("string"); return(STRING_TYPE); }
+("void")            { yylval.str = strdup("void"); return(VOID_TYPE); }
 
 ("true")            return(BOOLEAN_LITERAL);
 ("false")           return(BOOLEAN_LITERAL);

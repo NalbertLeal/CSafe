@@ -29,7 +29,7 @@
 %token <str> INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL STRING_VALUE
             COMMA COLON
             INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE VOID_TYPE
-            PLUS MINUS TIMES DIVIDE MOD POW
+            PLUS MINUS TIMES DIVIDE MOD POW ID
 
 %left	PLUS	MINUS
 %left	TIMES	DIVIDE    MOD
@@ -37,7 +37,6 @@
 
 %token UNARY_MINUS UNARY_PLUS
 
-%token <str> ID
 %token AND
 %token OR
 %token END
@@ -85,15 +84,41 @@ STATEMENT       : ASSIGNMENT END
                 | BLOCK;
 
 TYPE            : INT_TYPE {
-                        $<str>$ = (char*) malloc(3); 
+                        int tamanho_string = strlen($1);
+                        $<str>$ = (char*) malloc(tamanho_string); 
                         sprintf($<str>$, "%s%c", $1,'\0');
                     }
-                | FLOAT_TYPE {$<str>$ = (char*)malloc(7); sprintf($<str>$, "%s%c", "double",'\0');}
-                | BOOLEAN_TYPE
-                | VOID_TYPE
-                | CHAR_TYPE {$<str>$ = (char*)malloc(5); sprintf($<str>$, "%s%c", "char",'\0');}
-                | STRING_TYPE
-                | ID;
+                | FLOAT_TYPE  {
+                        int tamanho_string = strlen($1);
+                        $<str>$ = (char*) malloc(tamanho_string); 
+                        sprintf($<str>$, "%s%c", $1,'\0');
+                    }
+                | BOOLEAN_TYPE {
+                        int tamanho_string = strlen($1);
+                        $<str>$ = (char*) malloc(tamanho_string); 
+                        sprintf($<str>$, "%s%c", $1,'\0');
+                    }
+                | VOID_TYPE {
+                        int tamanho_string = strlen($1);
+                        $<str>$ = (char*) malloc(tamanho_string); 
+                        sprintf($<str>$, "%s%c", $1,'\0');
+                    }
+                | CHAR_TYPE  {
+                        int tamanho_string = strlen($1);
+                        $<str>$ = (char*) malloc(tamanho_string); 
+                        sprintf($<str>$, "%s%c", $1,'\0');
+                    }
+                | STRING_TYPE {
+                        int tamanho_string = strlen($1);
+                        $<str>$ = (char*) malloc(tamanho_string); 
+                        sprintf($<str>$, "%s%c", $1,'\0');
+                    }
+                | ID {
+                        int tamanho_string = strlen($1);
+                        $<str>$ = (char*) malloc(tamanho_string); 
+                        sprintf($<str>$, "%s%c", $1,'\0');
+                    }
+                ;
 
 LOGICAL_OP      : AND
                 | OR
