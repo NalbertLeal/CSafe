@@ -26,20 +26,22 @@
 
 %start program
 
-%token INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL STRING_VALUE
-%token COMMA COLON
-%token INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE VOID_TYPE
-%token PLUS MINUS TIMES DIVIDE
+%token <str> INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL STRING_VALUE
+            COMMA COLON
+            INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE VOID_TYPE
+            PLUS MINUS TIMES DIVIDE MOD POW
+
+%left	PLUS	MINUS
+%left	TIMES	DIVIDE    MOD
+%right	POW
 
 %token UNARY_MINUS UNARY_PLUS
 
-%token ID
+%token <str> ID
 %token AND
 %token OR
 %token END
 %token EQUALS
-%token MOD
-%token POW
 %token VARIABLE
 %token BITWISE_AND
 %token BITWISE_OR
@@ -82,7 +84,10 @@ STATEMENT       : ASSIGNMENT END
                 | RETURN_STM
                 | BLOCK;
 
-TYPE            : INT_TYPE
+TYPE            : INT_TYPE {
+                        $<str>$ = (char*) malloc(3); 
+                        sprintf($<str>$, "%s%c", $1,'\0');
+                    }
                 | FLOAT_TYPE {$<str>$ = (char*)malloc(7); sprintf($<str>$, "%s%c", "double",'\0');}
                 | BOOLEAN_TYPE
                 | VOID_TYPE
@@ -144,7 +149,7 @@ BLOCK           : LEFT_BRACKET STATEMENTS RIGHT_BRACKET;
 
 ASSIGNMENT      : VARIABLES EQUALS EXPRESSION
                 | TYPE VARIABLES EQUALS EXPRESSION {
-                    printf("%s", $<str>1);
+                    printf("%s\n", $<str>1);
                 }
                 | UNARY_EXPR;
 
