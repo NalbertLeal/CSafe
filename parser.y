@@ -66,31 +66,59 @@ STATEMENT       : ASSIGNMENT END
                 | BLOCK;
 
 TYPE            : DATA_TYPE  {
-                        int tamanho_string = strlen($1);
-                        $<dataType>$ = (char*) malloc(tamanho_string); 
-                        sprintf($<dataType>$, "%s%c", $1,'\0');
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
                     }
                 ;
 
 
-LOGICAL_OP      : AND
-                | OR
-                | BITWISE_AND
-                | BITWISE_OR
-                | LESS_THAN
-                | GREATER_THAN
-                | EQUALS_THAN;
+LOGICAL_OP      : AND {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | OR {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | BITWISE_AND {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | BITWISE_OR {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | LESS_THAN {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | GREATER_THAN {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | EQUALS_THAN {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                ;
 
-ARITHMETIC_OP   : PLUS
-                | MINUS
-                | TIMES
-                | DIVIDE
-                | POW
-                | MOD;
+ARITHMETIC_OP   : PLUS {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | MINUS {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | TIMES {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | DIVIDE {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | POW {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | MOD {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                ;
 
 RETURN_STM      : RETURN TERM END;
 
-TERM_LIST       : TERM
+TERM_LIST       : TERM {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
                 | TERM COMMA TERM_LIST;
 
 ID_PARAMS       : TYPE ID
@@ -119,12 +147,16 @@ OPERATOR        : ARITHMETIC_OP
 UNARY_OPERATOR  : UNARY_PLUS
                 | UNARY_MINUS;
 
-TERM            : ID
+TERM            : ID {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
                 | INTEGER_LITERAL
                 | FLOAT_LITERAL
                 | BOOLEAN_LITERAL;
 
-EXPRESSION      : TERM
+EXPRESSION      : TERM {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
                 | TERM OPERATOR EXPRESSION
                 | LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS;
 

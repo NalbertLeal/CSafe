@@ -58,3 +58,9 @@ void DuplicateIdentifierError(char* identifier) {
     printf("\nERROR ON LINE %d : \nDuplicate identifier '%s' found.\n", yylineno, identifier);
     exit(0);
 }
+
+void allocaStrEmStr(char* a, char* b) {
+    int tamanho_string = strlen(b);
+    a = (char*) malloc(tamanho_string); 
+    sprintf(a, "%s%c", b,'\0');
+}
