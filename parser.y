@@ -116,7 +116,8 @@ ARITHMETIC_OP   : PLUS {
 
 RETURN_STM      : RETURN TERM END;
 
-TERM_LIST       : TERM {
+TERM_LIST       : /* empty */
+                | TERM {
                         allocaStrEmStr($<dataType>$, $<dataType>$);
                     }
                 | TERM COMMA TERM_LIST;
@@ -183,6 +184,7 @@ ASSIGNMENT      : ID EQUALS EXPRESSION
                             DuplicateIdentifierError($2);
                         }
                     }
+                | TYPE ID EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS;
                 ;
 
 IF_STATEMENT    : IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT

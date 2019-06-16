@@ -3,7 +3,6 @@ bool i = true;
 void y;
 char e;
 string t;
-float xw;
-
+float xw = f();
 void f();
 void f() {}
