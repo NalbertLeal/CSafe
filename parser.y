@@ -70,8 +70,9 @@
 program:        /* empty */
                 | STATEMENTS;
 
-STATEMENTS      : STATEMENT
-                | STATEMENT STATEMENTS;
+STATEMENTS      : STATEMENT { clearBuffers(); }
+                | STATEMENT STATEMENTS  { clearBuffers(); }
+                ;
 
 STATEMENT       : ASSIGNMENT END
                 | FOR_STATEMENT
@@ -176,7 +177,11 @@ ASSIGNMENT      : VARIABLES EQUALS EXPRESSION
                 | TYPE VARIABLES EQUALS EXPRESSION {
                     printf("%s\n", $<str>1);
                 }
-                | UNARY_EXPR;
+                | UNARY_EXPR
+                | TYPE VARIABLES {
+                    printf("%s\n", $<str>1);
+                }
+                ;
 
 IF_STATEMENT    : IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
 

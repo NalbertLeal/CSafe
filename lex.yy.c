@@ -862,32 +862,32 @@ return(BREAK);
 case 13:
 YY_RULE_SETUP
 #line 22 "lex.l"
-{ yylval.str = strdup("int"); return(INT_TYPE); }
+{ yylval.str = strdup(yytext); return(INT_TYPE); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 23 "lex.l"
-{ yylval.str = strdup("float"); return(FLOAT_TYPE); }
+{ yylval.str = strdup(yytext); return(FLOAT_TYPE); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 24 "lex.l"
-{ yylval.str = strdup("bool"); return(BOOLEAN_TYPE); }
+{ yylval.str = strdup(yytext); return(BOOLEAN_TYPE); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 25 "lex.l"
-{ yylval.str = strdup("char"); return(CHAR_TYPE); }
+{ yylval.str = strdup(yytext); return(CHAR_TYPE); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 26 "lex.l"
-{ yylval.str = strdup("string"); return(STRING_TYPE); }
+{ yylval.str = strdup(yytext); return(STRING_TYPE); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 27 "lex.l"
-{ yylval.str = strdup("void"); return(VOID_TYPE); }
+{ yylval.str = strdup(yytext); return(VOID_TYPE); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
@@ -1028,7 +1028,7 @@ return(STRING_VALUE);
 case 46:
 YY_RULE_SETUP
 #line 61 "lex.l"
-return(ID);
+{ yylval.str = strdup(yytext); return(ID); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP

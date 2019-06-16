@@ -19,12 +19,12 @@
 ("default")         return(DEFAULT);
 ("break")           return(BREAK);
 
-("int")             { yylval.str = strdup("int"); return(INT_TYPE); }
-("float")           { yylval.str = strdup("float"); return(FLOAT_TYPE); }
-("bool")            { yylval.str = strdup("bool"); return(BOOLEAN_TYPE); }
-("char")            { yylval.str = strdup("char"); return(CHAR_TYPE); }
-("string")          { yylval.str = strdup("string"); return(STRING_TYPE); }
-("void")            { yylval.str = strdup("void"); return(VOID_TYPE); }
+("int")             { yylval.str = strdup(yytext); return(INT_TYPE); }
+("float")           { yylval.str = strdup(yytext); return(FLOAT_TYPE); }
+("bool")            { yylval.str = strdup(yytext); return(BOOLEAN_TYPE); }
+("char")            { yylval.str = strdup(yytext); return(CHAR_TYPE); }
+("string")          { yylval.str = strdup(yytext); return(STRING_TYPE); }
+("void")            { yylval.str = strdup(yytext); return(VOID_TYPE); }
 
 ("true")            return(BOOLEAN_LITERAL);
 ("false")           return(BOOLEAN_LITERAL);
@@ -58,7 +58,7 @@
 
 \"(\\.|[^"])*\"     return(STRING_VALUE);
 
-[a-zA-Z]+           return(ID);
+[a-zA-Z]+           { yylval.str = strdup(yytext); return(ID); }
 
 .                   {InvalidToken();}
 %%
