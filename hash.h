@@ -10,24 +10,10 @@
 
 #define INITIAL_SIZE 20000
 
-
-
-
 typedef enum {
   false,
   true
 } bool;
-
-typedef struct HashProperties
-{
-   int category;
-   int type;
-   char scope[64];
-   char assign[64];
-} HashProperties;
-
-enum type {empty = 0, int_ = 1, float_ = 2, char_ = 3, string = 4}type;
-
 
 typedef struct HashNode {
   char* key;
@@ -39,20 +25,6 @@ typedef struct HashTable {
   HashNode** table;
   unsigned int capacity;
 } HashTable;
-
-HashProperties* newHashProperties(){
-  HashProperties* HP = (HashProperties*) malloc(sizeof (HashProperties));
- // HP->name = "Test";
-  HP->type = 0;
-  return HP;
-}
-
-int tamanho_str(char* str) {
-    int N = 0;
-    while(str[N] != '\0') N++;
-    return N;
-}
-
 
 HashTable* newHashTable() {
   HashTable* hash = (HashTable*) malloc(sizeof(HashTable));
@@ -167,12 +139,12 @@ void freeHashMemory(HashTable** hashTable) {
         free(nowNode->key);
         free(nowNode->data);
         free(nowNode);
+        nowNode = nextNode;
       }
     }
   }
   free((*hashTable)->table);
   free((*hashTable));
-  free(hashTable);
 }
 
 void printHash(HashTable** hashTable) {

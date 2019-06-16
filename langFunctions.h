@@ -1,9 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "hash.h"
 
 char Data_Type[50];
-int noOfIdentifiers = 0;
+HashTable* symbolTable;
 
 struct IdentifierStructure
 {
@@ -12,6 +13,12 @@ struct IdentifierStructure
 }identifiers[20];
 
 extern int yylineno;
+
+void initSymbolTable() {
+    if(symbolTable == NULL) {
+        symbolTable = newHashTable();
+    }
+}
 
 void clearBuffers() {
     int i = 0;
@@ -30,19 +37,16 @@ char* retrieveDataType() {
 }
 
 int isDuplicate(char* identifier) {
-    int i;
-    for(i = 0; i < noOfIdentifiers; i++) {
-        if(strcmp(identifier, identifiers[i].value) == 0) {
-            return 1;
-        }
+    HashNode* item = hashSearch(&symbolTable, identifier);
+    if(item != NULL) {
+        return 1;
     }
     return 0;
 }
 
 void storeIdentifier(char* identifier, char* identifier_data_type) {
-    identifiers[noOfIdentifiers].value = identifier;
-    identifiers[noOfIdentifiers].data_type = identifier_data_type;
-    noOfIdentifiers++;
+    HashNode* item = newHashNode(identifier, identifier_data_type);
+    hashInsert(&symbolTable, &item);
 }
 
 void AssignmentError(char* data_type) {

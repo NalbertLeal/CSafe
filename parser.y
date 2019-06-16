@@ -1,6 +1,5 @@
 %{
     #include <stdio.h>
-    #include "hash.h"
     #include "langFunctions.h"
 
     extern char Data_Type[50];
@@ -73,7 +72,8 @@
 %%
 
 program:        /* empty */
-                | DECLARATION;
+                | DECLARATION
+                ;
 
 DECLARATION:    EXPRESSION END { clearBuffers(); }
                 | DECLARATION EXPRESSION END { clearBuffers(); }
@@ -99,6 +99,7 @@ NUMBER:         INTEGER_LITERAL
 %%
 
 int main() {
+    initSymbolTable();
     yyparse();
     printf("No Errors\n");
     return 0;
