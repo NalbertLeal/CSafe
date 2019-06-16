@@ -145,21 +145,34 @@ FUNCTION        : TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS LEF
 OPERATOR        : ARITHMETIC_OP
                 | LOGICAL_OP;
 
-UNARY_OPERATOR  : UNARY_PLUS
-                | UNARY_MINUS;
+UNARY_OPERATOR  : UNARY_PLUS {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | UNARY_MINUS {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                ;
 
 TERM            : ID {
                         allocaStrEmStr($<dataType>$, $<dataType>$);
                     }
-                | INTEGER_LITERAL
-                | FLOAT_LITERAL
-                | BOOLEAN_LITERAL;
+                | INTEGER_LITERAL {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | FLOAT_LITERAL {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                | BOOLEAN_LITERAL {
+                        allocaStrEmStr($<dataType>$, $<dataType>$);
+                    }
+                ;
 
 EXPRESSION      : TERM {
                         allocaStrEmStr($<dataType>$, $<dataType>$);
                     }
-                | TERM OPERATOR EXPRESSION
-                | LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS;
+                | TERM OPERATOR EXPRESSION { }
+                | LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS {}
+                ;
 
 UNARY_EXPR      : TERM UNARY_OPERATOR
                 | UNARY_OPERATOR TERM
