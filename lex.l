@@ -1,5 +1,8 @@
 %{
+    #include <string.h>
+    #include <stdlib.h>
     #include "y.tab.h"
+
     void extern yyerror(char*);
     void InvalidToken();
 %}
@@ -18,12 +21,10 @@
 ("default")         return(DEFAULT);
 ("break")           return(BREAK);
 
-("int")             return(INT_TYPE);
-("float")           return(FLOAT_TYPE);
-("bool")            return(BOOLEAN_TYPE);
-("char")            return(CHAR_TYPE);
-("string")          return(STRING_TYPE);
-("void")            return(VOID_TYPE);
+"void"  |
+"int"   |
+"float" |
+"char"              {yylval.dataType = strdup(yytext); return DATA_TYPE;}
 
 ("true")            return(BOOLEAN_LITERAL);
 ("false")           return(BOOLEAN_LITERAL);
@@ -57,7 +58,7 @@
 
 \"(\\.|[^"])*\"     return(STRING_VALUE);
 
-[a-zA-Z]+           return(ID);
+[a-zA-Z]+           {yylval.dataType = strdup(yytext); return ID;}
 
 .                   {InvalidToken();}
 %%
