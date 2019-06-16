@@ -50,7 +50,7 @@ void storeIdentifier(char* identifier, char* identifier_data_type) {
 }
 
 void AssignmentError(char* data_type) {
-    printf("\nERROR ON LINE %d : \nInvalid Assignment! Expected '%s', but found '%s \n'", yylineno, Data_Type, data_type);
+    printf("\nERROR ON LINE %d : \nInvalid Assignment! Expected '%s', but found '%s'\n", yylineno, Data_Type, data_type);
     exit(0);
 }
 

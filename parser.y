@@ -2,6 +2,7 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include "langFunctions.h"
+    #include "validators.h"
 
     extern char Data_Type[50];
 
@@ -93,8 +94,8 @@ EXPRESSION:     DATA_TYPE ID {
                 | EXPRESSION COMMA ID
                 ;
 
-NUMBER:         INTEGER_LITERAL
-                | FLOAT_LITERAL
+NUMBER:         INTEGER_LITERAL {if(!isValidAssignment("int")){AssignmentError("int");}}
+                | FLOAT_LITERAL {if(!isValidAssignment("float")){AssignmentError("float");}}
                 | STRING_VALUE
                 ;
 

@@ -1,2 +1,2 @@
-int x = 0;
-int x = 1;
+float x = 2.2;
+int y = 2.2;
