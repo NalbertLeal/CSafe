@@ -1,6 +1,6 @@
 %{
     #include <stdio.h>
-    #include "hash.h"
+    #include "./hash.h"
 
     extern char Data_Type[50];
 
@@ -8,6 +8,9 @@
     extern int yylex();
     extern char* yytext;
     extern int yylineno;
+
+    HashTable single_table;
+
 %}
 
 %define parse.lac full
@@ -160,3 +163,12 @@ CASE_LIST       : CASE_STATEMENT
                 | CASE_STATEMENT CASE_LIST;
 
 DEFAULT_STM     : DEFAULT COLON STATEMENTS;
+
+
+%%
+
+int main (void) {
+
+single_table = * newHashTable();
+
+}
