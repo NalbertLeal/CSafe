@@ -1,5 +1,6 @@
 %{
     #include <stdio.h>
+    #include <stdlib.h>
     #include "langFunctions.h"
 
     extern char Data_Type[50];
@@ -8,6 +9,7 @@
     extern int yylex();
     extern char* yytext;
     extern int yylineno;
+    extern FILE* yyin;
 %}
 
 %define parse.lac full
@@ -98,9 +100,12 @@ NUMBER:         INTEGER_LITERAL
 
 %%
 
-int main() {
+int main(int argc, char *argv[]) {
     initSymbolTable();
+    yyin = fopen(argv[1], "r");
+    
     yyparse();
     printf("No Errors\n");
+    fclose(yyin);
     return 0;
 }
