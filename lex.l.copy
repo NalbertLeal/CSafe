@@ -1,0 +1,32 @@
+%{
+    #include "y.tab.h"
+%}
+%%
+[ \t\n]          ;
+("int")          return(INT_TYPE);
+("float")        return(FLOAT_TYPE);
+("void")         return(VOID_TYPE);
+("string")       return(STRING_TYPE);
+("switch")       return(SWITCH);
+("case")         return(CASE);
+("break")        return(BREAK);
+("default")      return(DEFAULT);
+("if")           return(IF);
+("==")           return(EQUAL_THEN);
+("=")            return(EQUAL_SIGN);
+("+")            return(PLUS_SIGN);
+("-")            return(MINUS_SIGN);
+("/")            return(FORWARD_SLASH);
+("\\")           return(BACK_SLASH);
+("*")            return(ASTERISK_SIGN);
+("(")            return(LEFT_PARENTHESES);
+(")")            return(RIGHT_PARENTHESES);
+("{")            return(LEFT_BRACKET);      
+("}")            return(RIGHT_BRACKET);
+(";")            return(SEMI_COLON);
+("return")       return(RETURN);
+[0-9]+           {yylval.iValue = atoi(yytext); return INTEGER_LITERAL;}
+([0-9]+\.[0-9]+) return(FLOAT_LITERAL);
+(\".+\")         return(STRING_LITERAL);
+[a-zA-Z]+        return(ID);
+%%
