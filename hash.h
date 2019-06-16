@@ -10,17 +10,10 @@
 
 #define INITIAL_SIZE 20000
 
-/*
-typedef struct HashProperties
-{
-   int category;
-   int type;
-   char scope[64];
-   char assign[64];
-} HashProperties;
-
-enum type {empty = 0, int_ = 1, float_ = 2, char_ = 3, string = 4}type;
- */
+typedef enum {
+  false,
+  true
+} bool;
 
 typedef struct HashNode {
   char* key;
@@ -32,15 +25,6 @@ typedef struct HashTable {
   HashNode** table;
   unsigned int capacity;
 } HashTable;
-
-/*
-HashProperties* newHashProperties(){
-  HashProperties* HP = (HashProperties*) malloc(sizeof (HashProperties));
- // HP->name = "Test";
-  HP->type = 0;
-  return HP;
-}
- */
 
 HashTable* newHashTable() {
   HashTable* hash = (HashTable*) malloc(sizeof(HashTable));
@@ -56,7 +40,7 @@ HashTable* newHashTable() {
 
 HashNode* newHashNode(char* key, char* data) {
   HashNode* node;
-  node = (HashNode*) malloc(sizeof(HashNode));
+  node = malloc(sizeof(HashNode));
   node->key = strdup(key);
   node->data = strdup(data);
   node->next = NULL;
@@ -155,12 +139,12 @@ void freeHashMemory(HashTable** hashTable) {
         free(nowNode->key);
         free(nowNode->data);
         free(nowNode);
+        nowNode = nextNode;
       }
     }
   }
   free((*hashTable)->table);
   free((*hashTable));
-  free(hashTable);
 }
 
 void printHash(HashTable** hashTable) {
@@ -174,8 +158,4 @@ void printHash(HashTable** hashTable) {
       }
     }
   }
-}
-
-int main() {
-  HashTable* h = newHashTable();
 }

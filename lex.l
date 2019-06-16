@@ -1,30 +1,32 @@
 %{
+    #include <string.h>
+    #include <stdlib.h>
     #include "y.tab.h"
+
     void extern yyerror(char*);
     void InvalidToken();
 %}
-
 %%
 [ \t]               ;
 [\n]                {yylineno++;};
-(";")               return(END);
+(";")               {yylval.dataType = strdup(yytext); return(END);}
 
-("if")              return(IF);
-("else")            return(ELSE);
-("for")             return(FOR);
-("while")           return(WHILE);
-("switch")          return(SWITCH);
-("return")          return(RETURN);
-("case")            return(CASE);
-("default")         return(DEFAULT);
-("break")           return(BREAK);
+("if")              {yylval.dataType = strdup(yytext); return(IF);}
+("else")            {yylval.dataType = strdup(yytext); return(ELSE); }
+("for")             {yylval.dataType = strdup(yytext); return(FOR); }
+("while")           {yylval.dataType = strdup(yytext); return(WHILE); }
+("switch")          {yylval.dataType = strdup(yytext); return(SWITCH); }
+("return")          {yylval.dataType = strdup(yytext); return(RETURN); }
+("case")            {yylval.dataType = strdup(yytext); return(CASE); }
+("default")         {yylval.dataType = strdup(yytext); return(DEFAULT); }
+("break")           {yylval.dataType = strdup(yytext); return(BREAK); }
 
-("int")             { yylval.str = strdup(yytext); return(INT_TYPE); }
-("float")           { yylval.str = strdup(yytext); return(FLOAT_TYPE); }
-("bool")            { yylval.str = strdup(yytext); return(BOOLEAN_TYPE); }
-("char")            { yylval.str = strdup(yytext); return(CHAR_TYPE); }
-("string")          { yylval.str = strdup(yytext); return(STRING_TYPE); }
-("void")            { yylval.str = strdup(yytext); return(VOID_TYPE); }
+"void"      |
+"int"       |
+"float"     |
+"bool"      |
+"string"    |
+"char"              {yylval.dataType = strdup(yytext); return DATA_TYPE;}
 
 ("true")            return(BOOLEAN_LITERAL);
 ("false")           return(BOOLEAN_LITERAL);
@@ -58,7 +60,7 @@
 
 \"(\\.|[^"])*\"     return(STRING_VALUE);
 
-[a-zA-Z]+           { yylval.str = strdup(yytext); return(ID); }
+[a-zA-Z]+           {yylval.dataType = strdup(yytext); return ID;}
 
 .                   {InvalidToken();}
 %%

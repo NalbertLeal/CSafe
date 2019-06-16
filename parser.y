@@ -1,6 +1,7 @@
 %{
     #include <stdio.h>
-    #include "./hash.h"
+    #include <stdlib.h>
+    #include "langFunctions.h"
 
     extern char Data_Type[50];
 
@@ -8,9 +9,7 @@
     extern int yylex();
     extern char* yytext;
     extern int yylineno;
-
-    HashTable* single_table;
-
+    extern FILE* yyin;
 %}
 
 %define parse.lac full
@@ -19,59 +18,40 @@
 %union {
     int intVal;
     char* dataType;
-    char* str;
+    char* strVal;
     float floatVal;
     char charVal;
 }
 
 %start program
 
-%token <str> INTEGER_LITERAL FLOAT_LITERAL BOOLEAN_LITERAL STRING_VALUE
+%token <dataType> DATA_TYPE
+%token <intVal> INTEGER_LITERAL
+%token <floatVal> FLOAT_LITERAL
+%token <strVal> STRING_VALUE
+%token <strVal> BOOLEAN_LITERAL
             COMMA COLON
-            INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE VOID_TYPE
-            PLUS MINUS TIMES DIVIDE MOD POW ID
+            PLUS MINUS TIMES DIVIDE MOD POW 
+            ID
+            UNARY_MINUS UNARY_PLUS
+            AND OR EQUALS LESS_THAN GREATER_THAN EQUALS_THAN BITWISE_AND BITWISE_OR END
+            LEFT_BRACKET RIGHT_BRACKET LEFT_PARENTHESIS RIGHT_PARENTHESIS
+            IF ELSE FOR WHILE RETURN SWITCH CASE DEFAULT BREAK
+%token <dataType> INT_TYPE FLOAT_TYPE BOOLEAN_TYPE CHAR_TYPE STRING_TYPE VOID_TYPE
 
 %left	PLUS	MINUS
 %left	TIMES	DIVIDE    MOD
 %right	POW
 
-%token UNARY_MINUS UNARY_PLUS
-
-%token AND
-%token OR
-%token END
-%token EQUALS
-%token VARIABLE
-%token BITWISE_AND
-%token BITWISE_OR
-
-%token LESS_THAN
-%token GREATER_THAN
-%token EQUALS_THAN
-
-%token LEFT_PARENTHESIS
-%token RIGHT_PARENTHESIS
-%token LEFT_BRACKET
-%token RIGHT_BRACKET
-
-%token IF
-%token ELSE
-%token FOR
-%token WHILE
-
-%token RETURN
-%token SWITCH
-%token CASE
-%token DEFAULT
-%token BREAK
-
 %%
+
 
 program:        /* empty */
                 | STATEMENTS;
 
-STATEMENTS      : STATEMENT { clearBuffers(); }
-                | STATEMENT STATEMENTS  { clearBuffers(); }
+STATEMENTS      : /* empty */
+                | STATEMENT END { clearBuffers(); }
+                | STATEMENT STATEMENTS { clearBuffers(); }
                 ;
 
 STATEMENT       : ASSIGNMENT END
@@ -79,47 +59,19 @@ STATEMENT       : ASSIGNMENT END
                 | IF_STATEMENT
                 | WHILE_STATEMENT
                 | FUNCTION
+                | FUNCTION_HEADER
                 | FUNCTION_CALL
                 | SWITCH_STM
                 | RETURN_STM
                 | BLOCK;
 
-TYPE            : INT_TYPE {
+TYPE            : DATA_TYPE  {
                         int tamanho_string = strlen($1);
-                        $<str>$ = (char*) malloc(tamanho_string); 
-                        sprintf($<str>$, "%s%c", $1,'\0');
-                    }
-                | FLOAT_TYPE  {
-                        int tamanho_string = strlen($1);
-                        $<str>$ = (char*) malloc(tamanho_string); 
-                        sprintf($<str>$, "%s%c", $1,'\0');
-                    }
-                | BOOLEAN_TYPE {
-                        int tamanho_string = strlen($1);
-                        $<str>$ = (char*) malloc(tamanho_string); 
-                        sprintf($<str>$, "%s%c", $1,'\0');
-                    }
-                | VOID_TYPE {
-                        int tamanho_string = strlen($1);
-                        $<str>$ = (char*) malloc(tamanho_string); 
-                        sprintf($<str>$, "%s%c", $1,'\0');
-                    }
-                | CHAR_TYPE  {
-                        int tamanho_string = strlen($1);
-                        $<str>$ = (char*) malloc(tamanho_string); 
-                        sprintf($<str>$, "%s%c", $1,'\0');
-                    }
-                | STRING_TYPE {
-                        int tamanho_string = strlen($1);
-                        $<str>$ = (char*) malloc(tamanho_string); 
-                        sprintf($<str>$, "%s%c", $1,'\0');
-                    }
-                | ID {
-                        int tamanho_string = strlen($1);
-                        $<str>$ = (char*) malloc(tamanho_string); 
-                        sprintf($<str>$, "%s%c", $1,'\0');
+                        $<dataType>$ = (char*) malloc(tamanho_string); 
+                        sprintf($<dataType>$, "%s%c", $1,'\0');
                     }
                 ;
+
 
 LOGICAL_OP      : AND
                 | OR
@@ -136,8 +88,6 @@ ARITHMETIC_OP   : PLUS
                 | POW
                 | MOD;
 
-FUNCTION        : TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS BLOCK;
-
 RETURN_STM      : RETURN TERM END;
 
 TERM_LIST       : TERM
@@ -151,13 +101,25 @@ FUNCTION_PARAMS : /* empty */
 
 FUNCTION_CALL   : ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS END;
 
+FUNCTION_HEADER : TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS END 
+                    {
+                        printf("%s\n", $<strVal>1);
+                    }
+                ;
+
+FUNCTION        : TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET 
+                    {
+                        printf("%s\n", $<strVal>1);
+                    }
+                ;
+
 OPERATOR        : ARITHMETIC_OP
                 | LOGICAL_OP;
 
 UNARY_OPERATOR  : UNARY_PLUS
                 | UNARY_MINUS;
 
-TERM            : VARIABLES
+TERM            : ID
                 | INTEGER_LITERAL
                 | FLOAT_LITERAL
                 | BOOLEAN_LITERAL;
@@ -169,18 +131,26 @@ EXPRESSION      : TERM
 UNARY_EXPR      : TERM UNARY_OPERATOR
                 | UNARY_OPERATOR TERM
 
-VARIABLES       : ID;
-
 BLOCK           : LEFT_BRACKET STATEMENTS RIGHT_BRACKET;
 
-ASSIGNMENT      : VARIABLES EQUALS EXPRESSION
-                | TYPE VARIABLES EQUALS EXPRESSION {
-                    printf("%s\n", $<str>1);
-                }
+ASSIGNMENT      : ID EQUALS EXPRESSION
+                | TYPE ID EQUALS EXPRESSION {
+                        if(!isDuplicate($2)) {
+                            storeDataType($<strVal>1);
+                            storeIdentifier($2, retrieveDataType());
+                        } else {
+                            DuplicateIdentifierError($2);
+                        }
+                    }
                 | UNARY_EXPR
-                | TYPE VARIABLES {
-                    printf("%s\n", $<str>1);
-                }
+                | TYPE ID {
+                        if(!isDuplicate($2)) {
+                            storeDataType($<strVal>1);
+                            storeIdentifier($2, retrieveDataType());
+                        } else {
+                            DuplicateIdentifierError($2);
+                        }
+                    }
                 ;
 
 IF_STATEMENT    : IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
@@ -202,11 +172,14 @@ CASE_LIST       : CASE_STATEMENT
 
 DEFAULT_STM     : DEFAULT COLON STATEMENTS;
 
-
 %%
 
-int main (void) {
-    single_table = newHashTable();
-
-    return yyparse();
+int main(int argc, char *argv[]) {
+    initSymbolTable();
+    yyin = fopen(argv[1], "r");
+    
+    yyparse();
+    printf("No Errors\n");
+    fclose(yyin);
+    return 0;
 }

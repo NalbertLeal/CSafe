@@ -1,6 +1,9 @@
 int x = 1;
-bool x = true;
-void x;
+bool i = true;
+void y;
 char e;
-string x;
-float x;
+string t;
+float xw;
+
+void f();
+void f() {}
