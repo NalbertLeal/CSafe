@@ -9,7 +9,7 @@
     extern char* yytext;
     extern int yylineno;
 
-    HashTable single_table;
+    HashTable* single_table;
 
 %}
 
@@ -85,6 +85,7 @@ STATEMENT       : ASSIGNMENT END
 TYPE            : INT_TYPE
                 | FLOAT_TYPE {$<str>$ = (char*)malloc(7); sprintf($<str>$, "%s%c", "double",'\0');}
                 | BOOLEAN_TYPE
+                | VOID_TYPE
                 | CHAR_TYPE {$<str>$ = (char*)malloc(5); sprintf($<str>$, "%s%c", "char",'\0');}
                 | STRING_TYPE
                 | ID;
@@ -142,7 +143,9 @@ VARIABLES       : ID;
 BLOCK           : LEFT_BRACKET STATEMENTS RIGHT_BRACKET;
 
 ASSIGNMENT      : VARIABLES EQUALS EXPRESSION
-                | TYPE VARIABLES EQUALS EXPRESSION
+                | TYPE VARIABLES EQUALS EXPRESSION {
+                    printf("%s", $<str>1);
+                }
                 | UNARY_EXPR;
 
 IF_STATEMENT    : IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
@@ -168,7 +171,7 @@ DEFAULT_STM     : DEFAULT COLON STATEMENTS;
 %%
 
 int main (void) {
+    single_table = newHashTable();
 
-single_table = * newHashTable();
-
+    return yyparse();
 }
