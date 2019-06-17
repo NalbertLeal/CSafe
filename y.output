@@ -94,25 +94,26 @@ Gramática
    57           | UNARY_EXPR
    58           | TYPE ID
    59           | TYPE ID EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
+   60           | ID EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
 
-   60 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
+   61 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
 
-   61 ELSE_STATEMENT: ELSE STATEMENT
-   62               | %empty
+   62 ELSE_STATEMENT: ELSE STATEMENT
+   63               | %empty
 
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
-   64 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK
+   65 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK
 
-   65 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET
+   66 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET
 
-   66 CASE_STATEMENT: CASE TERM COLON STATEMENTS
-   67               | CASE TERM COLON STATEMENTS BREAK END
+   67 CASE_STATEMENT: CASE TERM COLON STATEMENTS
+   68               | CASE TERM COLON STATEMENTS BREAK END
 
-   68 CASE_LIST: CASE_STATEMENT
-   69          | CASE_STATEMENT CASE_LIST
+   69 CASE_LIST: CASE_STATEMENT
+   70          | CASE_STATEMENT CASE_LIST
 
-   70 DEFAULT_STM: DEFAULT COLON STATEMENTS
+   71 DEFAULT_STM: DEFAULT COLON STATEMENTS
 
 
 Terminais, com as regras onde eles aparecem
@@ -124,38 +125,38 @@ FLOAT_LITERAL (259) 47
 STRING_VALUE (260)
 BOOLEAN_LITERAL (261) 48
 COMMA (262) 33 35
-COLON (263) 66 67 70
+COLON (263) 67 68 71
 PLUS (264) 24
 MINUS (265) 25
 TIMES (266) 26
 DIVIDE (267) 27
 MOD (268) 29
 POW (269) 28
-ID (270) 34 35 38 39 40 45 55 56 58 59 65
+ID (270) 34 35 38 39 40 45 55 56 58 59 60 66
 UNARY_MINUS (271) 44
 UNARY_PLUS (272) 43
 AND (273) 17
 OR (274) 18
-EQUALS (275) 55 56 59
+EQUALS (275) 55 56 59 60
 LESS_THAN (276) 21
 GREATER_THAN (277) 22
 EQUALS_THAN (278) 23
 BITWISE_AND (279) 19
 BITWISE_OR (280) 20
-END (281) 4 6 30 38 39 63 67
-LEFT_BRACKET (282) 40 54 63 65
-RIGHT_BRACKET (283) 40 54 63 65
-LEFT_PARENTHESIS (284) 38 39 40 51 59 60 63 64 65
-RIGHT_PARENTHESIS (285) 38 39 40 51 59 60 63 64 65
-IF (286) 60
-ELSE (287) 61
-FOR (288) 63
-WHILE (289) 64
+END (281) 4 6 30 38 39 64 68
+LEFT_BRACKET (282) 40 54 64 66
+RIGHT_BRACKET (283) 40 54 64 66
+LEFT_PARENTHESIS (284) 38 39 40 51 59 60 61 64 65 66
+RIGHT_PARENTHESIS (285) 38 39 40 51 59 60 61 64 65 66
+IF (286) 61
+ELSE (287) 62
+FOR (288) 64
+WHILE (289) 65
 RETURN (290) 30
-SWITCH (291) 65
-CASE (292) 66 67
-DEFAULT (293) 70
-BREAK (294) 67
+SWITCH (291) 66
+CASE (292) 67 68
+DEFAULT (293) 71
+BREAK (294) 68
 DATA_TYPE (295) 16
 INT_TYPE (296)
 FLOAT_TYPE (297)
@@ -172,9 +173,9 @@ $accept (47)
 program (48)
     à esquerda: 1 2, à direita: 0
 STATEMENTS (49)
-    à esquerda: 3 4 5, à direita: 2 5 40 54 63 66 67 70
+    à esquerda: 3 4 5, à direita: 2 5 40 54 64 67 68 71
 STATEMENT (50)
-    à esquerda: 6 7 8 9 10 11 12 13 14 15, à direita: 4 5 61
+    à esquerda: 6 7 8 9 10 11 12 13 14 15, à direita: 4 5 62
 TYPE (51)
     à esquerda: 16, à direita: 34 35 39 40 56 58 59
 LOGICAL_OP (52)
@@ -184,7 +185,7 @@ ARITHMETIC_OP (53)
 RETURN_STM (54)
     à esquerda: 30, à direita: 14
 TERM_LIST (55)
-    à esquerda: 31 32 33, à direita: 33 38 59
+    à esquerda: 31 32 33, à direita: 33 38 59 60
 ID_PARAMS (56)
     à esquerda: 34 35, à direita: 35 37
 FUNCTION_PARAMS (57)
@@ -200,31 +201,31 @@ OPERATOR (61)
 UNARY_OPERATOR (62)
     à esquerda: 43 44, à direita: 52 53
 TERM (63)
-    à esquerda: 45 46 47 48, à direita: 30 32 33 49 50 52 53 66 67
+    à esquerda: 45 46 47 48, à direita: 30 32 33 49 50 52 53 67 68
 EXPRESSION (64)
-    à esquerda: 49 50 51, à direita: 50 51 55 56 60 63 64
+    à esquerda: 49 50 51, à direita: 50 51 55 56 61 64 65
 UNARY_EXPR (65)
     à esquerda: 52 53, à direita: 57
 BLOCK (66)
-    à esquerda: 54, à direita: 15 60 64
+    à esquerda: 54, à direita: 15 61 65
 ASSIGNMENT (67)
-    à esquerda: 55 56 57 58 59, à direita: 6 63
+    à esquerda: 55 56 57 58 59 60, à direita: 6 64
 IF_STATEMENT (68)
-    à esquerda: 60, à direita: 8
+    à esquerda: 61, à direita: 8
 ELSE_STATEMENT (69)
-    à esquerda: 61 62, à direita: 60
+    à esquerda: 62 63, à direita: 61
 FOR_STATEMENT (70)
-    à esquerda: 63, à direita: 7
+    à esquerda: 64, à direita: 7
 WHILE_STATEMENT (71)
-    à esquerda: 64, à direita: 9
+    à esquerda: 65, à direita: 9
 SWITCH_STM (72)
-    à esquerda: 65, à direita: 13
+    à esquerda: 66, à direita: 13
 CASE_STATEMENT (73)
-    à esquerda: 66 67, à direita: 68 69
+    à esquerda: 67 68, à direita: 69 70
 CASE_LIST (74)
-    à esquerda: 68 69, à direita: 65 69
+    à esquerda: 69 70, à direita: 66 70
 DEFAULT_STM (75)
-    à esquerda: 70, à direita: 65
+    à esquerda: 71, à direita: 66
 
 
 Estado 0
@@ -294,6 +295,7 @@ Estado 4
    38 FUNCTION_CALL: ID . LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS END
    45 TERM: ID .
    55 ASSIGNMENT: ID . EQUALS EXPRESSION
+   60           | ID . EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
 
     EQUALS            deslocar, e ir ao estado 31
     LEFT_PARENTHESIS  deslocar, e ir ao estado 32
@@ -355,21 +357,21 @@ Estado 7
 
 Estado 8
 
-   60 IF_STATEMENT: IF . LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
+   61 IF_STATEMENT: IF . LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
 
     LEFT_PARENTHESIS  deslocar, e ir ao estado 34
 
 
 Estado 9
 
-   63 FOR_STATEMENT: FOR . LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   64 FOR_STATEMENT: FOR . LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
     LEFT_PARENTHESIS  deslocar, e ir ao estado 35
 
 
 Estado 10
 
-   64 WHILE_STATEMENT: WHILE . LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK
+   65 WHILE_STATEMENT: WHILE . LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK
 
     LEFT_PARENTHESIS  deslocar, e ir ao estado 36
 
@@ -388,7 +390,7 @@ Estado 11
 
 Estado 12
 
-   65 SWITCH_STM: SWITCH . LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET
+   66 SWITCH_STM: SWITCH . LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET
 
     LEFT_PARENTHESIS  deslocar, e ir ao estado 39
 
@@ -567,15 +569,16 @@ Estado 30
 Estado 31
 
    55 ASSIGNMENT: ID EQUALS . EXPRESSION
+   60           | ID EQUALS . ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
 
     INTEGER_LITERAL   deslocar, e ir ao estado 1
     FLOAT_LITERAL     deslocar, e ir ao estado 2
     BOOLEAN_LITERAL   deslocar, e ir ao estado 3
-    ID                deslocar, e ir ao estado 37
-    LEFT_PARENTHESIS  deslocar, e ir ao estado 47
+    ID                deslocar, e ir ao estado 47
+    LEFT_PARENTHESIS  deslocar, e ir ao estado 48
 
-    TERM        ir ao estado 48
-    EXPRESSION  ir ao estado 49
+    TERM        ir ao estado 49
+    EXPRESSION  ir ao estado 50
 
 
 Estado 32
@@ -589,62 +592,62 @@ Estado 32
 
     $padrão  reduzir usando a regra 31 (TERM_LIST)
 
-    TERM_LIST  ir ao estado 50
-    TERM       ir ao estado 51
+    TERM_LIST  ir ao estado 51
+    TERM       ir ao estado 52
 
 
 Estado 33
 
    54 BLOCK: LEFT_BRACKET STATEMENTS . RIGHT_BRACKET
 
-    RIGHT_BRACKET  deslocar, e ir ao estado 52
+    RIGHT_BRACKET  deslocar, e ir ao estado 53
 
 
 Estado 34
 
-   60 IF_STATEMENT: IF LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
+   61 IF_STATEMENT: IF LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
 
     INTEGER_LITERAL   deslocar, e ir ao estado 1
     FLOAT_LITERAL     deslocar, e ir ao estado 2
     BOOLEAN_LITERAL   deslocar, e ir ao estado 3
     ID                deslocar, e ir ao estado 37
-    LEFT_PARENTHESIS  deslocar, e ir ao estado 47
+    LEFT_PARENTHESIS  deslocar, e ir ao estado 48
 
-    TERM        ir ao estado 48
-    EXPRESSION  ir ao estado 53
+    TERM        ir ao estado 49
+    EXPRESSION  ir ao estado 54
 
 
 Estado 35
 
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS . ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS . ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
     INTEGER_LITERAL  deslocar, e ir ao estado 1
     FLOAT_LITERAL    deslocar, e ir ao estado 2
     BOOLEAN_LITERAL  deslocar, e ir ao estado 3
-    ID               deslocar, e ir ao estado 54
+    ID               deslocar, e ir ao estado 55
     UNARY_MINUS      deslocar, e ir ao estado 5
     UNARY_PLUS       deslocar, e ir ao estado 6
     DATA_TYPE        deslocar, e ir ao estado 13
 
-    TYPE            ir ao estado 55
+    TYPE            ir ao estado 56
     UNARY_OPERATOR  ir ao estado 22
     TERM            ir ao estado 23
     UNARY_EXPR      ir ao estado 24
-    ASSIGNMENT      ir ao estado 56
+    ASSIGNMENT      ir ao estado 57
 
 
 Estado 36
 
-   64 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS BLOCK
+   65 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS BLOCK
 
     INTEGER_LITERAL   deslocar, e ir ao estado 1
     FLOAT_LITERAL     deslocar, e ir ao estado 2
     BOOLEAN_LITERAL   deslocar, e ir ao estado 3
     ID                deslocar, e ir ao estado 37
-    LEFT_PARENTHESIS  deslocar, e ir ao estado 47
+    LEFT_PARENTHESIS  deslocar, e ir ao estado 48
 
-    TERM        ir ao estado 48
-    EXPRESSION  ir ao estado 57
+    TERM        ir ao estado 49
+    EXPRESSION  ir ao estado 58
 
 
 Estado 37
@@ -658,14 +661,14 @@ Estado 38
 
    30 RETURN_STM: RETURN TERM . END
 
-    END  deslocar, e ir ao estado 58
+    END  deslocar, e ir ao estado 59
 
 
 Estado 39
 
-   65 SWITCH_STM: SWITCH LEFT_PARENTHESIS . ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET
+   66 SWITCH_STM: SWITCH LEFT_PARENTHESIS . ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET
 
-    ID  deslocar, e ir ao estado 59
+    ID  deslocar, e ir ao estado 60
 
 
 Estado 40
@@ -697,8 +700,8 @@ Estado 43
    58           | TYPE ID .
    59           | TYPE ID . EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
 
-    EQUALS            deslocar, e ir ao estado 60
-    LEFT_PARENTHESIS  deslocar, e ir ao estado 61
+    EQUALS            deslocar, e ir ao estado 61
+    LEFT_PARENTHESIS  deslocar, e ir ao estado 62
 
     $padrão  reduzir usando a regra 58 (ASSIGNMENT)
 
@@ -726,130 +729,141 @@ Estado 46
 
 Estado 47
 
+   45 TERM: ID .
+   60 ASSIGNMENT: ID EQUALS ID . LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
+
+    LEFT_PARENTHESIS  deslocar, e ir ao estado 63
+
+    $padrão  reduzir usando a regra 45 (TERM)
+
+
+Estado 48
+
    51 EXPRESSION: LEFT_PARENTHESIS . EXPRESSION RIGHT_PARENTHESIS
 
     INTEGER_LITERAL   deslocar, e ir ao estado 1
     FLOAT_LITERAL     deslocar, e ir ao estado 2
     BOOLEAN_LITERAL   deslocar, e ir ao estado 3
     ID                deslocar, e ir ao estado 37
-    LEFT_PARENTHESIS  deslocar, e ir ao estado 47
+    LEFT_PARENTHESIS  deslocar, e ir ao estado 48
 
-    TERM        ir ao estado 48
-    EXPRESSION  ir ao estado 62
+    TERM        ir ao estado 49
+    EXPRESSION  ir ao estado 64
 
 
-Estado 48
+Estado 49
 
    49 EXPRESSION: TERM .
    50           | TERM . OPERATOR EXPRESSION
 
-    PLUS          deslocar, e ir ao estado 63
-    MINUS         deslocar, e ir ao estado 64
-    TIMES         deslocar, e ir ao estado 65
-    DIVIDE        deslocar, e ir ao estado 66
-    MOD           deslocar, e ir ao estado 67
-    POW           deslocar, e ir ao estado 68
-    AND           deslocar, e ir ao estado 69
-    OR            deslocar, e ir ao estado 70
-    LESS_THAN     deslocar, e ir ao estado 71
-    GREATER_THAN  deslocar, e ir ao estado 72
-    EQUALS_THAN   deslocar, e ir ao estado 73
-    BITWISE_AND   deslocar, e ir ao estado 74
-    BITWISE_OR    deslocar, e ir ao estado 75
+    PLUS          deslocar, e ir ao estado 65
+    MINUS         deslocar, e ir ao estado 66
+    TIMES         deslocar, e ir ao estado 67
+    DIVIDE        deslocar, e ir ao estado 68
+    MOD           deslocar, e ir ao estado 69
+    POW           deslocar, e ir ao estado 70
+    AND           deslocar, e ir ao estado 71
+    OR            deslocar, e ir ao estado 72
+    LESS_THAN     deslocar, e ir ao estado 73
+    GREATER_THAN  deslocar, e ir ao estado 74
+    EQUALS_THAN   deslocar, e ir ao estado 75
+    BITWISE_AND   deslocar, e ir ao estado 76
+    BITWISE_OR    deslocar, e ir ao estado 77
 
     $padrão  reduzir usando a regra 49 (EXPRESSION)
 
-    LOGICAL_OP     ir ao estado 76
-    ARITHMETIC_OP  ir ao estado 77
-    OPERATOR       ir ao estado 78
+    LOGICAL_OP     ir ao estado 78
+    ARITHMETIC_OP  ir ao estado 79
+    OPERATOR       ir ao estado 80
 
 
-Estado 49
+Estado 50
 
    55 ASSIGNMENT: ID EQUALS EXPRESSION .
 
     $padrão  reduzir usando a regra 55 (ASSIGNMENT)
 
 
-Estado 50
+Estado 51
 
    38 FUNCTION_CALL: ID LEFT_PARENTHESIS TERM_LIST . RIGHT_PARENTHESIS END
 
-    RIGHT_PARENTHESIS  deslocar, e ir ao estado 79
+    RIGHT_PARENTHESIS  deslocar, e ir ao estado 81
 
 
-Estado 51
+Estado 52
 
    32 TERM_LIST: TERM .
    33          | TERM . COMMA TERM_LIST
 
-    COMMA  deslocar, e ir ao estado 80
+    COMMA  deslocar, e ir ao estado 82
 
     $padrão  reduzir usando a regra 32 (TERM_LIST)
 
 
-Estado 52
+Estado 53
 
    54 BLOCK: LEFT_BRACKET STATEMENTS RIGHT_BRACKET .
 
     $padrão  reduzir usando a regra 54 (BLOCK)
 
 
-Estado 53
-
-   60 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
-
-    RIGHT_PARENTHESIS  deslocar, e ir ao estado 81
-
-
 Estado 54
+
+   61 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT
+
+    RIGHT_PARENTHESIS  deslocar, e ir ao estado 83
+
+
+Estado 55
 
    45 TERM: ID .
    55 ASSIGNMENT: ID . EQUALS EXPRESSION
+   60           | ID . EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
 
     EQUALS  deslocar, e ir ao estado 31
 
     $padrão  reduzir usando a regra 45 (TERM)
 
 
-Estado 55
+Estado 56
 
    56 ASSIGNMENT: TYPE . ID EQUALS EXPRESSION
    58           | TYPE . ID
    59           | TYPE . ID EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
 
-    ID  deslocar, e ir ao estado 82
-
-
-Estado 56
-
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT . END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
-
-    END  deslocar, e ir ao estado 83
+    ID  deslocar, e ir ao estado 84
 
 
 Estado 57
 
-   64 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS BLOCK
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT . END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
-    RIGHT_PARENTHESIS  deslocar, e ir ao estado 84
+    END  deslocar, e ir ao estado 85
 
 
 Estado 58
+
+   65 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS BLOCK
+
+    RIGHT_PARENTHESIS  deslocar, e ir ao estado 86
+
+
+Estado 59
 
    30 RETURN_STM: RETURN TERM END .
 
     $padrão  reduzir usando a regra 30 (RETURN_STM)
 
 
-Estado 59
-
-   65 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID . RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET
-
-    RIGHT_PARENTHESIS  deslocar, e ir ao estado 85
-
-
 Estado 60
+
+   66 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID . RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET
+
+    RIGHT_PARENTHESIS  deslocar, e ir ao estado 87
+
+
+Estado 61
 
    56 ASSIGNMENT: TYPE ID EQUALS . EXPRESSION
    59           | TYPE ID EQUALS . ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
@@ -857,14 +871,14 @@ Estado 60
     INTEGER_LITERAL   deslocar, e ir ao estado 1
     FLOAT_LITERAL     deslocar, e ir ao estado 2
     BOOLEAN_LITERAL   deslocar, e ir ao estado 3
-    ID                deslocar, e ir ao estado 86
-    LEFT_PARENTHESIS  deslocar, e ir ao estado 47
+    ID                deslocar, e ir ao estado 88
+    LEFT_PARENTHESIS  deslocar, e ir ao estado 48
 
-    TERM        ir ao estado 48
-    EXPRESSION  ir ao estado 87
+    TERM        ir ao estado 49
+    EXPRESSION  ir ao estado 89
 
 
-Estado 61
+Estado 62
 
    39 FUNCTION_HEADER: TYPE ID LEFT_PARENTHESIS . FUNCTION_PARAMS RIGHT_PARENTHESIS END
    40 FUNCTION: TYPE ID LEFT_PARENTHESIS . FUNCTION_PARAMS RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
@@ -873,124 +887,139 @@ Estado 61
 
     $padrão  reduzir usando a regra 36 (FUNCTION_PARAMS)
 
-    TYPE             ir ao estado 88
-    ID_PARAMS        ir ao estado 89
-    FUNCTION_PARAMS  ir ao estado 90
-
-
-Estado 62
-
-   51 EXPRESSION: LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS
-
-    RIGHT_PARENTHESIS  deslocar, e ir ao estado 91
+    TYPE             ir ao estado 90
+    ID_PARAMS        ir ao estado 91
+    FUNCTION_PARAMS  ir ao estado 92
 
 
 Estado 63
+
+   60 ASSIGNMENT: ID EQUALS ID LEFT_PARENTHESIS . TERM_LIST RIGHT_PARENTHESIS
+
+    INTEGER_LITERAL  deslocar, e ir ao estado 1
+    FLOAT_LITERAL    deslocar, e ir ao estado 2
+    BOOLEAN_LITERAL  deslocar, e ir ao estado 3
+    ID               deslocar, e ir ao estado 37
+
+    $padrão  reduzir usando a regra 31 (TERM_LIST)
+
+    TERM_LIST  ir ao estado 93
+    TERM       ir ao estado 52
+
+
+Estado 64
+
+   51 EXPRESSION: LEFT_PARENTHESIS EXPRESSION . RIGHT_PARENTHESIS
+
+    RIGHT_PARENTHESIS  deslocar, e ir ao estado 94
+
+
+Estado 65
 
    24 ARITHMETIC_OP: PLUS .
 
     $padrão  reduzir usando a regra 24 (ARITHMETIC_OP)
 
 
-Estado 64
+Estado 66
 
    25 ARITHMETIC_OP: MINUS .
 
     $padrão  reduzir usando a regra 25 (ARITHMETIC_OP)
 
 
-Estado 65
+Estado 67
 
    26 ARITHMETIC_OP: TIMES .
 
     $padrão  reduzir usando a regra 26 (ARITHMETIC_OP)
 
 
-Estado 66
+Estado 68
 
    27 ARITHMETIC_OP: DIVIDE .
 
     $padrão  reduzir usando a regra 27 (ARITHMETIC_OP)
 
 
-Estado 67
+Estado 69
 
    29 ARITHMETIC_OP: MOD .
 
     $padrão  reduzir usando a regra 29 (ARITHMETIC_OP)
 
 
-Estado 68
+Estado 70
 
    28 ARITHMETIC_OP: POW .
 
     $padrão  reduzir usando a regra 28 (ARITHMETIC_OP)
 
 
-Estado 69
+Estado 71
 
    17 LOGICAL_OP: AND .
 
     $padrão  reduzir usando a regra 17 (LOGICAL_OP)
 
 
-Estado 70
+Estado 72
 
    18 LOGICAL_OP: OR .
 
     $padrão  reduzir usando a regra 18 (LOGICAL_OP)
 
 
-Estado 71
+Estado 73
 
    21 LOGICAL_OP: LESS_THAN .
 
     $padrão  reduzir usando a regra 21 (LOGICAL_OP)
 
 
-Estado 72
+Estado 74
 
    22 LOGICAL_OP: GREATER_THAN .
 
     $padrão  reduzir usando a regra 22 (LOGICAL_OP)
 
 
-Estado 73
+Estado 75
 
    23 LOGICAL_OP: EQUALS_THAN .
 
     $padrão  reduzir usando a regra 23 (LOGICAL_OP)
 
 
-Estado 74
+Estado 76
 
    19 LOGICAL_OP: BITWISE_AND .
 
     $padrão  reduzir usando a regra 19 (LOGICAL_OP)
 
 
-Estado 75
+Estado 77
 
    20 LOGICAL_OP: BITWISE_OR .
 
     $padrão  reduzir usando a regra 20 (LOGICAL_OP)
 
 
-Estado 76
+Estado 78
 
    42 OPERATOR: LOGICAL_OP .
 
     $padrão  reduzir usando a regra 42 (OPERATOR)
 
 
-Estado 77
+Estado 79
 
    41 OPERATOR: ARITHMETIC_OP .
 
     $padrão  reduzir usando a regra 41 (OPERATOR)
 
 
-Estado 78
+Estado 80
 
    50 EXPRESSION: TERM OPERATOR . EXPRESSION
 
@@ -998,20 +1027,20 @@ Estado 78
     FLOAT_LITERAL     deslocar, e ir ao estado 2
     BOOLEAN_LITERAL   deslocar, e ir ao estado 3
     ID                deslocar, e ir ao estado 37
-    LEFT_PARENTHESIS  deslocar, e ir ao estado 47
+    LEFT_PARENTHESIS  deslocar, e ir ao estado 48
 
-    TERM        ir ao estado 48
-    EXPRESSION  ir ao estado 92
+    TERM        ir ao estado 49
+    EXPRESSION  ir ao estado 95
 
 
-Estado 79
+Estado 81
 
    38 FUNCTION_CALL: ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS . END
 
-    END  deslocar, e ir ao estado 93
+    END  deslocar, e ir ao estado 96
 
 
-Estado 80
+Estado 82
 
    33 TERM_LIST: TERM COMMA . TERM_LIST
 
@@ -1022,164 +1051,171 @@ Estado 80
 
     $padrão  reduzir usando a regra 31 (TERM_LIST)
 
-    TERM_LIST  ir ao estado 94
-    TERM       ir ao estado 51
+    TERM_LIST  ir ao estado 97
+    TERM       ir ao estado 52
 
 
-Estado 81
+Estado 83
 
-   60 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS . BLOCK ELSE_STATEMENT
+   61 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS . BLOCK ELSE_STATEMENT
 
     LEFT_BRACKET  deslocar, e ir ao estado 7
 
-    BLOCK  ir ao estado 95
+    BLOCK  ir ao estado 98
 
 
-Estado 82
+Estado 84
 
    56 ASSIGNMENT: TYPE ID . EQUALS EXPRESSION
    58           | TYPE ID .
    59           | TYPE ID . EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
 
-    EQUALS  deslocar, e ir ao estado 60
+    EQUALS  deslocar, e ir ao estado 61
 
     $padrão  reduzir usando a regra 58 (ASSIGNMENT)
 
 
-Estado 83
+Estado 85
 
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END . EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END . EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
     INTEGER_LITERAL   deslocar, e ir ao estado 1
     FLOAT_LITERAL     deslocar, e ir ao estado 2
     BOOLEAN_LITERAL   deslocar, e ir ao estado 3
     ID                deslocar, e ir ao estado 37
-    LEFT_PARENTHESIS  deslocar, e ir ao estado 47
+    LEFT_PARENTHESIS  deslocar, e ir ao estado 48
 
-    TERM        ir ao estado 48
-    EXPRESSION  ir ao estado 96
-
-
-Estado 84
-
-   64 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS . BLOCK
-
-    LEFT_BRACKET  deslocar, e ir ao estado 7
-
-    BLOCK  ir ao estado 97
-
-
-Estado 85
-
-   65 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS . LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET
-
-    LEFT_BRACKET  deslocar, e ir ao estado 98
+    TERM        ir ao estado 49
+    EXPRESSION  ir ao estado 99
 
 
 Estado 86
 
+   65 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS . BLOCK
+
+    LEFT_BRACKET  deslocar, e ir ao estado 7
+
+    BLOCK  ir ao estado 100
+
+
+Estado 87
+
+   66 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS . LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET
+
+    LEFT_BRACKET  deslocar, e ir ao estado 101
+
+
+Estado 88
+
    45 TERM: ID .
    59 ASSIGNMENT: TYPE ID EQUALS ID . LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS
 
-    LEFT_PARENTHESIS  deslocar, e ir ao estado 99
+    LEFT_PARENTHESIS  deslocar, e ir ao estado 102
 
     $padrão  reduzir usando a regra 45 (TERM)
 
 
-Estado 87
+Estado 89
 
    56 ASSIGNMENT: TYPE ID EQUALS EXPRESSION .
 
     $padrão  reduzir usando a regra 56 (ASSIGNMENT)
 
 
-Estado 88
+Estado 90
 
    34 ID_PARAMS: TYPE . ID
    35          | TYPE . ID COMMA ID_PARAMS
 
-    ID  deslocar, e ir ao estado 100
+    ID  deslocar, e ir ao estado 103
 
 
-Estado 89
+Estado 91
 
    37 FUNCTION_PARAMS: ID_PARAMS .
 
     $padrão  reduzir usando a regra 37 (FUNCTION_PARAMS)
 
 
-Estado 90
+Estado 92
 
    39 FUNCTION_HEADER: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS . RIGHT_PARENTHESIS END
    40 FUNCTION: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS . RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
-    RIGHT_PARENTHESIS  deslocar, e ir ao estado 101
+    RIGHT_PARENTHESIS  deslocar, e ir ao estado 104
 
 
-Estado 91
+Estado 93
+
+   60 ASSIGNMENT: ID EQUALS ID LEFT_PARENTHESIS TERM_LIST . RIGHT_PARENTHESIS
+
+    RIGHT_PARENTHESIS  deslocar, e ir ao estado 105
+
+
+Estado 94
 
    51 EXPRESSION: LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS .
 
     $padrão  reduzir usando a regra 51 (EXPRESSION)
 
 
-Estado 92
+Estado 95
 
    50 EXPRESSION: TERM OPERATOR EXPRESSION .
 
     $padrão  reduzir usando a regra 50 (EXPRESSION)
 
 
-Estado 93
+Estado 96
 
    38 FUNCTION_CALL: ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS END .
 
     $padrão  reduzir usando a regra 38 (FUNCTION_CALL)
 
 
-Estado 94
+Estado 97
 
    33 TERM_LIST: TERM COMMA TERM_LIST .
 
     $padrão  reduzir usando a regra 33 (TERM_LIST)
 
 
-Estado 95
-
-   60 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK . ELSE_STATEMENT
-
-    ELSE  deslocar, e ir ao estado 102
-
-    $padrão  reduzir usando a regra 62 (ELSE_STATEMENT)
-
-    ELSE_STATEMENT  ir ao estado 103
-
-
-Estado 96
-
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION . END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
-
-    END  deslocar, e ir ao estado 104
-
-
-Estado 97
-
-   64 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK .
-
-    $padrão  reduzir usando a regra 64 (WHILE_STATEMENT)
-
-
 Estado 98
 
-   65 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET . CASE_LIST DEFAULT_STM RIGHT_BRACKET
+   61 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK . ELSE_STATEMENT
 
-    CASE  deslocar, e ir ao estado 105
+    ELSE  deslocar, e ir ao estado 106
 
-    CASE_STATEMENT  ir ao estado 106
-    CASE_LIST       ir ao estado 107
+    $padrão  reduzir usando a regra 63 (ELSE_STATEMENT)
+
+    ELSE_STATEMENT  ir ao estado 107
 
 
 Estado 99
+
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION . END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+
+    END  deslocar, e ir ao estado 108
+
+
+Estado 100
+
+   65 WHILE_STATEMENT: WHILE LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK .
+
+    $padrão  reduzir usando a regra 65 (WHILE_STATEMENT)
+
+
+Estado 101
+
+   66 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET . CASE_LIST DEFAULT_STM RIGHT_BRACKET
+
+    CASE  deslocar, e ir ao estado 109
+
+    CASE_STATEMENT  ir ao estado 110
+    CASE_LIST       ir ao estado 111
+
+
+Estado 102
 
    59 ASSIGNMENT: TYPE ID EQUALS ID LEFT_PARENTHESIS . TERM_LIST RIGHT_PARENTHESIS
 
@@ -1190,32 +1226,39 @@ Estado 99
 
     $padrão  reduzir usando a regra 31 (TERM_LIST)
 
-    TERM_LIST  ir ao estado 108
-    TERM       ir ao estado 51
+    TERM_LIST  ir ao estado 112
+    TERM       ir ao estado 52
 
 
-Estado 100
+Estado 103
 
    34 ID_PARAMS: TYPE ID .
    35          | TYPE ID . COMMA ID_PARAMS
 
-    COMMA  deslocar, e ir ao estado 109
+    COMMA  deslocar, e ir ao estado 113
 
     $padrão  reduzir usando a regra 34 (ID_PARAMS)
 
 
-Estado 101
+Estado 104
 
    39 FUNCTION_HEADER: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS . END
    40 FUNCTION: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS . LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
-    END           deslocar, e ir ao estado 110
-    LEFT_BRACKET  deslocar, e ir ao estado 111
+    END           deslocar, e ir ao estado 114
+    LEFT_BRACKET  deslocar, e ir ao estado 115
 
 
-Estado 102
+Estado 105
 
-   61 ELSE_STATEMENT: ELSE . STATEMENT
+   60 ASSIGNMENT: ID EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS .
+
+    $padrão  reduzir usando a regra 60 (ASSIGNMENT)
+
+
+Estado 106
+
+   62 ELSE_STATEMENT: ELSE . STATEMENT
 
     INTEGER_LITERAL  deslocar, e ir ao estado 1
     FLOAT_LITERAL    deslocar, e ir ao estado 2
@@ -1231,7 +1274,7 @@ Estado 102
     SWITCH           deslocar, e ir ao estado 12
     DATA_TYPE        deslocar, e ir ao estado 13
 
-    STATEMENT        ir ao estado 112
+    STATEMENT        ir ao estado 116
     TYPE             ir ao estado 17
     RETURN_STM       ir ao estado 18
     FUNCTION_CALL    ir ao estado 19
@@ -1248,92 +1291,92 @@ Estado 102
     SWITCH_STM       ir ao estado 30
 
 
-Estado 103
+Estado 107
 
-   60 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT .
+   61 IF_STATEMENT: IF LEFT_PARENTHESIS EXPRESSION RIGHT_PARENTHESIS BLOCK ELSE_STATEMENT .
 
-    $padrão  reduzir usando a regra 60 (IF_STATEMENT)
+    $padrão  reduzir usando a regra 61 (IF_STATEMENT)
 
 
-Estado 104
+Estado 108
 
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END . ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END . ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
     INTEGER_LITERAL  deslocar, e ir ao estado 1
     FLOAT_LITERAL    deslocar, e ir ao estado 2
     BOOLEAN_LITERAL  deslocar, e ir ao estado 3
-    ID               deslocar, e ir ao estado 54
+    ID               deslocar, e ir ao estado 55
     UNARY_MINUS      deslocar, e ir ao estado 5
     UNARY_PLUS       deslocar, e ir ao estado 6
     DATA_TYPE        deslocar, e ir ao estado 13
 
-    TYPE            ir ao estado 55
+    TYPE            ir ao estado 56
     UNARY_OPERATOR  ir ao estado 22
     TERM            ir ao estado 23
     UNARY_EXPR      ir ao estado 24
-    ASSIGNMENT      ir ao estado 113
+    ASSIGNMENT      ir ao estado 117
 
 
-Estado 105
+Estado 109
 
-   66 CASE_STATEMENT: CASE . TERM COLON STATEMENTS
-   67               | CASE . TERM COLON STATEMENTS BREAK END
+   67 CASE_STATEMENT: CASE . TERM COLON STATEMENTS
+   68               | CASE . TERM COLON STATEMENTS BREAK END
 
     INTEGER_LITERAL  deslocar, e ir ao estado 1
     FLOAT_LITERAL    deslocar, e ir ao estado 2
     BOOLEAN_LITERAL  deslocar, e ir ao estado 3
     ID               deslocar, e ir ao estado 37
 
-    TERM  ir ao estado 114
+    TERM  ir ao estado 118
 
 
-Estado 106
+Estado 110
 
-   68 CASE_LIST: CASE_STATEMENT .
-   69          | CASE_STATEMENT . CASE_LIST
+   69 CASE_LIST: CASE_STATEMENT .
+   70          | CASE_STATEMENT . CASE_LIST
 
-    CASE  deslocar, e ir ao estado 105
+    CASE  deslocar, e ir ao estado 109
 
-    $padrão  reduzir usando a regra 68 (CASE_LIST)
+    $padrão  reduzir usando a regra 69 (CASE_LIST)
 
-    CASE_STATEMENT  ir ao estado 106
-    CASE_LIST       ir ao estado 115
-
-
-Estado 107
-
-   65 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST . DEFAULT_STM RIGHT_BRACKET
-
-    DEFAULT  deslocar, e ir ao estado 116
-
-    DEFAULT_STM  ir ao estado 117
+    CASE_STATEMENT  ir ao estado 110
+    CASE_LIST       ir ao estado 119
 
 
-Estado 108
+Estado 111
+
+   66 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST . DEFAULT_STM RIGHT_BRACKET
+
+    DEFAULT  deslocar, e ir ao estado 120
+
+    DEFAULT_STM  ir ao estado 121
+
+
+Estado 112
 
    59 ASSIGNMENT: TYPE ID EQUALS ID LEFT_PARENTHESIS TERM_LIST . RIGHT_PARENTHESIS
 
-    RIGHT_PARENTHESIS  deslocar, e ir ao estado 118
+    RIGHT_PARENTHESIS  deslocar, e ir ao estado 122
 
 
-Estado 109
+Estado 113
 
    35 ID_PARAMS: TYPE ID COMMA . ID_PARAMS
 
     DATA_TYPE  deslocar, e ir ao estado 13
 
-    TYPE       ir ao estado 88
-    ID_PARAMS  ir ao estado 119
+    TYPE       ir ao estado 90
+    ID_PARAMS  ir ao estado 123
 
 
-Estado 110
+Estado 114
 
    39 FUNCTION_HEADER: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS END .
 
     $padrão  reduzir usando a regra 39 (FUNCTION_HEADER)
 
 
-Estado 111
+Estado 115
 
    40 FUNCTION: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS LEFT_BRACKET . STATEMENTS RIGHT_BRACKET
 
@@ -1353,7 +1396,7 @@ Estado 111
 
     $padrão  reduzir usando a regra 3 (STATEMENTS)
 
-    STATEMENTS       ir ao estado 120
+    STATEMENTS       ir ao estado 124
     STATEMENT        ir ao estado 16
     TYPE             ir ao estado 17
     RETURN_STM       ir ao estado 18
@@ -1371,171 +1414,81 @@ Estado 111
     SWITCH_STM       ir ao estado 30
 
 
-Estado 112
-
-   61 ELSE_STATEMENT: ELSE STATEMENT .
-
-    $padrão  reduzir usando a regra 61 (ELSE_STATEMENT)
-
-
-Estado 113
-
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT . RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
-
-    RIGHT_PARENTHESIS  deslocar, e ir ao estado 121
-
-
-Estado 114
-
-   66 CASE_STATEMENT: CASE TERM . COLON STATEMENTS
-   67               | CASE TERM . COLON STATEMENTS BREAK END
-
-    COLON  deslocar, e ir ao estado 122
-
-
-Estado 115
-
-   69 CASE_LIST: CASE_STATEMENT CASE_LIST .
-
-    $padrão  reduzir usando a regra 69 (CASE_LIST)
-
-
 Estado 116
 
-   70 DEFAULT_STM: DEFAULT . COLON STATEMENTS
+   62 ELSE_STATEMENT: ELSE STATEMENT .
 
-    COLON  deslocar, e ir ao estado 123
+    $padrão  reduzir usando a regra 62 (ELSE_STATEMENT)
 
 
 Estado 117
 
-   65 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM . RIGHT_BRACKET
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT . RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
-    RIGHT_BRACKET  deslocar, e ir ao estado 124
+    RIGHT_PARENTHESIS  deslocar, e ir ao estado 125
 
 
 Estado 118
+
+   67 CASE_STATEMENT: CASE TERM . COLON STATEMENTS
+   68               | CASE TERM . COLON STATEMENTS BREAK END
+
+    COLON  deslocar, e ir ao estado 126
+
+
+Estado 119
+
+   70 CASE_LIST: CASE_STATEMENT CASE_LIST .
+
+    $padrão  reduzir usando a regra 70 (CASE_LIST)
+
+
+Estado 120
+
+   71 DEFAULT_STM: DEFAULT . COLON STATEMENTS
+
+    COLON  deslocar, e ir ao estado 127
+
+
+Estado 121
+
+   66 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM . RIGHT_BRACKET
+
+    RIGHT_BRACKET  deslocar, e ir ao estado 128
+
+
+Estado 122
 
    59 ASSIGNMENT: TYPE ID EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS .
 
     $padrão  reduzir usando a regra 59 (ASSIGNMENT)
 
 
-Estado 119
+Estado 123
 
    35 ID_PARAMS: TYPE ID COMMA ID_PARAMS .
 
     $padrão  reduzir usando a regra 35 (ID_PARAMS)
 
 
-Estado 120
+Estado 124
 
    40 FUNCTION: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS . RIGHT_BRACKET
 
-    RIGHT_BRACKET  deslocar, e ir ao estado 125
-
-
-Estado 121
-
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS . LEFT_BRACKET STATEMENTS RIGHT_BRACKET
-
-    LEFT_BRACKET  deslocar, e ir ao estado 126
-
-
-Estado 122
-
-   66 CASE_STATEMENT: CASE TERM COLON . STATEMENTS
-   67               | CASE TERM COLON . STATEMENTS BREAK END
-
-    INTEGER_LITERAL  deslocar, e ir ao estado 1
-    FLOAT_LITERAL    deslocar, e ir ao estado 2
-    BOOLEAN_LITERAL  deslocar, e ir ao estado 3
-    ID               deslocar, e ir ao estado 4
-    UNARY_MINUS      deslocar, e ir ao estado 5
-    UNARY_PLUS       deslocar, e ir ao estado 6
-    LEFT_BRACKET     deslocar, e ir ao estado 7
-    IF               deslocar, e ir ao estado 8
-    FOR              deslocar, e ir ao estado 9
-    WHILE            deslocar, e ir ao estado 10
-    RETURN           deslocar, e ir ao estado 11
-    SWITCH           deslocar, e ir ao estado 12
-    DATA_TYPE        deslocar, e ir ao estado 13
-
-    $padrão  reduzir usando a regra 3 (STATEMENTS)
-
-    STATEMENTS       ir ao estado 127
-    STATEMENT        ir ao estado 16
-    TYPE             ir ao estado 17
-    RETURN_STM       ir ao estado 18
-    FUNCTION_CALL    ir ao estado 19
-    FUNCTION_HEADER  ir ao estado 20
-    FUNCTION         ir ao estado 21
-    UNARY_OPERATOR   ir ao estado 22
-    TERM             ir ao estado 23
-    UNARY_EXPR       ir ao estado 24
-    BLOCK            ir ao estado 25
-    ASSIGNMENT       ir ao estado 26
-    IF_STATEMENT     ir ao estado 27
-    FOR_STATEMENT    ir ao estado 28
-    WHILE_STATEMENT  ir ao estado 29
-    SWITCH_STM       ir ao estado 30
-
-
-Estado 123
-
-   70 DEFAULT_STM: DEFAULT COLON . STATEMENTS
-
-    INTEGER_LITERAL  deslocar, e ir ao estado 1
-    FLOAT_LITERAL    deslocar, e ir ao estado 2
-    BOOLEAN_LITERAL  deslocar, e ir ao estado 3
-    ID               deslocar, e ir ao estado 4
-    UNARY_MINUS      deslocar, e ir ao estado 5
-    UNARY_PLUS       deslocar, e ir ao estado 6
-    LEFT_BRACKET     deslocar, e ir ao estado 7
-    IF               deslocar, e ir ao estado 8
-    FOR              deslocar, e ir ao estado 9
-    WHILE            deslocar, e ir ao estado 10
-    RETURN           deslocar, e ir ao estado 11
-    SWITCH           deslocar, e ir ao estado 12
-    DATA_TYPE        deslocar, e ir ao estado 13
-
-    $padrão  reduzir usando a regra 3 (STATEMENTS)
-
-    STATEMENTS       ir ao estado 128
-    STATEMENT        ir ao estado 16
-    TYPE             ir ao estado 17
-    RETURN_STM       ir ao estado 18
-    FUNCTION_CALL    ir ao estado 19
-    FUNCTION_HEADER  ir ao estado 20
-    FUNCTION         ir ao estado 21
-    UNARY_OPERATOR   ir ao estado 22
-    TERM             ir ao estado 23
-    UNARY_EXPR       ir ao estado 24
-    BLOCK            ir ao estado 25
-    ASSIGNMENT       ir ao estado 26
-    IF_STATEMENT     ir ao estado 27
-    FOR_STATEMENT    ir ao estado 28
-    WHILE_STATEMENT  ir ao estado 29
-    SWITCH_STM       ir ao estado 30
-
-
-Estado 124
-
-   65 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET .
-
-    $padrão  reduzir usando a regra 65 (SWITCH_STM)
+    RIGHT_BRACKET  deslocar, e ir ao estado 129
 
 
 Estado 125
 
-   40 FUNCTION: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET .
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS . LEFT_BRACKET STATEMENTS RIGHT_BRACKET
 
-    $padrão  reduzir usando a regra 40 (FUNCTION)
+    LEFT_BRACKET  deslocar, e ir ao estado 130
 
 
 Estado 126
 
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET . STATEMENTS RIGHT_BRACKET
+   67 CASE_STATEMENT: CASE TERM COLON . STATEMENTS
+   68               | CASE TERM COLON . STATEMENTS BREAK END
 
     INTEGER_LITERAL  deslocar, e ir ao estado 1
     FLOAT_LITERAL    deslocar, e ir ao estado 2
@@ -1553,7 +1506,7 @@ Estado 126
 
     $padrão  reduzir usando a regra 3 (STATEMENTS)
 
-    STATEMENTS       ir ao estado 129
+    STATEMENTS       ir ao estado 131
     STATEMENT        ir ao estado 16
     TYPE             ir ao estado 17
     RETURN_STM       ir ao estado 18
@@ -1573,44 +1526,134 @@ Estado 126
 
 Estado 127
 
-   66 CASE_STATEMENT: CASE TERM COLON STATEMENTS .
-   67               | CASE TERM COLON STATEMENTS . BREAK END
+   71 DEFAULT_STM: DEFAULT COLON . STATEMENTS
 
-    BREAK  deslocar, e ir ao estado 130
+    INTEGER_LITERAL  deslocar, e ir ao estado 1
+    FLOAT_LITERAL    deslocar, e ir ao estado 2
+    BOOLEAN_LITERAL  deslocar, e ir ao estado 3
+    ID               deslocar, e ir ao estado 4
+    UNARY_MINUS      deslocar, e ir ao estado 5
+    UNARY_PLUS       deslocar, e ir ao estado 6
+    LEFT_BRACKET     deslocar, e ir ao estado 7
+    IF               deslocar, e ir ao estado 8
+    FOR              deslocar, e ir ao estado 9
+    WHILE            deslocar, e ir ao estado 10
+    RETURN           deslocar, e ir ao estado 11
+    SWITCH           deslocar, e ir ao estado 12
+    DATA_TYPE        deslocar, e ir ao estado 13
 
-    $padrão  reduzir usando a regra 66 (CASE_STATEMENT)
+    $padrão  reduzir usando a regra 3 (STATEMENTS)
+
+    STATEMENTS       ir ao estado 132
+    STATEMENT        ir ao estado 16
+    TYPE             ir ao estado 17
+    RETURN_STM       ir ao estado 18
+    FUNCTION_CALL    ir ao estado 19
+    FUNCTION_HEADER  ir ao estado 20
+    FUNCTION         ir ao estado 21
+    UNARY_OPERATOR   ir ao estado 22
+    TERM             ir ao estado 23
+    UNARY_EXPR       ir ao estado 24
+    BLOCK            ir ao estado 25
+    ASSIGNMENT       ir ao estado 26
+    IF_STATEMENT     ir ao estado 27
+    FOR_STATEMENT    ir ao estado 28
+    WHILE_STATEMENT  ir ao estado 29
+    SWITCH_STM       ir ao estado 30
 
 
 Estado 128
 
-   70 DEFAULT_STM: DEFAULT COLON STATEMENTS .
+   66 SWITCH_STM: SWITCH LEFT_PARENTHESIS ID RIGHT_PARENTHESIS LEFT_BRACKET CASE_LIST DEFAULT_STM RIGHT_BRACKET .
 
-    $padrão  reduzir usando a regra 70 (DEFAULT_STM)
+    $padrão  reduzir usando a regra 66 (SWITCH_STM)
 
 
 Estado 129
 
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS . RIGHT_BRACKET
+   40 FUNCTION: TYPE ID LEFT_PARENTHESIS FUNCTION_PARAMS RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET .
 
-    RIGHT_BRACKET  deslocar, e ir ao estado 131
+    $padrão  reduzir usando a regra 40 (FUNCTION)
 
 
 Estado 130
 
-   67 CASE_STATEMENT: CASE TERM COLON STATEMENTS BREAK . END
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET . STATEMENTS RIGHT_BRACKET
 
-    END  deslocar, e ir ao estado 132
+    INTEGER_LITERAL  deslocar, e ir ao estado 1
+    FLOAT_LITERAL    deslocar, e ir ao estado 2
+    BOOLEAN_LITERAL  deslocar, e ir ao estado 3
+    ID               deslocar, e ir ao estado 4
+    UNARY_MINUS      deslocar, e ir ao estado 5
+    UNARY_PLUS       deslocar, e ir ao estado 6
+    LEFT_BRACKET     deslocar, e ir ao estado 7
+    IF               deslocar, e ir ao estado 8
+    FOR              deslocar, e ir ao estado 9
+    WHILE            deslocar, e ir ao estado 10
+    RETURN           deslocar, e ir ao estado 11
+    SWITCH           deslocar, e ir ao estado 12
+    DATA_TYPE        deslocar, e ir ao estado 13
+
+    $padrão  reduzir usando a regra 3 (STATEMENTS)
+
+    STATEMENTS       ir ao estado 133
+    STATEMENT        ir ao estado 16
+    TYPE             ir ao estado 17
+    RETURN_STM       ir ao estado 18
+    FUNCTION_CALL    ir ao estado 19
+    FUNCTION_HEADER  ir ao estado 20
+    FUNCTION         ir ao estado 21
+    UNARY_OPERATOR   ir ao estado 22
+    TERM             ir ao estado 23
+    UNARY_EXPR       ir ao estado 24
+    BLOCK            ir ao estado 25
+    ASSIGNMENT       ir ao estado 26
+    IF_STATEMENT     ir ao estado 27
+    FOR_STATEMENT    ir ao estado 28
+    WHILE_STATEMENT  ir ao estado 29
+    SWITCH_STM       ir ao estado 30
 
 
 Estado 131
 
-   63 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET .
+   67 CASE_STATEMENT: CASE TERM COLON STATEMENTS .
+   68               | CASE TERM COLON STATEMENTS . BREAK END
 
-    $padrão  reduzir usando a regra 63 (FOR_STATEMENT)
+    BREAK  deslocar, e ir ao estado 134
+
+    $padrão  reduzir usando a regra 67 (CASE_STATEMENT)
 
 
 Estado 132
 
-   67 CASE_STATEMENT: CASE TERM COLON STATEMENTS BREAK END .
+   71 DEFAULT_STM: DEFAULT COLON STATEMENTS .
 
-    $padrão  reduzir usando a regra 67 (CASE_STATEMENT)
+    $padrão  reduzir usando a regra 71 (DEFAULT_STM)
+
+
+Estado 133
+
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS . RIGHT_BRACKET
+
+    RIGHT_BRACKET  deslocar, e ir ao estado 135
+
+
+Estado 134
+
+   68 CASE_STATEMENT: CASE TERM COLON STATEMENTS BREAK . END
+
+    END  deslocar, e ir ao estado 136
+
+
+Estado 135
+
+   64 FOR_STATEMENT: FOR LEFT_PARENTHESIS ASSIGNMENT END EXPRESSION END ASSIGNMENT RIGHT_PARENTHESIS LEFT_BRACKET STATEMENTS RIGHT_BRACKET .
+
+    $padrão  reduzir usando a regra 64 (FOR_STATEMENT)
+
+
+Estado 136
+
+   68 CASE_STATEMENT: CASE TERM COLON STATEMENTS BREAK END .
+
+    $padrão  reduzir usando a regra 68 (CASE_STATEMENT)

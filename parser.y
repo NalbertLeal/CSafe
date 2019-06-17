@@ -130,8 +130,8 @@ FUNCTION_PARAMS : /* empty */
 
 FUNCTION_CALL   : ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS END
                 {
-                    if(!isDuplicate($<strVal>1)){
-                        DuplicateIdentifierError($<strVal>1);
+                    if(!isDuplicate($1)){
+                        DuplicateIdentifierError($1);
                     }
                 }
                 ;
@@ -219,6 +219,11 @@ ASSIGNMENT      : ID EQUALS EXPRESSION{
                             } else {
                                 DuplicateIdentifierError($4);
                             }
+                        }
+                }
+                | ID EQUALS ID LEFT_PARENTHESIS TERM_LIST RIGHT_PARENTHESIS {
+                        if(!isDuplicate($1) || !isDuplicate($3)){
+                            DuplicateIdentifierError($1);
                         }
                 }
                 ;
