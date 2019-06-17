@@ -44,6 +44,15 @@ int isDuplicate(char* identifier) {
     return 0;
 }
 
+int checkTypes(char* identifier1, char* identifier2){
+    HashNode* item1 = hashSearch(&symbolTable, identifier1);
+    HashNode* item2 = hashSearch(&symbolTable, identifier2);
+    if(item1->data == item2->data){
+        return 1;
+    }
+    return 0;
+}
+
 void storeIdentifier(char* identifier, char* identifier_data_type) {
     HashNode* item = newHashNode(identifier, identifier_data_type);
     hashInsert(&symbolTable, &item);

@@ -187,7 +187,11 @@ ASSIGNMENT      : ID EQUALS EXPRESSION{
                             DuplicateIdentifierError($<strVal>1);
                     }
                     if(!isDuplicate($<strVal>3)){
+                        printf("%s\n", $<strVal>3);
                             DuplicateIdentifierError($<strVal>3);                    
+                    }
+                    if(!checkTypes($<strVal>1, $<strVal>3)){
+                        DuplicateIdentifierError($<strVal>3);
                     }
 }
                 | TYPE ID EQUALS EXPRESSION {
