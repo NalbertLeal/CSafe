@@ -4,6 +4,7 @@
     #include "langFunctions.h"
 
     extern char Data_Type[50];
+    unsigned int escopo;
 
     extern void yyerror();
     extern int yylex();
@@ -195,7 +196,14 @@ EXPRESSION      : TERM {
 UNARY_EXPR      : TERM UNARY_OPERATOR
                 | UNARY_OPERATOR TERM
 
-BLOCK           : LEFT_BRACKET STATEMENTS RIGHT_BRACKET;
+BLOCK           : LEFT_BRACKET STATEMENTS RIGHT_BRACKET {
+                    // entrando em novo escopo, logo incrementa em um o valor de escopo
+                    escopo++;
+
+                    // retirar variaveis desse escopo da hash
+                    // saindo do escopo, então reduz em um o valor
+                    escopo--;
+                };
 
 ASSIGNMENT      : ID EQUALS EXPRESSION{
                     if(!isDuplicate($<strVal>1)){
@@ -266,6 +274,8 @@ DEFAULT_STM     : DEFAULT COLON STATEMENTS;
 %%
 
 int main(int argc, char *argv[]) {
+    escopo = 0; // escopo global
+
     initSymbolTable();
     yyin = fopen(argv[1], "r");
     
