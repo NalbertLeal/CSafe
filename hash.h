@@ -18,6 +18,7 @@ typedef enum {
 typedef struct HashNode {
   char* key;
   char* data;
+  char* type;
   struct HashNode* next;
 } HashNode;
 
@@ -159,3 +160,13 @@ void printHash(HashTable** hashTable) {
     }
   }
 }
+
+void hashStoreDataType(HashTable** hashTable, char* key, char* type){
+  HashNode* expectedNode = hashSearch(hashTable, key);
+  if (expectedNode != NULL)
+  {
+    printf("HashNode found!\n");
+  }else{
+    printf("HashNode not found!\n");
+  }
+} 

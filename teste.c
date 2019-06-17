@@ -2,11 +2,8 @@ int x = 1;
 bool i = true;
 void y;
 char e;
-string t;
-
-
-
+string t;	
 //yx();
-//float f(){}
+//float f(){}	
 //float xw = f();
-x = y;
+x = 10;

@@ -7,6 +7,7 @@
     void InvalidToken();
 %}
 %%
+(\/\*([^*]|[\r\n]|(\*+([^*\/]|[\r\n])))*\*+\/)|(\/\/.*)  {/*Ignorar comentário em bloco*/}
 [ \t]               ;
 [\n]                {yylineno++;};
 (";")               {yylval.dataType = strdup(yytext); return(END);}

@@ -183,8 +183,11 @@ UNARY_EXPR      : TERM UNARY_OPERATOR
 BLOCK           : LEFT_BRACKET STATEMENTS RIGHT_BRACKET;
 
 ASSIGNMENT      : ID EQUALS EXPRESSION{
-                    if(isDuplicate($<strVal>1)){
+                    if(!isDuplicate($<strVal>1)){
                             DuplicateIdentifierError($<strVal>1);
+                    }
+                    if(!isDuplicate($<strVal>3)){
+                            DuplicateIdentifierError($<strVal>3);                    
                     }
 }
                 | TYPE ID EQUALS EXPRESSION {
