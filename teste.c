@@ -1,4 +1,6 @@
 int x = 10;
 //x = p;
 float p;
-x = z();
+void z(int y, int y){
+	y = 10;
+}

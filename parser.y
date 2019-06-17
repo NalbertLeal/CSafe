@@ -122,8 +122,23 @@ TERM_LIST       : /* empty */
                     }
                 | TERM COMMA TERM_LIST;
 
-ID_PARAMS       : TYPE ID
-                | TYPE ID COMMA ID_PARAMS;
+ID_PARAMS       : TYPE ID {
+                    if(!isDuplicate($2)){
+                        storeDataType($<strVal>1);
+                        storeIdentifier($2, retrieveDataType());
+                    } else {
+                            DuplicateIdentifierError($2);
+                        }
+                }
+                | TYPE ID COMMA ID_PARAMS {
+                    if(!isDuplicate($2)){
+                        storeDataType($<strVal>1);
+                        storeIdentifier($2, retrieveDataType());
+                    } else {
+                            DuplicateIdentifierError($2);
+                        }
+                }
+                ;
 
 FUNCTION_PARAMS : /* empty */
                 | ID_PARAMS;

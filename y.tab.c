@@ -510,16 +510,16 @@ static const yytype_uint8 yytranslate[] =
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_uint8 yyrline[] =
+static const yytype_uint16 yyrline[] =
 {
        0,    49,    49,    50,    52,    53,    54,    57,    58,    59,
       60,    61,    62,    63,    64,    65,    66,    68,    74,    77,
       80,    83,    86,    89,    92,    97,   100,   103,   106,   109,
-     112,   117,   119,   120,   123,   125,   126,   128,   129,   131,
-     139,   150,   161,   162,   164,   165,   167,   170,   171,   172,
-     174,   177,   178,   180,   181,   183,   185,   197,   205,   206,
-     214,   224,   232,   234,   235,   237,   239,   241,   243,   244,
-     246,   247,   249
+     112,   117,   119,   120,   123,   125,   133,   143,   144,   146,
+     154,   165,   176,   177,   179,   180,   182,   185,   186,   187,
+     189,   192,   193,   195,   196,   198,   200,   212,   220,   221,
+     229,   239,   247,   249,   250,   252,   254,   256,   258,   259,
+     261,   262,   264
 };
 #endif
 
@@ -1776,18 +1776,44 @@ yyreduce:
 #line 1777 "y.tab.c" /* yacc.c:1646  */
     break;
 
+  case 35:
+#line 125 "parser.y" /* yacc.c:1646  */
+    {
+                    if(!isDuplicate((yyvsp[0].strVal))){
+                        storeDataType((yyvsp[-1].strVal));
+                        storeIdentifier((yyvsp[0].strVal), retrieveDataType());
+                    } else {
+                            DuplicateIdentifierError((yyvsp[0].strVal));
+                        }
+                }
+#line 1790 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 36:
+#line 133 "parser.y" /* yacc.c:1646  */
+    {
+                    if(!isDuplicate((yyvsp[-2].strVal))){
+                        storeDataType((yyvsp[-3].strVal));
+                        storeIdentifier((yyvsp[-2].strVal), retrieveDataType());
+                    } else {
+                            DuplicateIdentifierError((yyvsp[-2].strVal));
+                        }
+                }
+#line 1803 "y.tab.c" /* yacc.c:1646  */
+    break;
+
   case 39:
-#line 132 "parser.y" /* yacc.c:1646  */
+#line 147 "parser.y" /* yacc.c:1646  */
     {
                     if(!isDuplicate((yyvsp[-4].strVal))){
                         DuplicateIdentifierError((yyvsp[-4].strVal));
                     }
                 }
-#line 1787 "y.tab.c" /* yacc.c:1646  */
+#line 1813 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 140 "parser.y" /* yacc.c:1646  */
+#line 155 "parser.y" /* yacc.c:1646  */
     {
                         if(!isDuplicate((yyvsp[-4].strVal))) {
                             storeDataType((yyvsp[-5].strVal));
@@ -1796,11 +1822,11 @@ yyreduce:
                             DuplicateIdentifierError((yyvsp[-4].strVal));
                         }
                     }
-#line 1800 "y.tab.c" /* yacc.c:1646  */
+#line 1826 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 151 "parser.y" /* yacc.c:1646  */
+#line 166 "parser.y" /* yacc.c:1646  */
     {
                         if(!isDuplicate((yyvsp[-6].strVal))) {
                             storeDataType((yyvsp[-7].strVal));
@@ -1809,27 +1835,27 @@ yyreduce:
                             DuplicateIdentifierError((yyvsp[-6].strVal));
                         }
                     }
-#line 1813 "y.tab.c" /* yacc.c:1646  */
+#line 1839 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 167 "parser.y" /* yacc.c:1646  */
+#line 182 "parser.y" /* yacc.c:1646  */
     {
                         allocaStrEmStr((yyval.dataType), (yyval.dataType));
                     }
-#line 1821 "y.tab.c" /* yacc.c:1646  */
+#line 1847 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 174 "parser.y" /* yacc.c:1646  */
+#line 189 "parser.y" /* yacc.c:1646  */
     {
                         allocaStrEmStr((yyval.dataType), (yyval.dataType));
                     }
-#line 1829 "y.tab.c" /* yacc.c:1646  */
+#line 1855 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 185 "parser.y" /* yacc.c:1646  */
+#line 200 "parser.y" /* yacc.c:1646  */
     {
                     if(!isDuplicate((yyvsp[-2].strVal))){
                             DuplicateIdentifierError((yyvsp[-2].strVal));
@@ -1842,11 +1868,11 @@ yyreduce:
                         DuplicateIdentifierError((yyvsp[0].strVal));
                     }
 }
-#line 1846 "y.tab.c" /* yacc.c:1646  */
+#line 1872 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 197 "parser.y" /* yacc.c:1646  */
+#line 212 "parser.y" /* yacc.c:1646  */
     {
                         if(!isDuplicate((yyvsp[-2].strVal))) {
                             storeDataType((yyvsp[-3].strVal));
@@ -1855,11 +1881,11 @@ yyreduce:
                             DuplicateIdentifierError((yyvsp[-2].strVal));
                         }
                     }
-#line 1859 "y.tab.c" /* yacc.c:1646  */
+#line 1885 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 206 "parser.y" /* yacc.c:1646  */
+#line 221 "parser.y" /* yacc.c:1646  */
     {
                         if(!isDuplicate((yyvsp[0].strVal))) {
                             storeDataType((yyvsp[-1].strVal));
@@ -1868,11 +1894,11 @@ yyreduce:
                             DuplicateIdentifierError((yyvsp[0].strVal));
                         }
                     }
-#line 1872 "y.tab.c" /* yacc.c:1646  */
+#line 1898 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 214 "parser.y" /* yacc.c:1646  */
+#line 229 "parser.y" /* yacc.c:1646  */
     {
                         if(!isDuplicate((yyvsp[-5].strVal))){
                             if(isDuplicate((yyvsp[-3].strVal))){
@@ -1883,21 +1909,21 @@ yyreduce:
                             }
                         }
                 }
-#line 1887 "y.tab.c" /* yacc.c:1646  */
+#line 1913 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 224 "parser.y" /* yacc.c:1646  */
+#line 239 "parser.y" /* yacc.c:1646  */
     {
                         if(!isDuplicate((yyvsp[-5].strVal)) || !isDuplicate((yyvsp[-3].strVal))){
                             DuplicateIdentifierError((yyvsp[-5].strVal));
                         }
                 }
-#line 1897 "y.tab.c" /* yacc.c:1646  */
+#line 1923 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1901 "y.tab.c" /* yacc.c:1646  */
+#line 1927 "y.tab.c" /* yacc.c:1646  */
         default: break;
       }
     if (yychar_backup != yychar)
@@ -2137,7 +2163,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 251 "parser.y" /* yacc.c:1906  */
+#line 266 "parser.y" /* yacc.c:1906  */
 
 
 int main(int argc, char *argv[]) {
